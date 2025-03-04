@@ -1,0 +1,99 @@
+# -------------------------------------------------------------------
+# KONFIGURASI AWAL SIMULASI
+# -------------------------------------------------------------------
+
+# Tingkat kedatangan pesanan (lambda): Pilihan (1-7)
+incoming_rate:
+  1: 0.5   # Pesanan per menit
+  2: 1     # Pesanan per menit
+  3: 2     # Pesanan per menit
+  4: 4     # Pesanan per menit
+  5: 8     # Pesanan per menit
+  6: 16    # Pesanan per menit
+  7: 32    # Pesanan per menit
+
+# Kapasitas maksimal keranjang (CART_CAPACITY): Pilihan (1-3)
+cart_capacity:
+  1: 100   # Kapasitas 100
+  2: 150   # Kapasitas 150
+  3: 200   # Kapasitas 200
+
+# Trigger Method: Pilihan (1-7)
+trigger_method:
+  1: "FTWB"       # Fixed Time Window Batching
+  2: "VTWB"       # Variable Time Window Batching
+  3: "MaxPicker"  # Maximize picker
+  4: "MaxCart"    # Maximize cart
+  5: "UrgentPicker"  # Prioritizing urgent orders, then maximize picker
+  6: "UrgentCart"    # Prioritizing urgent orders, then maximize cart
+  7: "VND"        # Variable Neighborhood Descent
+
+# Parameter Trigger
+trigger_parameters:
+  FTWB_interval: 720  # Dalam detik (12 menit)
+  VTWB_threshold: 12  # Total orders
+  Urgent_threshold: 1 # Maximum allowed urgent order
+
+# Batching Method: Pilihan (1-2)
+batching_method:
+  1: "FCFS"  # First Come First Serve
+  2: "EDT"   # Earliest Due Time
+
+# Routing Policy: Pilihan (1-2)
+routing_policy:
+  1: "Traversal"      # Strategi Traversal
+  2: "Largest Gap"    # Strategi Largest Gap
+
+# Total waktu simulasi dalam detik (8 jam shift kerja)
+simulation_time: 3600  # 8 * 3600 detik
+
+# Waktu awal simulasi (08:00:00) untuk logging
+start_time: 28800  # Dalam detik (08:00:00)
+
+# Jumlah item total dalam warehouse
+warehouse_items: 384  # Total 384 item
+
+# Konfigurasi jumlah pekerja (picker)
+num_pickers_options:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+
+# -------------------------------------------------------------------
+# KONSTANTA UNTUK PERHITUNGAN WAKTU RUTE
+# -------------------------------------------------------------------
+
+# Waktu berjalan antar bagian warehouse
+walking_times:
+  depot_to_first_aisle: 2          # Waktu dari depot ke lorong pertama (detik)
+  between_aisles: 4                # Waktu antar lorong (detik)
+  between_shelves: 2               # Waktu antar rak (detik)
+
+# Waktu pengambilan
+picking_time_per_item: 3           # Waktu untuk mengambil satu item (detik)
+
+# Waktu setup
+setup_time: 180                    # Waktu setup untuk memulai picking (detik)
+
+# Struktur warehouse
+warehouse_structure:
+  shelves_per_aisle: 32            # Jumlah rak per lorong
+  half_shelves: 16                 # Pembagian rak kiri/kanan
+
+# Add this section
+SELECTED_CONFIGURATION:
+  incoming_rate: 7
+  trigger_method: 3
+  num_pickers_options: 2
+  batching_method: 1
+  cart_capacity: 1
+  routing_policy: 1
