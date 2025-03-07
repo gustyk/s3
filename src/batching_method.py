@@ -1,5 +1,8 @@
 # batching_method.py
-import logging  # import logging
+import logging
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 def fcfs_batching(orders_to_process, cart_capacity, io_pool):
     """
@@ -9,7 +12,6 @@ def fcfs_batching(orders_to_process, cart_capacity, io_pool):
         cart_capacity: Maximum items capacity per batch
         io_pool: List to store the batched orders
     """
-    logger = logging.getLogger(__name__)
     logger.info("\n--- FCFS Batching ---")
     current_batch = []
     current_batch_quantity = 0
@@ -42,7 +44,6 @@ def edt_batching(orders_to_process, cart_capacity, io_pool):
         cart_capacity: Maximum items capacity per batch
         io_pool: List to store the batched orders
     """
-    logger = logging.getLogger(__name__)
     logger.info("\n--- EDT Batching ---")
 
     # Sort orders by Due Time (earliest first)
@@ -52,22 +53,21 @@ def edt_batching(orders_to_process, cart_capacity, io_pool):
     current_batch = []
     current_batch_quantity = 0
 
-
     for order in sorted_orders:
         order_quantity = order["Total Item"]
-        print(f"Processing Order ID: {order['Order ID']}, Total Item: {order_quantity}")
+        logger.debug(f"Processing Order ID: {order['Order ID']}, Total Item: {order_quantity}")
 
         if current_batch_quantity + order_quantity <= cart_capacity:
             current_batch.append(order)
             current_batch_quantity += order_quantity
         else:
-            print(f"Batch completed with {len(current_batch)} orders, Total Items: {current_batch_quantity}")
+            logger.info(f"Batch completed with {len(current_batch)} orders, Total Items: {current_batch_quantity}")
             io_pool.append(current_batch)
             current_batch = [order]
             current_batch_quantity = order_quantity
 
     if current_batch:
-        print(f"Final batch completed with {len(current_batch)} orders, Total Items: {current_batch_quantity}")
+        logger.info(f"Final batch completed with {len(current_batch)} orders, Total Items: {current_batch_quantity}")
         io_pool.append(current_batch)
     
     return io_pool
@@ -89,5 +89,5 @@ def batching_method(orders_to_process, cart_capacity, io_pool, batching_type):
         else:
             raise ValueError(f"Unknown batching type: {batching_type}")
     except Exception as e:
-        logging.error(f"Error occurred during {batching_type} batching: {str(e)}")
+        logger.error(f"Error occurred during {batching_type} batching: {str(e)}")
         raise
