@@ -1,14 +1,17 @@
 #routing.py
-import simpy
 import yaml
 import math
+import logging
 from datetime import datetime, timedelta
 
-#Membaca file YAML
+# Configure logging
+logger = logging.getLogger(__name__)
+
+# Read YAML configuration
 with open("config/parameters.yaml", "r") as file:
     params = yaml.safe_load(file)
 
-#Mengakses variabel-variabel
+# Access variables
 SHELVES_PER_AISLE = params["warehouse_structure"]["shelves_per_aisle"]
 HALF_SHELVES = params["warehouse_structure"]["half_shelves"]
 DEPOT_TO_FIRST_AISLE = params["walking_times"]["depot_to_first_aisle"]
@@ -20,6 +23,12 @@ SETUP_TIME = params["setup_time"]
 def translate_items_to_positions(items):
     """
     Translate item numbers to aisle and shelf positions.
+    
+    Args:
+        items: List of item numbers
+        
+    Returns:
+        List of (aisle, shelf) position tuples
     """
     positions = []
     for item in items:
@@ -30,11 +39,17 @@ def translate_items_to_positions(items):
 
 def calculate_largest_gap(positions):
     """
-
     Find the largest gap in shelf positions for an aisle.
+    
+    Args:
+        positions: List of shelf positions
+        
+    Returns:
+        Tuple of (start_of_gap, end_of_gap)
     """
     if len(positions) < 2:
-        return positions[0], positions[0] # No gap if only one position
+        return positions[0], positions[0]  # No gap if only one position
+    
     positions.sort()
     largest_gap = max(positions[i + 1] - positions[i] for i in range(len(positions) - 1))
     start_of_gap = positions[0]
@@ -43,108 +58,110 @@ def calculate_largest_gap(positions):
 def calculate_total_time(items, routing_strategy):
     """
     Simulate the picking process and calculate total trip time based on routing strategy.
-    :param items: List of (item number, quantity) tuples to pick.
-    :param routing_strategy: Strategy for routing (1: Traversal, 2: Largest Gap).
-    :return: Total trip time in seconds.
+    
+    Args:
+        items: List of (item number, quantity) tuples to pick.
+        routing_strategy: Strategy for routing (1: Traversal, 2: Largest Gap).
+        
+    Returns:
+        Total trip time in seconds.
     """
-    item_numbers = [item for item, quantity in items for _ in range(quantity)] # Expand items by quantity
+    # Expand items by quantity
+    item_numbers = [item for item, quantity in items for _ in range(quantity)]
     positions = translate_items_to_positions(item_numbers)
-    aisles = sorted(set(pos[0] for pos in positions)) # Unique aisles with picks
+    aisles = sorted(set(pos[0] for pos in positions))  # Unique aisles with picks
+    
     total_walking_time = 0
     total_picking_time = len(item_numbers) * PICKING_TIME_PER_ITEM
-    if routing_strategy == 1: # Traversal strategy
+    
+    if routing_strategy == 1:  # Traversal strategy
         # Initialize components of walking time
-        depot_time = 0
-        traverse_time = 0
-        aisles_time = 0
-        last_aisle_time = 0
-        return_time = 0
-        # Calculate depot_time
         depot_time = DEPOT_TO_FIRST_AISLE + (aisles[0] - 1) * BETWEEN_AISLES
-        #print(f"Depot time: {depot_time} seconds")
+        
         # Calculate traverse_time
+        traverse_time = 0
         if len(aisles) > 1:
             traverse_time = HALF_SHELVES * BETWEEN_SHELVES * (len(aisles) - 1)
-        else:
-            traverse_time = 0
-            #print(f"Traverse time: {traverse_time} seconds")
+        
         # Calculate aisles_time
+        aisles_time = 0
         if len(aisles) == 1:
             aisles_time = 0
-        elif len(aisles) % 2 != 0: # Odd number of aisles > 1
+        elif len(aisles) % 2 != 0:  # Odd number of aisles > 1
             aisles_time = (aisles[-2] - aisles[0]) * BETWEEN_AISLES
-        else: # Even number of aisles
+        else:  # Even number of aisles
             aisles_time = (aisles[-1] - aisles[0]) * BETWEEN_AISLES
-            #print(f"Aisles time: {aisles_time} seconds")
+        
         # Calculate last_aisle_time
         last_aisle = aisles[-1]
         farthest_shelf = max(pos[1] for pos in positions if pos[0] == last_aisle)
-        if len(aisles) % 2 != 0: # Odd number of aisles
+        
+        if len(aisles) % 2 != 0:  # Odd number of aisles
             last_aisle_time = (farthest_shelf * BETWEEN_SHELVES) * 2
-        else: # Even number of aisles
+        else:  # Even number of aisles
             last_aisle_time = HALF_SHELVES * BETWEEN_SHELVES
-        #print(f"Last aisle time: {last_aisle_time} seconds")
+        
         # Calculate return_time
         return_time = last_aisle * BETWEEN_AISLES
-        #print(f"Return time: {return_time} seconds")
+        
         # Total walking time
         total_walking_time = depot_time + traverse_time + aisles_time + last_aisle_time + return_time
-        #print(f"Total walking time: {total_walking_time} seconds")
+        
+        logger.debug(f"Traversal strategy - Walking components: depot={depot_time}, traverse={traverse_time}, "
+                     f"aisles={aisles_time}, last_aisle={last_aisle_time}, return={return_time}")
     
-    elif routing_strategy == 2: # Largest Gap strategy
+    elif routing_strategy == 2:  # Largest Gap strategy
         # Initialize components of walking time
-        depot_time = 0
-        traverse_time = 0
-        aisles_time = 0
-        gap_time = 0
-        last_aisle_time = 0
-        return_time = 0
-        # Step 1: Calculate depot_time
         depot_time = DEPOT_TO_FIRST_AISLE + (aisles[0] - 1) * BETWEEN_AISLES
-        #print(f"Depot time: {depot_time} seconds")
-        # Step 2: Calculate traverse_time
+        
+        # Calculate traverse_time
+        traverse_time = 0
         if len(aisles) > 1:
             traverse_time = HALF_SHELVES * BETWEEN_SHELVES * 2
-        else:
-            traverse_time = 0
-            #print(f"Traverse time: {traverse_time} seconds")
-        # Step 3: Calculate aisles_time
+        
+        # Calculate aisles_time
+        aisles_time = 0
         if len(aisles) == 1:
             aisles_time = 0
         else:
             aisles_time = (aisles[-1] - aisles[0]) * BETWEEN_AISLES
-            #print(f"Aisles time: {aisles_time} seconds")
-        # Step 4: Calculate gap_time
+        
+        # Calculate gap_time
+        gap_time = 0
         if len(aisles) >= 3:
-            for aisle in aisles[1:-1]: # Exclude first and last aisles
+            for aisle in aisles[1:-1]:  # Exclude first and last aisles
                 shelves_in_aisle = sorted([pos[1] for pos in positions if pos[0] == aisle])
                 if shelves_in_aisle:
                     # Calculate gaps within the aisle
                     gaps = [
-                    (HALF_SHELVES + 1) - shelves_in_aisle[-1], # Gap from last shelf to end
-                    *[shelves_in_aisle[i+1] - shelves_in_aisle[i] for i in range(len(shelves_in_aisle)-1)], # Gaps between shelves
-                    shelves_in_aisle[0] - 0 # Gap from start to first shelf
+                        (HALF_SHELVES + 1) - shelves_in_aisle[-1],  # Gap from last shelf to end
+                        *[shelves_in_aisle[i+1] - shelves_in_aisle[i] for i in range(len(shelves_in_aisle)-1)],  # Gaps between shelves
+                        shelves_in_aisle[0] - 0  # Gap from start to first shelf
                     ]
                     largest_gap = max(gaps)
                     gap_time += (HALF_SHELVES - largest_gap + 1) * BETWEEN_SHELVES
-                else:
-                    gap_time = 0 # No gap_time if there are fewer than 3 aisles
-                #print(f"Gap time: {gap_time} seconds")
-        # Step 5: Calculate last_aisle_time
+        
+        # Calculate last_aisle_time
         last_aisle = aisles[-1]
         farthest_shelf = max(pos[1] for pos in positions if pos[0] == last_aisle)
+        
+        last_aisle_time = 0
         if len(aisles) == 1:
             last_aisle_time = (farthest_shelf * BETWEEN_SHELVES) * 2
-        else:
-            last_aisle_time = 0
-            #print(f"Last aisle time: {last_aisle_time} seconds")
-        # Step 6: Calculate return_time
+        
+        # Calculate return_time
         return_time = last_aisle * BETWEEN_AISLES
-        #print(f"Return time: {return_time} seconds")
-    
+        
         # Total walking time
         total_walking_time = depot_time + traverse_time + aisles_time + gap_time + last_aisle_time + return_time
-        #print(f"Total walking time: {total_walking_time} seconds")
-        # Add setup time
+        
+        logger.debug(f"Largest Gap strategy - Walking components: depot={depot_time}, traverse={traverse_time}, "
+                     f"aisles={aisles_time}, gap={gap_time}, last_aisle={last_aisle_time}, return={return_time}")
+    
+    # Add setup time and picking time to get total trip time
     total_trip_time = SETUP_TIME + total_walking_time + total_picking_time
+    
+    logger.debug(f"Total trip time: setup={SETUP_TIME}, walking={total_walking_time}, "
+                 f"picking={total_picking_time}, total={total_trip_time}")
+    
     return total_trip_time
