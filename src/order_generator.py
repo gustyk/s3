@@ -1,10 +1,22 @@
 #order_generator.py
 import simpy
 import numpy as np
-#from globals import orders_generated
+import logging
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 # Helper function to format time in HH:MM:SS
 def format_time(seconds):
+    """
+    Format time in seconds to HH:MM:SS format
+    
+    Args:
+        seconds: Time in seconds
+        
+    Returns:
+        Formatted time string (HH:MM:SS)
+    """
     hours = int(seconds // 3600)
     minutes = int((seconds % 3600) // 60)
     seconds = int(seconds % 60)
@@ -12,8 +24,18 @@ def format_time(seconds):
 
 # Order Generator Process
 def generate_orders(env, order_pool, arrival_rate, end_time):
-    #global orders_generated
+    """
+    Generate orders at a specified arrival rate
+    
+    Args:
+        env: SimPy environment
+        order_pool: OrderPool to store generated orders
+        arrival_rate: Average number of orders per minute
+        end_time: Simulation end time in seconds
+    """
     customer_id = 1
+    total_orders_generated = 0
+    
     while True:
         # Generate interarrival time (in seconds)
         interarrival_time = np.random.exponential(scale=60 / arrival_rate)  # Convert rate to seconds
@@ -23,7 +45,7 @@ def generate_orders(env, order_pool, arrival_rate, end_time):
         if env.now > end_time:
             break
         
-        # Generate due time for the order (120 to 239 minutes from now)
+        # Generate due time for the order (30 to 120 minutes from now)
         due_time = env.now + np.random.randint(30 * 60, 120 * 60)  # Convert minutes to seconds
         
         # Format created time and due time
@@ -52,21 +74,27 @@ def generate_orders(env, order_pool, arrival_rate, end_time):
         )
         
         # Create the order as a list of (item ID, quantity) tuples
-        order = [(item, quantity) for item, quantity in zip(items, quantities)]
+        order_list = [(item, quantity) for item, quantity in zip(items, quantities)]
         
         # Calculate the total order quantity
-        total_quantity = sum(quantity for _, quantity in order)
+        total_quantity = sum(quantity for _, quantity in order_list)
         
         # Add the order to the order pool
-        order ={
+        order = {
             "Order ID": f"Cust{customer_id:05}",
             "Created Time": created_time_str,
-            "Order List": order,
+            "Order List": order_list,
             "Total Item": total_quantity,
             "Due Time": due_time_str,
         }
+        
         order_pool.add_order(order)
+        total_orders_generated += 1
+        
+        # Log the order generation
+        logger.debug(f"Generated Order ID: {order['Order ID']}, Items: {total_quantity}, Due: {due_time_str}")
+        
         # Increment the customer ID
-        #generate_orders = customer_id
-
         customer_id += 1
+    
+    logger.info(f"Order generation completed. Total orders generated: {total_orders_generated}")
