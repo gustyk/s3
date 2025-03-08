@@ -111,3 +111,34 @@ class OrderPool:
             if order["Order ID"] == order_id:
                 return order
         return None
+
+    # Add this method to the OrderPool class in src/order_pool.py
+
+    def shuffle_orders(self) -> None:
+        """
+        Shuffle the orders in the pool to escape local optima in search algorithms
+        """
+        import random
+        random.shuffle(self.orders)
+        
+    def remove_orders(self, order_ids: list) -> List[Dict]:
+        """
+        Remove multiple orders from the pool based on Order IDs
+        
+        Args:
+            order_ids: List of Order IDs to remove
+                
+        Returns:
+            List of removed orders. Empty list if no orders were found.
+        """
+        removed_orders = []
+        remaining_orders = []
+        
+        for order in self.orders:
+            if order["Order ID"] in order_ids:
+                removed_orders.append(order)
+            else:
+                remaining_orders.append(order)
+                
+        self.orders = remaining_orders
+        return removed_orders
