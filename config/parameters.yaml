@@ -26,7 +26,7 @@ trigger_method:
   4: "MaxCart"    # Maximize cart
   5: "UrgentPicker"  # Prioritizing urgent orders, then maximize picker
   6: "UrgentCart"    # Prioritizing urgent orders, then maximize cart
-  7: "VND"        # Variable Neighborhood Descent
+  7: "DVNS"        # Dynamic Variable Neighborhood Descent
 
 # Parameter Trigger
 trigger_parameters:
