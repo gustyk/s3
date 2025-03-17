@@ -20,8 +20,22 @@ PICKING_TIME_PER_ITEM = params["picking_time_per_item"]
 BETWEEN_SHELVES = params["walking_times"]["between_shelves"]
 SETUP_TIME = params["setup_time"]
 
+# Add at the beginning of routing.py after loading parameters
+# Precompute all item positions
+ITEM_POSITIONS = {}
+for item in range(1, params["warehouse_items"] + 1):
+    aisle = math.ceil(item / SHELVES_PER_AISLE)
+    shelf = (math.ceil(item / 2) - 1) % HALF_SHELVES + 1
+    ITEM_POSITIONS[item] = (aisle, shelf)
+
+# Modify translate_items_to_positions
 def translate_items_to_positions(items):
-    """
+    """Use precomputed positions"""
+    return [ITEM_POSITIONS[item] for item in items]
+
+"""
+def translate_items_to_positions(items):
+    
     Translate item numbers to aisle and shelf positions.
     
     Args:
@@ -29,13 +43,14 @@ def translate_items_to_positions(items):
         
     Returns:
         List of (aisle, shelf) position tuples
-    """
+    
     positions = []
     for item in items:
         aisle = math.ceil(item / SHELVES_PER_AISLE)
         shelf = (math.ceil(item / 2) - 1) % HALF_SHELVES + 1
         positions.append((aisle, shelf))
     return positions
+"""
 
 def calculate_largest_gap(positions):
     """
@@ -54,6 +69,19 @@ def calculate_largest_gap(positions):
     largest_gap = max(positions[i + 1] - positions[i] for i in range(len(positions) - 1))
     start_of_gap = positions[0]
     return start_of_gap, start_of_gap + largest_gap
+
+from functools import lru_cache
+
+# Cache for translated positions
+position_cache = {}
+
+@lru_cache(maxsize=1024)
+def calculate_total_time_cached(items_tuple, routing_strategy):
+    """
+    Cached version of calculate_total_time.
+    """
+    items = [list(item) for item in items_tuple]
+    return calculate_total_time(items, routing_strategy)
 
 def calculate_total_time(items, routing_strategy):
     """
