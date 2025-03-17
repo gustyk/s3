@@ -26,6 +26,7 @@ trigger_method:
   5: "UrgentPicker"  # Prioritizing urgent orders, then maximize picker
   6: "UrgentCart"    # Prioritizing urgent orders, then maximize cart
   7: "DVNS"        # Variable Neighborhood Descent
+  8: "MPBH"       # Modified Priority Based Heuristic
 
 # Parameter Trigger
 trigger_parameters:
