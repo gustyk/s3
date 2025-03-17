@@ -26,13 +26,13 @@ trigger_method:
   4: "MaxCart"    # Maximize cart
   5: "UrgentPicker"  # Prioritizing urgent orders, then maximize picker
   6: "UrgentCart"    # Prioritizing urgent orders, then maximize cart
-  7: "DVNS"        # Dynamic Variable Neighborhood Descent
+  7: "DVNS"        # Variable Neighborhood Descent
 
 # Parameter Trigger
 trigger_parameters:
   FTWB_interval: 720  # Dalam detik (12 menit)
   VTWB_threshold: 12  # Total orders
-  Urgent_threshold: 1 # Maximum allowed urgent order
+  Urgent_threshold: 2 # Maximum allowed urgent order
 
 # Batching Method: Pilihan (1-2)
 batching_method:
@@ -45,7 +45,7 @@ routing_policy:
   2: "Largest Gap"    # Strategi Largest Gap
 
 # Total waktu simulasi dalam detik (8 jam shift kerja)
-simulation_time: 3600  # 8 * 3600 detik
+simulation_time: 28800  # 8 * 3600 detik
 
 # Waktu awal simulasi (08:00:00) untuk logging
 start_time: 28800  # Dalam detik (08:00:00)
@@ -91,9 +91,9 @@ warehouse_structure:
 
 # Add this section
 SELECTED_CONFIGURATION:
-  incoming_rate: 7
-  trigger_method: 3
-  num_pickers_options: 2
+  incoming_rate: 4
+  trigger_method: 7
+  num_pickers_options: 12
   batching_method: 1
   cart_capacity: 1
   routing_policy: 1
