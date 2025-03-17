@@ -10,7 +10,6 @@ incoming_rate:
   4: 4     # Pesanan per menit
   5: 8     # Pesanan per menit
   6: 16    # Pesanan per menit
-  7: 32    # Pesanan per menit
 
 # Kapasitas maksimal keranjang (CART_CAPACITY): Pilihan (1-3)
 cart_capacity:
