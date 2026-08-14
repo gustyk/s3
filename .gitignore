@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+dist/
+build/
+*.egg-info/
+outputs/*
+!outputs/DISCOVERY_NOTES.md
+logs/
+simulation_checkpoint.json

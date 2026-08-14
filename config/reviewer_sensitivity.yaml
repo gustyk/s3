@@ -1,0 +1,10 @@
+extends: parameters.yaml
+persist_order_records: false  # main factorial retains the complete per-order evidence
+# Low/high demand and staffing, crossed with all secondary paper factors.
+experiment_design:
+  incoming_rate_keys: [1, 6]
+  trigger_method_keys: [8]
+  num_pickers: [1, 12]
+  batching_method_keys: [1, 2]
+  cart_capacity_keys: [1, 2, 3]
+  routing_policy_keys: [1, 2]

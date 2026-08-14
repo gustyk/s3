@@ -1,0 +1,12 @@
+extends: parameters.yaml
+persist_order_records: false  # auxiliary robustness sweep
+# Reviewer decomposition uses representative low/high demand and staffing,
+# all cart capacities, and both routing policies. The runner fixes trigger and
+# batching keys because timing and composition are crossed explicitly.
+experiment_design:
+  incoming_rate_keys: [1, 6]
+  trigger_method_keys: [8]
+  num_pickers: [1, 12]
+  batching_method_keys: [1]
+  cart_capacity_keys: [1, 2, 3]
+  routing_policy_keys: [1, 2]

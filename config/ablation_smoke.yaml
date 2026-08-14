@@ -1,0 +1,13 @@
+extends: parameters.yaml
+simulation_time: 300
+warmup_seconds: 0
+repetitions: 1
+trigger_parameters:
+  FTWB_interval: 30
+experiment_design:
+  incoming_rate_keys: [4]
+  trigger_method_keys: [8]
+  num_pickers: [2]
+  batching_method_keys: [1]
+  cart_capacity_keys: [1]
+  routing_policy_keys: [1]

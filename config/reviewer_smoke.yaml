@@ -1,0 +1,8 @@
+extends: parameters.yaml
+simulation_time: 600
+repetitions: 1
+trigger_parameters:
+  FTWB_interval: 30
+  VTWB_threshold: 2
+  Urgent_threshold: 2
+

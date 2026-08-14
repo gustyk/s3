@@ -1,0 +1,89 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "s3-warehouse-simulation"
+version = "0.1.0"
+description = "Reproducible discrete-event simulation of warehouse order batching and routing"
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+license = { file = "LICENSE" }
+dependencies = [
+  "numpy>=2.0,<3",
+  "PyYAML>=6.0,<7",
+  "simpy>=4.1,<5",
+]
+
+[project.optional-dependencies]
+analysis = [
+  "matplotlib>=3.9,<4",
+  "pandas>=2.2,<4",
+  "psutil>=7.2,<8",
+  "scipy>=1.14,<2",
+  "seaborn>=0.13,<1",
+  "statsmodels>=0.14,<1",
+]
+dev = [
+  "mypy>=1.14,<2",
+  "pytest>=8.3,<10",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<1",
+  "types-PyYAML>=6.0,<7",
+]
+
+[project.scripts]
+s3-simulate = "src.experiment:main"
+s3-audit = "src.audit_results:main"
+s3-fit-inputs = "src.input_analysis:main"
+s3-validate = "src.validation:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers --cov=src --cov-branch --cov-report=term-missing --cov-fail-under=90"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+omit = [
+  "src/artifacts.py",
+  "src/analysis_pipeline.py",
+  "src/additional_metrics.py",
+  "src/ablation.py",
+  "src/audit_results.py",
+  "src/benchmark.py",
+  "src/benchmark_calibration.py",
+  "src/beta_sensitivity.py",
+  "src/calibrate_travel_surrogate.py",
+  "src/composite_score.py",
+  "src/configuration.py",
+  "src/design_tools.py",
+  "src/decision_benchmark.py",
+  "src/experiment.py",
+  "src/input_analysis.py",
+  "src/main.py",
+  "src/main_nocrash.py",
+  "src/preflight.py",
+  "src/sensitivity.py",
+  "src/validation.py",
+  "src/welch.py",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.format]
+line-ending = "lf"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+check_untyped_defs = true
+no_implicit_optional = true
+ignore_missing_imports = true

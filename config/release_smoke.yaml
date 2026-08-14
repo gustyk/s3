@@ -1,0 +1,13 @@
+extends: parameters.yaml
+simulation_time: 900
+repetitions: 1
+persist_order_records: true
+# Explicit one-context, all-method release gate. Every inherited design list is
+# overridden so YAML deep-merge cannot accidentally launch the full grid.
+experiment_design:
+  incoming_rate_keys: [1]
+  trigger_method_keys: [1, 2, 3, 4, 5, 6, 7, 8]
+  num_pickers: [2]
+  batching_method_keys: [1]
+  cart_capacity_keys: [1]
+  routing_policy_keys: [1]

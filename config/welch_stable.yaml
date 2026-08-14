@@ -1,0 +1,9 @@
+extends: parameters.yaml
+warmup_seconds: 0
+SELECTED_CONFIGURATION:
+  incoming_rate: 1
+  trigger_method: 7
+  num_pickers_options: 12
+  batching_method: 1
+  cart_capacity: 1
+  routing_policy: 1

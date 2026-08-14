@@ -1,0 +1,65 @@
+name: Publication quality gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Python ${{ matrix.python-version }} verification
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.14"]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - name: Install locked environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.lock
+          python -m pip install -e . --no-deps
+      - name: Lint
+        run: ruff check src tests
+      - name: Type check
+        run: mypy src
+      - name: Unit, invariant, integration, and deterministic tests
+        run: pytest --cov-report=xml
+      - name: All-method smoke simulation
+        run: python -m src.experiment --config config/reviewer_smoke.yaml --mode smoke --repetitions 1 --output-dir outputs/ci-smoke
+      - name: Audit smoke artifact
+        run: python -m src.audit_results outputs/ci-smoke/results.csv --report outputs/ci-smoke/audit.json
+      - name: Exercise analysis pipeline
+        run: python -m src.analysis_pipeline outputs/ci-smoke/results.csv --output-dir outputs/ci-analysis
+      - name: Exercise repeated resource benchmark
+        run: python -m src.benchmark --config config/benchmark_smoke.yaml --repeats 2 --route-calls 100 --output-dir outputs/ci-benchmark
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: smoke-python-${{ matrix.python-version }}
+          path: |
+            outputs/ci-smoke/
+            outputs/ci-analysis/
+            outputs/ci-benchmark/
+            coverage.xml
+          retention-days: 30
+
+  container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - run: docker build --tag s3-simulation:${{ github.sha }} .
+      - run: docker run --rm s3-simulation:${{ github.sha }} python -m pytest -q

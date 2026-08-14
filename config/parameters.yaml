@@ -25,14 +25,14 @@ trigger_method:
   4: "MaxCart"    # Maximize cart
   5: "UrgentPicker"  # Prioritizing urgent orders, then maximize picker
   6: "UrgentCart"    # Prioritizing urgent orders, then maximize cart
-  7: "DVNS"        # Variable Neighborhood Descent
+  7: "SNH"         # Simplified Neighbourhood-based Heuristic
   8: "MPBH"       # Modified Priority Based Heuristic
 
 # Parameter Trigger
 trigger_parameters:
   FTWB_interval: 720  # Dalam detik (12 menit)
   VTWB_threshold: 12  # Total orders
-  Urgent_threshold: 2 # Maximum allowed urgent order
+  Urgent_threshold: 2 # Minimum urgent-order count that activates urgency logic
 
 # Batching Method: Pilihan (1-2)
 batching_method:
@@ -41,17 +41,41 @@ batching_method:
 
 # Routing Policy: Pilihan (1-2)
 routing_policy:
-  1: "Traversal"      # Strategi Traversal
+  1: "S-shape"        # Traversal/S-shape policy
   2: "Largest Gap"    # Strategi Largest Gap
 
 # Total waktu simulasi dalam detik (8 jam shift kerja)
 simulation_time: 28800  # 8 * 3600 detik
+warmup_seconds: 5460  # Welch 24h pilot: outputs/welch-stable-24h-v2 (91 menit)
+welch_observation_interval_seconds: 60
+
+# Reproducibility and experiment controls
+master_seed: 20260812
+repetitions: 30
+horizon_policy: "fixed_with_censoring"
+order_output_compression: "gzip"  # streaming orders.csv.gz; required for full-factorial scale
+due_time_min_seconds: 1800
+due_time_max_seconds: 7200
+due_time_resolution_seconds: 60
+randomize_execution_order: true
+algorithm_variant: "base"
+
+# Keys included by --mode full. A pilot/sensitivity config may override these
+# lists without changing the factor dictionaries used by the model.
+experiment_design:
+  incoming_rate_keys: [1, 2, 3, 4, 5, 6]
+  trigger_method_keys: [1, 2, 3, 4, 5, 6, 7, 8]
+  num_pickers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  batching_method_keys: [1, 2]
+  cart_capacity_keys: [1, 2, 3]
+  routing_policy_keys: [1, 2]
 
 # Waktu awal simulasi (08:00:00) untuk logging
 start_time: 28800  # Dalam detik (08:00:00)
 
 # Jumlah item total dalam warehouse
 warehouse_items: 384  # Total 384 item
+item_popularity_file: "config/item_popularity.yaml"
 
 # Konfigurasi jumlah pekerja (picker)
 num_pickers_options:
@@ -79,10 +103,19 @@ walking_times:
   between_shelves: 2               # Waktu antar rak (detik)
 
 # Waktu pengambilan
-picking_time_per_item: 3           # Waktu untuk mengambil satu item (detik)
+picking_time_per_item: 5           # Waktu untuk mengambil satu piece (detik)
 
 # Waktu setup
 setup_time: 180                    # Waktu setup untuk memulai picking (detik)
+
+# O(1)-per-order linear surrogate. Coefficients must be calibrated and frozen
+# before final runs; the initial values are engineering placeholders.
+travel_time_surrogate:
+  feature_order: [intercept, distinct_lines, total_pieces, max_aisle, distinct_aisles]
+  Traversal: [-2.386474235258306, 0.04613636030248669, -0.006253904139057687, 6.505104258020873, 33.60806166233161]
+  Largest Gap: [40.50146871856161, 0.7629801404813203, 0.008240157047281427, 8.024703623189943, 10.133388845047229]
+  calibration_id: "seed-20260814-n-10000-config-3b55f3efad6b"
+  holdout_evidence: "outputs/travel-surrogate-calibration-v1/calibration_report.json"
 
 # Struktur warehouse
 warehouse_structure:

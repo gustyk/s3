@@ -1,0 +1,6 @@
+extends: reviewer_smoke.yaml
+simulation_time: 120
+trigger_parameters:
+  FTWB_interval: 10
+  VTWB_threshold: 2
+  Urgent_threshold: 2

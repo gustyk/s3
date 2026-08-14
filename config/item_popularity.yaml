@@ -1,0 +1,9 @@
+# Canonical synthetic ABC profile.
+# A: first 77/384 SKU (~20%), 80% probability mass.
+# B: next 115/384 SKU (~30%), 15% probability mass.
+# C: final 192/384 SKU (50%), 5% probability mass.
+# Values below are per-SKU probabilities and sum to 1.0 by construction.
+groups:
+  - {class: A, start: 1, end: 77, probability: 0.01038961038961039}
+  - {class: B, start: 78, end: 192, probability: 0.0013043478260869564}
+  - {class: C, start: 193, end: 384, probability: 0.00026041666666666666}
