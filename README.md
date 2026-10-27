@@ -23,22 +23,31 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pytest
 ```
 
-### Data Download Step (Mendeley Data DOI)
+### Data Availability and Datasets
 
-The full experimental dataset (`results.csv`, 207,360 factorial simulation runs) is permanently archived in Mendeley Data at:
-**DOI: [10.17632/49r2pmymrm.1](https://doi.org/10.17632/49r2pmymrm.1)**
+#### 1. Files Included in the Repository
+The git repository contains full source code, test suites, experimental configurations, documentation, and all derived results for the revised manuscript:
+- **Factored Experimental Results:** `data/results_full_factorial.csv.gz` contains the complete, verified 207,360-run full-factorial simulation results (compressed with `gzip -9`, 33.5 MB; byte-identical to `outputs/final-q1-v1/full-factorial/results.csv` when restored).
+- **Derived Statistical Results & Tables:** All final post-processed tables and work package outputs under `results/` (e.g., `results/WP1/` through `results/WP9/`, `results/WP0/`, and `results/superseded/`).
+- **Checksum Ledger:** `data/CHECKSUMS.txt` records cryptographic SHA-256 hashes and file sizes for all dataset artifacts.
 
-When performing an audit or reproducing analysis from a clean clone, the git repository contains complete code, configurations, and test suites, but large simulation outputs are git-ignored. Therefore, a clean clone requires `results.csv` copied in or downloaded from the DOI:
+#### 2. Large Datasets Exceeding 100 MB
+Files exceeding 100 MB—specifically the uncompressed 207,360-run results (`results.csv`, 135.9 MB), the per-order simulation worker logs (`worker-00/orders.csv.gz`, `worker-01/orders.csv.gz`, `worker-02/orders.csv.gz`, ~8.8 GB each), and the pooled full-factorial order log (`orders.csv.gz`, 25.8 GB / 621,955,584 orders)—are omitted from git history due to file-size constraints.
+- **Access:** These large files are available from the corresponding author on written request.
+- **Verification:** Requesters can independently verify the byte integrity of received files against the cryptographic hashes listed in [`data/CHECKSUMS.txt`](data/CHECKSUMS.txt).
+
+#### 3. Notice Regarding Mendeley Data (DOI 10.17632/49r2pmymrm.1)
+The legacy dataset archived in Mendeley Data (**DOI: [10.17632/49r2pmymrm.1](https://doi.org/10.17632/49r2pmymrm.1)**) holds the unverified legacy results of the original submission. As documented in the repository provenance audit, it contains superseded parameters and does **not** support the revised numerical claims. Confirmatory analyses and audits must exclusively use `data/results_full_factorial.csv.gz` or the verified artifacts verified via `data/CHECKSUMS.txt`.
+
+#### 4. Quick Start with Factorial Data
+To audit or run the publication analysis pipeline directly from the repository data:
 
 ```powershell
-# 1. Create target output directory
+# 1. Unpack full-factorial results
 New-Item -ItemType Directory -Force -Path "outputs/final-q1-v1/full-factorial"
+python -c "import gzip, shutil; shutil.copyfileobj(gzip.open('data/results_full_factorial.csv.gz', 'rb'), open('outputs/final-q1-v1/full-factorial/results.csv', 'wb'))"
 
-# 2. Download results.csv from Mendeley Data DOI (https://doi.org/10.17632/49r2pmymrm.1)
-#    and place results.csv into outputs/final-q1-v1/full-factorial/results.csv
-Copy-Item "path\to\downloaded\results.csv" "outputs\final-q1-v1\full-factorial\results.csv"
-
-# 3. Audit data integrity against manifest
+# 2. Audit data integrity against manifest
 .\.venv\Scripts\python.exe -m src.audit_results outputs/final-q1-v1/full-factorial/results.csv
 ```
 

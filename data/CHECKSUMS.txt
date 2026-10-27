@@ -1,0 +1,17 @@
+# Checksums of manuscript dataset files exceeding 100 MB
+# Format: SHA-256  Size(Bytes)  Path  Description
+
+720f2d70f8ee9e6b440ae30b639aa8513a007ec9fc462b7dc1f4710d362b4448    142473226  outputs/final-q1-v1/full-factorial/results.csv  # Full-factorial simulation results (207,360 runs, uncompressed CSV)
+1fca8583b52c20097a18527368983e1fcf3bdb27b6d2b323a753c254bbdb232a     35159984  data/results_full_factorial.csv.gz  # Full-factorial simulation results (207,360 runs, gzip -9 compressed CSV)
+249c176c714bc0827c9101b1592face3402e6d0ece63898c11919db61065e700   9273379851  outputs/final-q1-v1/full-factorial-workers/worker-00/orders.csv.gz  # Per-order simulation log worker-00 (runs 0-69,119, gzip compressed CSV)
+35cfa706483a6ab957e53576f84efc79bd6b60f512964360952fea6c5fe2ae6a   9211012737  outputs/final-q1-v1/full-factorial-workers/worker-01/orders.csv.gz  # Per-order simulation log worker-01 (runs 69,120-138,239, gzip compressed CSV)
+1aaf6efb440d341275302577aed8a0a356f02603c50941bb1c9c3cc2815ea3af   9202871339  outputs/final-q1-v1/full-factorial-workers/worker-02/orders.csv.gz  # Per-order simulation log worker-02 (runs 138,240-207,359, gzip compressed CSV)
+328206013610b3fa07723776da2f112ddfa4ab349f6ea0b57b0d351087a3dbf4  27657616806  outputs/final-q1-v1/full-factorial/orders.csv.gz  # Per-order simulation log full-factorial combined (621,955,584 orders, gzip compressed CSV)
+720f2d70f8ee9e6b440ae30b639aa8513a007ec9fc462b7dc1f4710d362b4448    142473226  outputs/reproducibility-bundle-v1/level_run.csv  # Reproducibility bundle run-level metrics (uncompressed CSV)
+328206013610b3fa07723776da2f112ddfa4ab349f6ea0b57b0d351087a3dbf4  27657616806  outputs/reproducibility-bundle-v1/level_order.csv.gz  # Reproducibility bundle order-level metrics (gzip compressed CSV)
+bc7da3020e013e4240a033b56c9deeb87baeca0439901ec93f5e3029688cdae4    150823766  outputs/reproducibility-bundle-v1/table4c.zip  # Reproducibility bundle Table 4c composite scores archive (ZIP)
+901b2438966fec7bd1f85cc80b86c0b29502573e6541500d1707232323ddf149    171491669  outputs/representative-pilot-v1/orders.csv  # Representative pilot per-order simulation log (uncompressed CSV)
+2ba7998d6167a4490a9427c771b687f09d6c0d7b519570d930a02cd083582013    284713706  outputs/release-readiness-smoke-v1/orders.csv.gz  # Release-readiness smoke test per-order simulation log (gzip compressed CSV)
+720f2d70f8ee9e6b440ae30b639aa8513a007ec9fc462b7dc1f4710d362b4448    142473226  docs/revised-paper-assets/Figure_06_to_08_source_final_results.csv  # Revised paper Figure 6-8 source data (uncompressed CSV)
+720f2d70f8ee9e6b440ae30b639aa8513a007ec9fc462b7dc1f4710d362b4448    142473226  docs/revised-paper-assets/Figure_10_to_13_source_final_results.csv  # Revised paper Figure 10-13 source data (uncompressed CSV)
+720f2d70f8ee9e6b440ae30b639aa8513a007ec9fc462b7dc1f4710d362b4448    142473226  docs/revised-paper-assets/Figure_14_source_final_results.csv  # Revised paper Figure 14 source data (uncompressed CSV)
