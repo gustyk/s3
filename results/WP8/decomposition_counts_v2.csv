@@ -1,0 +1,12 @@
+category,count
+A. Strict win,594
+"B. MPBH lower mean TLO, not significant",17
+C. Exact TLO tie (both_zero) - Competitor selected (MaxPicker),45
+C. Exact TLO tie (both_zero) - Competitor selected (SNH),29
+C. Exact TLO tie (both_zero) - MPBH selected,157
+C. Exact TLO tie (non_zero) - Competitor selected (MaxPicker),1
+C. Exact TLO tie (non_zero) - MPBH selected,2
+D. Competitor lower mean TLO (not significant) (MaxPicker),11
+D. Competitor lower mean TLO (not significant) (SNH),2
+D. Competitor lower mean TLO (significant) (MaxCart),4
+D. Competitor lower mean TLO (significant) (MaxPicker),2

@@ -1,0 +1,3 @@
+regime,A. Strict win,"B. TLO tie, MPBH selected on throughput tie-break",C. Exact tie (all policies TLO=0),"D. MPBH not selected (Competitor lower TLO, not significant)",D. MPBH not selected (Competitor selected on throughput or tie),D. MPBH not selected (Competitor significantly lower TLO)
+Near-critical,0,59,1,3,85,0
+Overloaded,594,75,0,10,31,6

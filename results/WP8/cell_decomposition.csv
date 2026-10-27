@@ -1,0 +1,865 @@
+lam,m,C,routing,composition,regime,mpbh_tlo,best_competitor,best_competitor_tlo,diff_mean,ci95_low,ci95_high,p_value,category
+0.5,1,100,Largest Gap,EDT,Overloaded,151.13333333333333,MaxPicker,200.33333333333334,-49.2,-51.74279472820743,-46.65720527179258,0.0,A. Strict win
+0.5,1,100,Largest Gap,FCFS,Overloaded,151.13333333333333,MaxPicker,200.63333333333333,-49.5,-52.064165895902484,-46.935834104097516,0.0,A. Strict win
+0.5,1,100,S-shape,EDT,Overloaded,151.46666666666667,MaxPicker,200.53333333333333,-49.06666666666667,-51.37253144700461,-46.76080188632873,0.0,A. Strict win
+0.5,1,100,S-shape,FCFS,Overloaded,151.46666666666667,MaxPicker,200.83333333333334,-49.36666666666667,-51.70267294419774,-47.0306603891356,0.0,A. Strict win
+0.5,1,150,Largest Gap,EDT,Overloaded,135.43333333333334,MaxPicker,198.96666666666667,-63.53333333333333,-65.4567676386235,-61.60989902804316,0.0,A. Strict win
+0.5,1,150,Largest Gap,FCFS,Overloaded,135.43333333333334,MaxPicker,198.5,-63.06666666666667,-65.01543110274869,-61.11790223058464,0.0,A. Strict win
+0.5,1,150,S-shape,EDT,Overloaded,139.03333333333333,MaxPicker,199.93333333333334,-60.9,-63.340425312672274,-58.45957468732772,0.0,A. Strict win
+0.5,1,150,S-shape,FCFS,Overloaded,139.03333333333333,MaxPicker,200.0,-60.96666666666667,-63.39154393417947,-58.54178939915387,0.0,A. Strict win
+0.5,1,200,Largest Gap,EDT,Overloaded,135.06666666666666,MaxPicker,197.73333333333332,-62.666666666666664,-64.61641773572191,-60.71691559761142,0.0,A. Strict win
+0.5,1,200,Largest Gap,FCFS,Overloaded,135.06666666666666,MaxPicker,196.36666666666667,-61.3,-63.62500321349134,-58.974996786508655,0.0,A. Strict win
+0.5,1,200,S-shape,EDT,Overloaded,137.6,MaxPicker,199.3,-61.7,-63.639407707703946,-59.76059229229606,0.0,A. Strict win
+0.5,1,200,S-shape,FCFS,Overloaded,137.6,MaxPicker,198.46666666666667,-60.86666666666667,-62.88285314153536,-58.85048019179798,0.0,A. Strict win
+0.5,2,100,Largest Gap,EDT,Overloaded,30.7,MaxPicker,77.2,-46.5,-61.56309943709565,-31.43690056290435,6.761885453787642e-07,A. Strict win
+0.5,2,100,Largest Gap,FCFS,Overloaded,30.7,MaxPicker,87.66666666666667,-56.96666666666667,-63.590327642213445,-50.34300569111989,0.0,A. Strict win
+0.5,2,100,S-shape,EDT,Overloaded,60.733333333333334,MaxPicker,124.66666666666667,-63.93333333333333,-72.99799897446738,-54.86866769219928,9.103828801926284e-15,A. Strict win
+0.5,2,100,S-shape,FCFS,Overloaded,60.733333333333334,MaxPicker,123.3,-62.56666666666667,-68.79543498110283,-56.3378983522305,0.0,A. Strict win
+0.5,2,150,Largest Gap,EDT,Overloaded,1.9333333333333333,MaxPicker,4.7,-2.7666666666666666,-6.595683507392851,1.0623501740595174,0.15024435446765505,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,2,150,Largest Gap,FCFS,Overloaded,1.9333333333333333,MaxPicker,20.533333333333335,-18.6,-26.03560423170198,-11.164395768298021,1.8369520656147387e-05,A. Strict win
+0.5,2,150,S-shape,EDT,Overloaded,10.133333333333333,MaxPicker,25.266666666666666,-15.133333333333333,-25.91638609944108,-4.350280567225585,0.007578941300014019,A. Strict win
+0.5,2,150,S-shape,FCFS,Overloaded,10.133333333333333,MaxPicker,47.5,-37.36666666666667,-46.9993987233738,-27.733934609959533,9.47814116081247e-09,A. Strict win
+0.5,2,200,Largest Gap,EDT,Overloaded,2.8666666666666667,MaxPicker,2.3,0.5666666666666667,-0.25776746063776457,1.391100793971098,0.17041701738126847,"D. MPBH not selected (Competitor lower TLO, not significant)"
+0.5,2,200,Largest Gap,FCFS,Overloaded,2.8666666666666667,MaxPicker,8.366666666666667,-5.5,-8.375302501833941,-2.6246974981660594,0.0005075077784515436,A. Strict win
+0.5,2,200,S-shape,EDT,Overloaded,7.433333333333334,MaxPicker,8.866666666666667,-1.4333333333333333,-3.6275475138596933,0.7608808471930268,0.1919356116750035,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,2,200,S-shape,FCFS,Overloaded,7.433333333333334,MaxPicker,19.233333333333334,-11.8,-16.399898704942633,-7.200101295057369,1.2782624131624232e-05,A. Strict win
+0.5,3,100,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,3,100,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.16666666666666666,-0.16666666666666666,-0.4454666183062329,0.11213328497289962,0.23131001019549613,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,3,100,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,3,100,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.6,-0.6,-1.2548847530304252,0.05488475303042539,0.0710633968119605,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,3,150,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,3,150,Largest Gap,FCFS,Near-critical,0.0,SNH,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,3,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.03333333333333333,-0.03333333333333333,-0.10150765473775678,0.034840988071090116,0.3255819880161934,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,3,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.16666666666666666,-0.16666666666666666,-0.38775801307016644,0.054424679736833126,0.13397251720606618,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,3,200,Largest Gap,EDT,Near-critical,0.03333333333333333,SNH,0.0,0.03333333333333333,-0.03484098807109013,0.1015076547377568,0.32558198801619365,"D. MPBH not selected (Competitor lower TLO, not significant)"
+0.5,3,200,Largest Gap,FCFS,Near-critical,0.03333333333333333,MaxPicker,0.0,0.03333333333333333,-0.03484098807109013,0.1015076547377568,0.32558198801619365,"D. MPBH not selected (Competitor lower TLO, not significant)"
+0.5,3,200,S-shape,EDT,Near-critical,0.13333333333333333,MaxPicker,0.1,0.03333333333333333,-0.034840988071090116,0.10150765473775678,0.3255819880161934,"D. MPBH not selected (Competitor lower TLO, not significant)"
+0.5,3,200,S-shape,FCFS,Near-critical,0.13333333333333333,SNH,0.13333333333333333,0.0,-0.09806125565127168,0.09806125565127168,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,4,100,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,4,100,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,4,100,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,4,100,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,4,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,4,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,4,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,4,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,4,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,4,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,4,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,4,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,5,100,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,5,100,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,5,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,5,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,6,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,6,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,6,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,6,100,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,6,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,6,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,6,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,6,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,6,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,6,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,6,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,6,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,7,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,7,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,7,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,7,100,S-shape,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,7,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,7,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,7,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,7,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,7,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,7,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,7,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,7,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,8,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,8,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,8,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,8,100,S-shape,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,8,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,8,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,8,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,8,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,8,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,8,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,8,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,8,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,9,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,9,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,9,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,9,100,S-shape,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,9,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,9,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,9,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,9,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,9,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,9,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,9,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,9,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,10,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,10,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,10,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,10,100,S-shape,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,10,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,10,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,10,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,10,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,10,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,10,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,10,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,10,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,11,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,11,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,11,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,11,100,S-shape,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,11,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,11,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,11,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,11,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,11,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,11,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,11,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,11,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,12,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,12,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,12,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,12,100,S-shape,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,12,150,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+0.5,12,150,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,12,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,12,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,12,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,12,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,12,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+0.5,12,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,1,100,Largest Gap,EDT,Overloaded,340.76666666666665,FTWB,402.9,-62.13333333333333,-64.02399231860495,-60.242674348061705,0.0,A. Strict win
+1.0,1,100,Largest Gap,FCFS,Overloaded,340.76666666666665,FTWB,402.9,-62.13333333333333,-64.02399231860495,-60.242674348061705,0.0,A. Strict win
+1.0,1,100,S-shape,EDT,Overloaded,344.6333333333333,FTWB,402.9,-58.266666666666666,-60.83866466749987,-55.69466866583346,0.0,A. Strict win
+1.0,1,100,S-shape,FCFS,Overloaded,344.6333333333333,FTWB,402.9,-58.266666666666666,-60.83866466749987,-55.69466866583346,0.0,A. Strict win
+1.0,1,150,Largest Gap,EDT,Overloaded,335.6666666666667,FTWB,402.9,-67.23333333333333,-69.20356756144234,-65.26309910522433,0.0,A. Strict win
+1.0,1,150,Largest Gap,FCFS,Overloaded,335.6666666666667,FTWB,402.9,-67.23333333333333,-69.20356756144234,-65.26309910522433,0.0,A. Strict win
+1.0,1,150,S-shape,EDT,Overloaded,337.5,FTWB,402.9,-65.4,-68.04329203157849,-62.75670796842152,0.0,A. Strict win
+1.0,1,150,S-shape,FCFS,Overloaded,337.5,FTWB,402.9,-65.4,-68.04329203157849,-62.75670796842152,0.0,A. Strict win
+1.0,1,200,Largest Gap,EDT,Overloaded,334.46666666666664,FTWB,402.9,-68.43333333333334,-70.62973764035034,-66.23692902631633,0.0,A. Strict win
+1.0,1,200,Largest Gap,FCFS,Overloaded,334.46666666666664,FTWB,402.9,-68.43333333333334,-70.62973764035034,-66.23692902631633,0.0,A. Strict win
+1.0,1,200,S-shape,EDT,Overloaded,338.6,FTWB,402.9,-64.3,-66.09789368829382,-62.50210631170618,0.0,A. Strict win
+1.0,1,200,S-shape,FCFS,Overloaded,338.6,FTWB,402.9,-64.3,-66.09789368829382,-62.50210631170618,0.0,A. Strict win
+1.0,2,100,Largest Gap,EDT,Overloaded,302.1666666666667,UrgentCart,401.6333333333333,-99.46666666666667,-102.30491471666224,-96.6284186166711,0.0,A. Strict win
+1.0,2,100,Largest Gap,FCFS,Overloaded,302.1666666666667,MaxPicker,401.76666666666665,-99.6,-102.44648026656697,-96.75351973343302,0.0,A. Strict win
+1.0,2,100,S-shape,EDT,Overloaded,307.46666666666664,MaxPicker,402.43333333333334,-94.96666666666667,-97.27576112131459,-92.65757221201875,0.0,A. Strict win
+1.0,2,100,S-shape,FCFS,Overloaded,307.46666666666664,SNH,402.53333333333336,-95.06666666666666,-97.37044538332827,-92.76288795000505,0.0,A. Strict win
+1.0,2,150,Largest Gap,EDT,Overloaded,280.3,MaxPicker,398.1,-117.8,-119.98700784276515,-115.61299215723484,0.0,A. Strict win
+1.0,2,150,Largest Gap,FCFS,Overloaded,280.3,MaxPicker,396.56666666666666,-116.26666666666667,-118.83679462193078,-113.69653871140255,0.0,A. Strict win
+1.0,2,150,S-shape,EDT,Overloaded,285.9,MaxPicker,400.23333333333335,-114.33333333333333,-117.07262028933943,-111.59404637732723,0.0,A. Strict win
+1.0,2,150,S-shape,FCFS,Overloaded,285.9,MaxPicker,399.6333333333333,-113.73333333333333,-116.57699703089943,-110.88966963576723,0.0,A. Strict win
+1.0,2,200,Largest Gap,EDT,Overloaded,277.96666666666664,MaxPicker,394.8,-116.83333333333333,-119.65518689051088,-114.01147977615578,0.0,A. Strict win
+1.0,2,200,Largest Gap,FCFS,Overloaded,277.96666666666664,MaxPicker,390.56666666666666,-112.6,-116.80361507735421,-108.39638492264578,0.0,A. Strict win
+1.0,2,200,S-shape,EDT,Overloaded,286.4,MaxPicker,398.56666666666666,-112.16666666666667,-114.59471431411434,-109.738619019219,0.0,A. Strict win
+1.0,2,200,S-shape,FCFS,Overloaded,286.4,MaxPicker,396.06666666666666,-109.66666666666667,-112.67689699417478,-106.65643633915856,0.0,A. Strict win
+1.0,3,100,Largest Gap,EDT,Overloaded,239.76666666666668,MaxPicker,361.96666666666664,-122.2,-126.67378619542825,-117.72621380457176,0.0,A. Strict win
+1.0,3,100,Largest Gap,FCFS,Overloaded,239.76666666666668,MaxPicker,357.3333333333333,-117.56666666666666,-121.36922288051896,-113.76411045281436,0.0,A. Strict win
+1.0,3,100,S-shape,EDT,Overloaded,260.2,MaxPicker,378.6666666666667,-118.46666666666667,-122.36666196526284,-114.5666713680705,0.0,A. Strict win
+1.0,3,100,S-shape,FCFS,Overloaded,260.2,MaxPicker,373.53333333333336,-113.33333333333333,-117.79197636872445,-108.87469029794221,0.0,A. Strict win
+1.0,3,150,Largest Gap,EDT,Overloaded,167.26666666666668,MaxPicker,295.93333333333334,-128.66666666666666,-137.49018190507383,-119.8431514282595,0.0,A. Strict win
+1.0,3,150,Largest Gap,FCFS,Overloaded,167.26666666666668,MaxPicker,289.4,-122.13333333333334,-128.48141438618404,-115.78525228048265,0.0,A. Strict win
+1.0,3,150,S-shape,EDT,Overloaded,200.5,MaxPicker,331.8,-131.3,-137.35058608220177,-125.24941391779824,0.0,A. Strict win
+1.0,3,150,S-shape,FCFS,Overloaded,200.5,MaxPicker,326.9,-126.4,-131.33687538741995,-121.46312461258006,0.0,A. Strict win
+1.0,3,200,Largest Gap,EDT,Overloaded,126.2,MaxPicker,225.63333333333333,-99.43333333333334,-109.77853244552752,-89.08813422113916,0.0,A. Strict win
+1.0,3,200,Largest Gap,FCFS,Overloaded,126.2,MaxPicker,222.1,-95.9,-105.48864098159869,-86.31135901840132,0.0,A. Strict win
+1.0,3,200,S-shape,EDT,Overloaded,172.66666666666666,MaxPicker,284.5,-111.83333333333333,-120.45663928759433,-103.21002737907233,0.0,A. Strict win
+1.0,3,200,S-shape,FCFS,Overloaded,172.66666666666666,MaxPicker,278.1,-105.43333333333334,-112.5477996402847,-98.31886702638198,0.0,A. Strict win
+1.0,4,100,Largest Gap,EDT,Overloaded,28.4,MaxPicker,138.8,-110.4,-131.9459569665087,-88.85404303349131,2.2561286172617656e-11,A. Strict win
+1.0,4,100,Largest Gap,FCFS,Overloaded,28.4,MaxPicker,162.26666666666668,-133.86666666666667,-146.68748989592555,-121.0458434374078,0.0,A. Strict win
+1.0,4,100,S-shape,EDT,Overloaded,107.23333333333333,MaxPicker,239.7,-132.46666666666667,-143.67302756131267,-121.26030577202067,0.0,A. Strict win
+1.0,4,100,S-shape,FCFS,Overloaded,107.23333333333333,MaxPicker,235.63333333333333,-128.4,-138.72329360588824,-118.07670639411178,0.0,A. Strict win
+1.0,4,150,Largest Gap,EDT,Overloaded,0.4,MaxPicker,0.03333333333333333,0.36666666666666664,0.06468682158078976,0.6686465117525435,0.019043568168166658,D. MPBH not selected (Competitor significantly lower TLO)
+1.0,4,150,Largest Gap,FCFS,Overloaded,0.4,MaxPicker,19.166666666666668,-18.766666666666666,-27.283716232879563,-10.24961710045377,9.972528949342419e-05,A. Strict win
+1.0,4,150,S-shape,EDT,Overloaded,2.7666666666666666,MaxPicker,9.9,-7.133333333333334,-15.168813526822692,0.9021468601560256,0.0797838041990171,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,4,150,S-shape,FCFS,Overloaded,2.7666666666666666,MaxPicker,64.1,-61.333333333333336,-77.25593692988721,-45.41072973677945,1.0916161086171883e-08,A. Strict win
+1.0,4,200,Largest Gap,EDT,Overloaded,1.7,MaxPicker,0.7333333333333333,0.9666666666666667,0.21674913121800854,1.7165842021153248,0.013321261632180503,D. MPBH not selected (Competitor significantly lower TLO)
+1.0,4,200,Largest Gap,FCFS,Overloaded,1.7,MaxPicker,4.933333333333334,-3.2333333333333334,-5.193781974377687,-1.2728846922889792,0.0021237850155872984,A. Strict win
+1.0,4,200,S-shape,EDT,Overloaded,4.766666666666667,UrgentCart,2.566666666666667,2.2,0.6859138893044663,3.714086110695534,0.005899882326415362,D. MPBH not selected (Competitor significantly lower TLO)
+1.0,4,200,S-shape,FCFS,Overloaded,4.766666666666667,MaxPicker,19.433333333333334,-14.666666666666666,-21.23701472424545,-8.09631860908788,8.472077442234216e-05,A. Strict win
+1.0,5,100,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,5,100,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,2.7666666666666666,-2.7666666666666666,-5.258432566527457,-0.27490076680587583,0.0307594193891203,A. Strict win
+1.0,5,100,S-shape,EDT,Overloaded,0.0,MaxPicker,0.4666666666666667,-0.4666666666666667,-1.421107166328595,0.48777383299526167,0.3255819880161934,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,5,100,S-shape,FCFS,Overloaded,0.0,MaxPicker,18.466666666666665,-18.466666666666665,-27.857399447226666,-9.075933886106665,0.0003769556410495589,A. Strict win
+1.0,5,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,5,150,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,5,150,S-shape,EDT,Overloaded,0.03333333333333333,UrgentCart,0.03333333333333333,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,5,150,S-shape,FCFS,Overloaded,0.03333333333333333,MaxPicker,0.2,-0.16666666666666666,-0.42765211295499994,0.0943187796216666,0.2017858699848798,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,5,200,Largest Gap,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,5,200,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.03333333333333333,-0.03333333333333333,-0.10150765473775678,0.034840988071090116,0.3255819880161934,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,5,200,S-shape,EDT,Overloaded,0.5,MaxPicker,0.36666666666666664,0.13333333333333333,-0.24306523016364198,0.5097318968303086,0.4745695130521099,"D. MPBH not selected (Competitor lower TLO, not significant)"
+1.0,5,200,S-shape,FCFS,Overloaded,0.5,MaxPicker,0.6333333333333333,-0.13333333333333333,-0.5462787391466184,0.2796120724799518,0.5142272204810281,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,6,100,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,6,100,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,6,100,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,6,100,S-shape,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,6,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,6,150,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,6,150,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,6,150,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,6,200,Largest Gap,EDT,Overloaded,0.03333333333333333,MaxPicker,0.0,0.03333333333333333,-0.034840988071090116,0.10150765473775678,0.3255819880161934,"D. MPBH not selected (Competitor lower TLO, not significant)"
+1.0,6,200,Largest Gap,FCFS,Overloaded,0.03333333333333333,MaxPicker,0.0,0.03333333333333333,-0.034840988071090116,0.10150765473775678,0.3255819880161934,"D. MPBH not selected (Competitor lower TLO, not significant)"
+1.0,6,200,S-shape,EDT,Overloaded,0.06666666666666667,MaxPicker,0.0,0.06666666666666667,-0.0280695066564651,0.16140283998979843,0.1607882084258767,"D. MPBH not selected (Competitor lower TLO, not significant)"
+1.0,6,200,S-shape,FCFS,Overloaded,0.06666666666666667,MaxPicker,0.03333333333333333,0.03333333333333333,-0.034840988071090116,0.10150765473775678,0.3255819880161934,"D. MPBH not selected (Competitor lower TLO, not significant)"
+1.0,7,100,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,7,100,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,7,100,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,7,100,S-shape,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,7,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,7,150,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,7,150,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,7,150,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,7,200,Largest Gap,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,7,200,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,7,200,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,7,200,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,100,Largest Gap,EDT,Overloaded,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,100,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,100,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,100,S-shape,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,150,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,150,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,150,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,200,Largest Gap,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,8,200,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,8,200,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,8,200,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,9,100,Largest Gap,EDT,Overloaded,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,9,100,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,9,100,S-shape,EDT,Overloaded,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,9,100,S-shape,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,9,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,9,150,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,9,150,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,9,150,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,9,200,Largest Gap,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,9,200,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,9,200,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,9,200,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,10,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,10,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,10,100,S-shape,EDT,Overloaded,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,10,100,S-shape,FCFS,Overloaded,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,10,150,Largest Gap,EDT,Near-critical,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,10,150,Largest Gap,FCFS,Near-critical,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,10,150,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,10,150,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,10,200,Largest Gap,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,10,200,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,10,200,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,10,200,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,11,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,11,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,C. Exact tie (all policies TLO=0)
+1.0,11,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,11,100,S-shape,FCFS,Near-critical,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,11,150,Largest Gap,EDT,Near-critical,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,11,150,Largest Gap,FCFS,Near-critical,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,11,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,11,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,11,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,11,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,11,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,11,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,12,100,Largest Gap,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,12,100,Largest Gap,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,12,100,S-shape,EDT,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,12,100,S-shape,FCFS,Near-critical,0.0,FTWB,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,12,150,Largest Gap,EDT,Near-critical,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,12,150,Largest Gap,FCFS,Near-critical,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+1.0,12,150,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,12,150,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,12,200,Largest Gap,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,12,200,Largest Gap,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,12,200,S-shape,EDT,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+1.0,12,200,S-shape,FCFS,Near-critical,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+2.0,1,100,Largest Gap,EDT,Overloaded,747.2666666666667,FTWB,814.2666666666667,-67.0,-69.88573466186288,-64.11426533813712,0.0,A. Strict win
+2.0,1,100,Largest Gap,FCFS,Overloaded,747.2666666666667,FTWB,814.2666666666667,-67.0,-69.88573466186288,-64.11426533813712,0.0,A. Strict win
+2.0,1,100,S-shape,EDT,Overloaded,749.2666666666667,FTWB,814.2666666666667,-65.0,-67.39598787274952,-62.60401212725049,0.0,A. Strict win
+2.0,1,100,S-shape,FCFS,Overloaded,749.2666666666667,FTWB,814.2666666666667,-65.0,-67.39598787274952,-62.60401212725049,0.0,A. Strict win
+2.0,1,150,Largest Gap,EDT,Overloaded,741.5666666666667,FTWB,814.2666666666667,-72.7,-75.196520937364,-70.203479062636,0.0,A. Strict win
+2.0,1,150,Largest Gap,FCFS,Overloaded,741.5666666666667,FTWB,814.2666666666667,-72.7,-75.196520937364,-70.203479062636,0.0,A. Strict win
+2.0,1,150,S-shape,EDT,Overloaded,747.3,FTWB,814.2666666666667,-66.96666666666667,-70.14796987615772,-63.78536345717562,0.0,A. Strict win
+2.0,1,150,S-shape,FCFS,Overloaded,747.3,FTWB,814.2666666666667,-66.96666666666667,-70.14796987615772,-63.78536345717562,0.0,A. Strict win
+2.0,1,200,Largest Gap,EDT,Overloaded,743.2333333333333,FTWB,814.2666666666667,-71.03333333333333,-73.51504525223882,-68.55162141442784,0.0,A. Strict win
+2.0,1,200,Largest Gap,FCFS,Overloaded,743.2333333333333,FTWB,814.2666666666667,-71.03333333333333,-73.51504525223882,-68.55162141442784,0.0,A. Strict win
+2.0,1,200,S-shape,EDT,Overloaded,746.4,FTWB,814.2666666666667,-67.86666666666666,-70.24196317836109,-65.49137015497223,0.0,A. Strict win
+2.0,1,200,S-shape,FCFS,Overloaded,746.4,FTWB,814.2666666666667,-67.86666666666666,-70.24196317836109,-65.49137015497223,0.0,A. Strict win
+2.0,2,100,Largest Gap,EDT,Overloaded,699.3333333333334,FTWB,814.2666666666667,-114.93333333333334,-117.80726990228081,-112.05939676438587,0.0,A. Strict win
+2.0,2,100,Largest Gap,FCFS,Overloaded,699.3333333333334,FTWB,814.2666666666667,-114.93333333333334,-117.80726990228081,-112.05939676438587,0.0,A. Strict win
+2.0,2,100,S-shape,EDT,Overloaded,704.4333333333333,FTWB,814.2666666666667,-109.83333333333333,-113.95083581872005,-105.7158308479466,0.0,A. Strict win
+2.0,2,100,S-shape,FCFS,Overloaded,704.4333333333333,FTWB,814.2666666666667,-109.83333333333333,-113.95083581872005,-105.7158308479466,0.0,A. Strict win
+2.0,2,150,Largest Gap,EDT,Overloaded,687.8,FTWB,814.2666666666667,-126.46666666666667,-129.56567127794884,-123.3676620553845,0.0,A. Strict win
+2.0,2,150,Largest Gap,FCFS,Overloaded,687.8,FTWB,814.2666666666667,-126.46666666666667,-129.56567127794884,-123.3676620553845,0.0,A. Strict win
+2.0,2,150,S-shape,EDT,Overloaded,695.3,FTWB,814.2666666666667,-118.96666666666667,-121.58782648210533,-116.34550685122801,0.0,A. Strict win
+2.0,2,150,S-shape,FCFS,Overloaded,695.3,FTWB,814.2666666666667,-118.96666666666667,-121.58782648210533,-116.34550685122801,0.0,A. Strict win
+2.0,2,200,Largest Gap,EDT,Overloaded,689.7666666666667,FTWB,814.2666666666667,-124.5,-128.27599505028445,-120.72400494971554,0.0,A. Strict win
+2.0,2,200,Largest Gap,FCFS,Overloaded,689.7666666666667,FTWB,814.2666666666667,-124.5,-128.27599505028445,-120.72400494971554,0.0,A. Strict win
+2.0,2,200,S-shape,EDT,Overloaded,695.0333333333333,FTWB,814.2666666666667,-119.23333333333333,-122.10685162975474,-116.35981503691193,0.0,A. Strict win
+2.0,2,200,S-shape,FCFS,Overloaded,695.0333333333333,FTWB,814.2666666666667,-119.23333333333333,-122.10685162975474,-116.35981503691193,0.0,A. Strict win
+2.0,3,100,Largest Gap,EDT,Overloaded,659.9,FTWB,814.2666666666667,-154.36666666666667,-159.13095370750213,-149.60237962583122,0.0,A. Strict win
+2.0,3,100,Largest Gap,FCFS,Overloaded,659.9,FTWB,814.2666666666667,-154.36666666666667,-159.13095370750213,-149.60237962583122,0.0,A. Strict win
+2.0,3,100,S-shape,EDT,Overloaded,666.2333333333333,FTWB,814.2666666666667,-148.03333333333333,-153.21898770924295,-142.8476789574237,0.0,A. Strict win
+2.0,3,100,S-shape,FCFS,Overloaded,666.2333333333333,FTWB,814.2666666666667,-148.03333333333333,-153.21898770924295,-142.8476789574237,0.0,A. Strict win
+2.0,3,150,Largest Gap,EDT,Overloaded,642.6,MaxPicker,814.1666666666666,-171.56666666666666,-175.84407495833213,-167.2892583750012,0.0,A. Strict win
+2.0,3,150,Largest Gap,FCFS,Overloaded,642.6,FTWB,814.2666666666667,-171.66666666666666,-175.94368152403592,-167.3896518092974,0.0,A. Strict win
+2.0,3,150,S-shape,EDT,Overloaded,650.3,UrgentCart,814.2333333333333,-163.93333333333334,-168.69403645078037,-159.1726302158863,0.0,A. Strict win
+2.0,3,150,S-shape,FCFS,Overloaded,650.3,FTWB,814.2666666666667,-163.96666666666667,-168.72994442443104,-159.2033889089023,0.0,A. Strict win
+2.0,3,200,Largest Gap,EDT,Overloaded,640.0666666666667,SNH,814.0666666666667,-174.0,-178.46797901395706,-169.53202098604294,0.0,A. Strict win
+2.0,3,200,Largest Gap,FCFS,Overloaded,640.0666666666667,SNH,814.0666666666667,-174.0,-178.46797901395706,-169.53202098604294,0.0,A. Strict win
+2.0,3,200,S-shape,EDT,Overloaded,651.4,MaxPicker,814.1666666666666,-162.76666666666668,-166.89769225742992,-158.63564107590344,0.0,A. Strict win
+2.0,3,200,S-shape,FCFS,Overloaded,651.4,SNH,814.2,-162.8,-166.9120301236318,-158.68796987636821,0.0,A. Strict win
+2.0,4,100,Largest Gap,EDT,Overloaded,623.3666666666667,MaxPicker,813.4333333333333,-190.06666666666666,-194.28322464250888,-185.85010869082444,0.0,A. Strict win
+2.0,4,100,Largest Gap,FCFS,Overloaded,623.3666666666667,MaxPicker,813.8,-190.43333333333334,-194.74209997469205,-186.12456669197462,0.0,A. Strict win
+2.0,4,100,S-shape,EDT,Overloaded,632.8666666666667,SNH,814.0,-181.13333333333333,-185.04563744059178,-177.22102922607488,0.0,A. Strict win
+2.0,4,100,S-shape,FCFS,Overloaded,632.8666666666667,SNH,814.0,-181.13333333333333,-185.04563744059178,-177.22102922607488,0.0,A. Strict win
+2.0,4,150,Largest Gap,EDT,Overloaded,593.3,UrgentCart,809.2333333333333,-215.93333333333334,-220.14190186605552,-211.72476480061115,0.0,A. Strict win
+2.0,4,150,Largest Gap,FCFS,Overloaded,593.3,MaxPicker,808.1,-214.8,-218.87562209141112,-210.7243779085889,0.0,A. Strict win
+2.0,4,150,S-shape,EDT,Overloaded,606.6,MaxPicker,811.7333333333333,-205.13333333333333,-208.97620034580157,-201.29046632086508,0.0,A. Strict win
+2.0,4,150,S-shape,FCFS,Overloaded,606.6,MaxPicker,811.9666666666667,-205.36666666666667,-209.19668791653626,-201.53664541679709,0.0,A. Strict win
+2.0,4,200,Largest Gap,EDT,Overloaded,588.1333333333333,MaxPicker,802.9,-214.76666666666668,-218.63068248478157,-210.9026508485518,0.0,A. Strict win
+2.0,4,200,Largest Gap,FCFS,Overloaded,588.1333333333333,MaxPicker,798.6333333333333,-210.5,-215.85826477875148,-205.14173522124852,0.0,A. Strict win
+2.0,4,200,S-shape,EDT,Overloaded,605.9666666666667,MaxPicker,809.1,-203.13333333333333,-207.26906993900266,-198.997596727664,0.0,A. Strict win
+2.0,4,200,S-shape,FCFS,Overloaded,605.9666666666667,MaxPicker,807.1666666666666,-201.2,-206.0003964449068,-196.39960355509317,0.0,A. Strict win
+2.0,5,100,Largest Gap,EDT,Overloaded,580.5,UrgentCart,801.9,-221.4,-225.91571816092554,-216.88428183907448,0.0,A. Strict win
+2.0,5,100,Largest Gap,FCFS,Overloaded,580.5,UrgentCart,799.5,-219.0,-224.5739867112642,-213.4260132887358,0.0,A. Strict win
+2.0,5,100,S-shape,EDT,Overloaded,595.3,UrgentCart,808.9,-213.6,-217.77377089239482,-209.42622910760517,0.0,A. Strict win
+2.0,5,100,S-shape,FCFS,Overloaded,595.3,UrgentCart,808.0333333333333,-212.73333333333332,-217.39710575871806,-208.06956090794858,0.0,A. Strict win
+2.0,5,150,Largest Gap,EDT,Overloaded,521.3,VTWB,770.1666666666666,-248.86666666666667,-254.75829049418297,-242.97504283915038,0.0,A. Strict win
+2.0,5,150,Largest Gap,FCFS,Overloaded,521.3,MaxPicker,757.0,-235.7,-240.9663094133788,-230.43369058662117,0.0,A. Strict win
+2.0,5,150,S-shape,EDT,Overloaded,550.2,MaxPicker,789.9333333333333,-239.73333333333332,-244.59200219823248,-234.87466446843416,0.0,A. Strict win
+2.0,5,150,S-shape,FCFS,Overloaded,550.2,MaxPicker,780.8,-230.6,-235.49874618717652,-225.70125381282347,0.0,A. Strict win
+2.0,5,200,Largest Gap,EDT,Overloaded,496.6666666666667,VTWB,727.8,-231.13333333333333,-236.72345567326403,-225.54321099340262,0.0,A. Strict win
+2.0,5,200,Largest Gap,FCFS,Overloaded,496.6666666666667,MaxPicker,715.0,-218.33333333333334,-224.50366463497187,-212.16300203169482,0.0,A. Strict win
+2.0,5,200,S-shape,EDT,Overloaded,533.1333333333333,VTWB,761.6666666666666,-228.53333333333333,-233.24102262403454,-223.82564404263212,0.0,A. Strict win
+2.0,5,200,S-shape,FCFS,Overloaded,533.1333333333333,MaxPicker,750.7,-217.56666666666666,-222.17312829040992,-212.9602050429234,0.0,A. Strict win
+2.0,6,100,Largest Gap,EDT,Overloaded,506.1666666666667,UrgentCart,757.3333333333334,-251.16666666666666,-256.9240260719187,-245.4093072614146,0.0,A. Strict win
+2.0,6,100,Largest Gap,FCFS,Overloaded,506.1666666666667,MaxPicker,743.7333333333333,-237.56666666666666,-243.342868631979,-231.79046470135432,0.0,A. Strict win
+2.0,6,100,S-shape,EDT,Overloaded,543.2333333333333,UrgentCart,782.6,-239.36666666666667,-244.69680183045526,-234.0365315028781,0.0,A. Strict win
+2.0,6,100,S-shape,FCFS,Overloaded,543.2333333333333,MaxPicker,772.4666666666667,-229.23333333333332,-234.88670150677933,-223.5799651598873,0.0,A. Strict win
+2.0,6,150,Largest Gap,EDT,Overloaded,364.7,MaxPicker,613.3666666666667,-248.66666666666666,-256.76271067233546,-240.57062266099783,0.0,A. Strict win
+2.0,6,150,Largest Gap,FCFS,Overloaded,364.7,MaxPicker,604.2333333333333,-239.53333333333333,-246.28158187849004,-232.78508478817662,0.0,A. Strict win
+2.0,6,150,S-shape,EDT,Overloaded,440.3333333333333,VTWB,695.6333333333333,-255.3,-260.31375031042313,-250.28624968957686,0.0,A. Strict win
+2.0,6,150,S-shape,FCFS,Overloaded,440.3333333333333,MaxPicker,680.7666666666667,-240.43333333333334,-246.2435627219491,-234.62310394471757,0.0,A. Strict win
+2.0,6,200,Largest Gap,EDT,Overloaded,249.46666666666667,MaxPicker,441.1,-191.63333333333333,-208.4071069167889,-174.85955974987775,0.0,A. Strict win
+2.0,6,200,Largest Gap,FCFS,Overloaded,249.46666666666667,MaxPicker,454.3333333333333,-204.86666666666667,-216.7736345890695,-192.95969874426385,0.0,A. Strict win
+2.0,6,200,S-shape,EDT,Overloaded,366.1333333333333,MaxPicker,587.9,-221.76666666666668,-231.20028348014935,-212.333049853184,0.0,A. Strict win
+2.0,6,200,S-shape,FCFS,Overloaded,366.1333333333333,MaxPicker,574.9,-208.76666666666668,-219.39294347065896,-198.1403898626744,0.0,A. Strict win
+2.0,7,100,Largest Gap,EDT,Overloaded,337.53333333333336,UrgentCart,615.6666666666666,-278.1333333333333,-292.6496233483696,-263.6170433182971,0.0,A. Strict win
+2.0,7,100,Largest Gap,FCFS,Overloaded,337.53333333333336,MaxPicker,606.1333333333333,-268.6,-279.4465678549476,-257.75343214505244,0.0,A. Strict win
+2.0,7,100,S-shape,EDT,Overloaded,433.0,MaxPicker,698.7333333333333,-265.73333333333335,-273.6980163765224,-257.7686502901443,0.0,A. Strict win
+2.0,7,100,S-shape,FCFS,Overloaded,433.0,MaxPicker,683.7333333333333,-250.73333333333332,-256.482210164608,-244.9844565020587,0.0,A. Strict win
+2.0,7,150,Largest Gap,EDT,Overloaded,36.86666666666667,MaxPicker,163.6,-126.73333333333333,-167.56827421389443,-85.89839245277224,6.168116222227127e-07,A. Strict win
+2.0,7,150,Largest Gap,FCFS,Overloaded,36.86666666666667,MaxPicker,263.26666666666665,-226.4,-248.8525159058295,-203.9474840941705,0.0,A. Strict win
+2.0,7,150,S-shape,EDT,Overloaded,191.66666666666666,UrgentCart,412.1666666666667,-220.5,-241.42240934619977,-199.57759065380023,0.0,A. Strict win
+2.0,7,150,S-shape,FCFS,Overloaded,191.66666666666666,MaxPicker,432.53333333333336,-240.86666666666667,-255.53059002359535,-226.202743309738,0.0,A. Strict win
+2.0,7,200,Largest Gap,EDT,Overloaded,3.966666666666667,MaxPicker,5.466666666666667,-1.5,-9.296794875578588,6.296794875578588,0.6968466594296019,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,7,200,Largest Gap,FCFS,Overloaded,3.966666666666667,MaxPicker,82.46666666666667,-78.5,-102.56315120098608,-54.436848799013916,2.5669999925703735e-07,A. Strict win
+2.0,7,200,S-shape,EDT,Overloaded,24.233333333333334,MaxPicker,80.0,-55.766666666666666,-86.7531985063465,-24.780134826986835,0.0009445865859334379,A. Strict win
+2.0,7,200,S-shape,FCFS,Overloaded,24.233333333333334,MaxPicker,217.5,-193.26666666666668,-217.71775130421378,-168.81558202911958,4.440892098500626e-16,A. Strict win
+2.0,8,100,Largest Gap,EDT,Overloaded,27.3,MaxPicker,269.53333333333336,-242.23333333333332,-291.70557048218717,-192.7610961844795,6.391331908162101e-11,A. Strict win
+2.0,8,100,Largest Gap,FCFS,Overloaded,27.3,UrgentCart,325.26666666666665,-297.96666666666664,-322.1083606697192,-273.82497266361406,0.0,A. Strict win
+2.0,8,100,S-shape,EDT,Overloaded,195.6,MaxPicker,484.26666666666665,-288.6666666666667,-313.5914640045734,-263.74186932875995,0.0,A. Strict win
+2.0,8,100,S-shape,FCFS,Overloaded,195.6,UrgentCart,491.1666666666667,-295.56666666666666,-314.30475458819024,-276.8285787451431,0.0,A. Strict win
+2.0,8,150,Largest Gap,EDT,Overloaded,0.1,UrgentCart,0.0,0.1,-0.050325058359458275,0.2503250583594583,0.18414134229197154,"D. MPBH not selected (Competitor lower TLO, not significant)"
+2.0,8,150,Largest Gap,FCFS,Overloaded,0.1,MaxPicker,18.6,-18.5,-29.64225736997474,-7.35774263002526,0.002002355462333405,A. Strict win
+2.0,8,150,S-shape,EDT,Overloaded,2.066666666666667,MaxPicker,8.333333333333334,-6.266666666666667,-16.368372243745117,3.835038910411785,0.2146119065025225,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,8,150,S-shape,FCFS,Overloaded,2.066666666666667,MaxPicker,99.56666666666666,-97.5,-124.81155610433345,-70.18844389566655,4.839204703621647e-08,A. Strict win
+2.0,8,200,Largest Gap,EDT,Overloaded,0.7,UrgentCart,0.1,0.6,0.11363198855841683,1.086368011441583,0.017372355724538435,D. MPBH not selected (Competitor significantly lower TLO)
+2.0,8,200,Largest Gap,FCFS,Overloaded,0.7,MaxPicker,1.2666666666666666,-0.5666666666666667,-1.285150808903536,0.15181747557020253,0.11756060660046219,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,8,200,S-shape,EDT,Overloaded,2.4,UrgentCart,0.5,1.9,0.7933840523204163,3.0066159476795837,0.001478843911638883,D. MPBH not selected (Competitor significantly lower TLO)
+2.0,8,200,S-shape,FCFS,Overloaded,2.4,MaxPicker,15.166666666666666,-12.766666666666667,-19.305730114684618,-6.227603218648718,0.000407691772265073,A. Strict win
+2.0,9,100,Largest Gap,EDT,Overloaded,0.0,MaxPicker,4.033333333333333,-4.033333333333333,-12.282426223268573,4.215759556601906,0.32558198801619365,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,9,100,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,51.833333333333336,-51.833333333333336,-74.18916697452885,-29.47749969213783,5.194341253944579e-05,A. Strict win
+2.0,9,100,S-shape,EDT,Overloaded,2.933333333333333,MaxPicker,79.3,-76.36666666666666,-114.3008472856454,-38.43248604768792,0.0002906605035915,A. Strict win
+2.0,9,100,S-shape,FCFS,Overloaded,2.933333333333333,MaxPicker,192.6,-189.66666666666666,-222.19601566615208,-157.13731766718124,1.0549339179988237e-12,A. Strict win
+2.0,9,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,9,150,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,9,150,S-shape,EDT,Overloaded,0.03333333333333333,UrgentCart,0.0,0.03333333333333333,-0.034840988071090116,0.10150765473775678,0.3255819880161934,"D. MPBH not selected (Competitor lower TLO, not significant)"
+2.0,9,150,S-shape,FCFS,Overloaded,0.03333333333333333,MaxPicker,1.6666666666666667,-1.6333333333333333,-2.6733529689211473,-0.5933136977455193,0.0032182108579807966,A. Strict win
+2.0,9,200,Largest Gap,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+2.0,9,200,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+2.0,9,200,S-shape,EDT,Overloaded,0.43333333333333335,UrgentCart,0.06666666666666667,0.36666666666666664,0.15903290848035948,0.5743004248529738,0.0011350003903880523,D. MPBH not selected (Competitor significantly lower TLO)
+2.0,9,200,S-shape,FCFS,Overloaded,0.43333333333333335,MaxPicker,0.43333333333333335,0.0,-0.25944569570399206,0.25944569570399206,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,10,100,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,10,100,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.06666666666666667,-0.06666666666666667,-0.20301530947551355,0.06968197614218023,0.3255819880161934,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,10,100,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,10,100,S-shape,FCFS,Overloaded,0.0,UrgentCart,17.466666666666665,-17.466666666666665,-29.36272705819596,-5.570606275137369,0.005458773737814671,A. Strict win
+2.0,10,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,10,150,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,10,150,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,10,150,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+2.0,10,200,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,10,200,Largest Gap,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+2.0,10,200,S-shape,EDT,Overloaded,0.1,MaxPicker,0.03333333333333333,0.06666666666666667,-0.06968197614218023,0.20301530947551355,0.3255819880161934,"D. MPBH not selected (Competitor lower TLO, not significant)"
+2.0,10,200,S-shape,FCFS,Overloaded,0.1,MaxPicker,0.03333333333333333,0.06666666666666667,-0.06968197614218023,0.20301530947551355,0.3255819880161934,"D. MPBH not selected (Competitor lower TLO, not significant)"
+2.0,11,100,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,100,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,100,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,100,S-shape,FCFS,Overloaded,0.0,UrgentCart,0.03333333333333333,-0.03333333333333333,-0.10150765473775678,0.034840988071090116,0.3255819880161934,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,150,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,150,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,150,S-shape,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,200,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,200,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,11,200,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+2.0,11,200,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+2.0,12,100,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,100,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,100,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,100,S-shape,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,150,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,150,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,150,S-shape,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,150,S-shape,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,200,Largest Gap,EDT,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,200,Largest Gap,FCFS,Overloaded,0.0,UrgentCart,0.0,0.0,0.0,0.0,1.0,"B. TLO tie, MPBH selected on throughput tie-break"
+2.0,12,200,S-shape,EDT,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+2.0,12,200,S-shape,FCFS,Overloaded,0.0,MaxPicker,0.0,0.0,0.0,0.0,1.0,D. MPBH not selected (Competitor selected on throughput or tie)
+4.0,1,100,Largest Gap,EDT,Overloaded,1551.3333333333333,FTWB,1623.3666666666666,-72.03333333333333,-75.0517781440642,-69.01488852260246,0.0,A. Strict win
+4.0,1,100,Largest Gap,FCFS,Overloaded,1551.3333333333333,FTWB,1623.3666666666666,-72.03333333333333,-75.0517781440642,-69.01488852260246,0.0,A. Strict win
+4.0,1,100,S-shape,EDT,Overloaded,1555.0666666666666,FTWB,1623.3666666666666,-68.3,-71.49437456520634,-65.10562543479365,0.0,A. Strict win
+4.0,1,100,S-shape,FCFS,Overloaded,1555.0666666666666,FTWB,1623.3666666666666,-68.3,-71.49437456520634,-65.10562543479365,0.0,A. Strict win
+4.0,1,150,Largest Gap,EDT,Overloaded,1548.6666666666667,FTWB,1623.3666666666666,-74.7,-78.22768467414463,-71.17231532585538,0.0,A. Strict win
+4.0,1,150,Largest Gap,FCFS,Overloaded,1548.6666666666667,FTWB,1623.3666666666666,-74.7,-78.22768467414463,-71.17231532585538,0.0,A. Strict win
+4.0,1,150,S-shape,EDT,Overloaded,1551.8333333333333,FTWB,1623.3666666666666,-71.53333333333333,-75.0399431407572,-68.02672352590946,0.0,A. Strict win
+4.0,1,150,S-shape,FCFS,Overloaded,1551.8333333333333,FTWB,1623.3666666666666,-71.53333333333333,-75.0399431407572,-68.02672352590946,0.0,A. Strict win
+4.0,1,200,Largest Gap,EDT,Overloaded,1549.9333333333334,FTWB,1623.3666666666666,-73.43333333333334,-76.03275824314004,-70.83390842352664,0.0,A. Strict win
+4.0,1,200,Largest Gap,FCFS,Overloaded,1549.9333333333334,FTWB,1623.3666666666666,-73.43333333333334,-76.03275824314004,-70.83390842352664,0.0,A. Strict win
+4.0,1,200,S-shape,EDT,Overloaded,1554.3666666666666,FTWB,1623.3666666666666,-69.0,-71.137195518303,-66.862804481697,0.0,A. Strict win
+4.0,1,200,S-shape,FCFS,Overloaded,1554.3666666666666,FTWB,1623.3666666666666,-69.0,-71.137195518303,-66.862804481697,0.0,A. Strict win
+4.0,2,100,Largest Gap,EDT,Overloaded,1494.6666666666667,FTWB,1623.3666666666666,-128.7,-131.35336797654014,-126.04663202345984,0.0,A. Strict win
+4.0,2,100,Largest Gap,FCFS,Overloaded,1494.6666666666667,FTWB,1623.3666666666666,-128.7,-131.35336797654014,-126.04663202345984,0.0,A. Strict win
+4.0,2,100,S-shape,EDT,Overloaded,1502.3333333333333,FTWB,1623.3666666666666,-121.03333333333333,-123.60261932403058,-118.46404734263608,0.0,A. Strict win
+4.0,2,100,S-shape,FCFS,Overloaded,1502.3333333333333,FTWB,1623.3666666666666,-121.03333333333333,-123.60261932403058,-118.46404734263608,0.0,A. Strict win
+4.0,2,150,Largest Gap,EDT,Overloaded,1492.3666666666666,FTWB,1623.3666666666666,-131.0,-133.9872490940648,-128.0127509059352,0.0,A. Strict win
+4.0,2,150,Largest Gap,FCFS,Overloaded,1492.3666666666666,FTWB,1623.3666666666666,-131.0,-133.9872490940648,-128.0127509059352,0.0,A. Strict win
+4.0,2,150,S-shape,EDT,Overloaded,1496.2,FTWB,1623.3666666666666,-127.16666666666667,-130.4544009042058,-123.87893242912752,0.0,A. Strict win
+4.0,2,150,S-shape,FCFS,Overloaded,1496.2,FTWB,1623.3666666666666,-127.16666666666667,-130.4544009042058,-123.87893242912752,0.0,A. Strict win
+4.0,2,200,Largest Gap,EDT,Overloaded,1492.3666666666666,FTWB,1623.3666666666666,-131.0,-133.90896694321464,-128.09103305678536,0.0,A. Strict win
+4.0,2,200,Largest Gap,FCFS,Overloaded,1492.3666666666666,FTWB,1623.3666666666666,-131.0,-133.90896694321464,-128.09103305678536,0.0,A. Strict win
+4.0,2,200,S-shape,EDT,Overloaded,1499.9,FTWB,1623.3666666666666,-123.46666666666667,-126.1570739137599,-120.77625941957344,0.0,A. Strict win
+4.0,2,200,S-shape,FCFS,Overloaded,1499.9,FTWB,1623.3666666666666,-123.46666666666667,-126.1570739137599,-120.77625941957344,0.0,A. Strict win
+4.0,3,100,Largest Gap,EDT,Overloaded,1448.0333333333333,FTWB,1623.3666666666666,-175.33333333333334,-178.38165596410707,-172.28501070255962,0.0,A. Strict win
+4.0,3,100,Largest Gap,FCFS,Overloaded,1448.0333333333333,FTWB,1623.3666666666666,-175.33333333333334,-178.38165596410707,-172.28501070255962,0.0,A. Strict win
+4.0,3,100,S-shape,EDT,Overloaded,1454.6666666666667,FTWB,1623.3666666666666,-168.7,-172.4368286979817,-164.96317130201828,0.0,A. Strict win
+4.0,3,100,S-shape,FCFS,Overloaded,1454.6666666666667,FTWB,1623.3666666666666,-168.7,-172.4368286979817,-164.96317130201828,0.0,A. Strict win
+4.0,3,150,Largest Gap,EDT,Overloaded,1438.3,FTWB,1623.3666666666666,-185.06666666666666,-187.9622701496236,-182.17106318370972,0.0,A. Strict win
+4.0,3,150,Largest Gap,FCFS,Overloaded,1438.3,FTWB,1623.3666666666666,-185.06666666666666,-187.9622701496236,-182.17106318370972,0.0,A. Strict win
+4.0,3,150,S-shape,EDT,Overloaded,1448.4666666666667,FTWB,1623.3666666666666,-174.9,-178.48473915038218,-171.31526084961783,0.0,A. Strict win
+4.0,3,150,S-shape,FCFS,Overloaded,1448.4666666666667,FTWB,1623.3666666666666,-174.9,-178.48473915038218,-171.31526084961783,0.0,A. Strict win
+4.0,3,200,Largest Gap,EDT,Overloaded,1439.4333333333334,FTWB,1623.3666666666666,-183.93333333333334,-186.8106138935244,-181.05605277314228,0.0,A. Strict win
+4.0,3,200,Largest Gap,FCFS,Overloaded,1439.4333333333334,FTWB,1623.3666666666666,-183.93333333333334,-186.8106138935244,-181.05605277314228,0.0,A. Strict win
+4.0,3,200,S-shape,EDT,Overloaded,1448.6333333333334,FTWB,1623.3666666666666,-174.73333333333332,-177.74771357648206,-171.71895309018458,0.0,A. Strict win
+4.0,3,200,S-shape,FCFS,Overloaded,1448.6333333333334,FTWB,1623.3666666666666,-174.73333333333332,-177.74771357648206,-171.71895309018458,0.0,A. Strict win
+4.0,4,100,Largest Gap,EDT,Overloaded,1402.3333333333333,FTWB,1623.3666666666666,-221.03333333333333,-225.69045153799408,-216.37621512867258,0.0,A. Strict win
+4.0,4,100,Largest Gap,FCFS,Overloaded,1402.3333333333333,FTWB,1623.3666666666666,-221.03333333333333,-225.69045153799408,-216.37621512867258,0.0,A. Strict win
+4.0,4,100,S-shape,EDT,Overloaded,1414.5666666666666,FTWB,1623.3666666666666,-208.8,-212.0172461847364,-205.58275381526363,0.0,A. Strict win
+4.0,4,100,S-shape,FCFS,Overloaded,1414.5666666666666,FTWB,1623.3666666666666,-208.8,-212.0172461847364,-205.58275381526363,0.0,A. Strict win
+4.0,4,150,Largest Gap,EDT,Overloaded,1393.3666666666666,FTWB,1623.3666666666666,-230.0,-234.19032624078184,-225.80967375921816,0.0,A. Strict win
+4.0,4,150,Largest Gap,FCFS,Overloaded,1393.3666666666666,FTWB,1623.3666666666666,-230.0,-234.19032624078184,-225.80967375921816,0.0,A. Strict win
+4.0,4,150,S-shape,EDT,Overloaded,1399.1,FTWB,1623.3666666666666,-224.26666666666668,-228.09850773705955,-220.4348255962738,0.0,A. Strict win
+4.0,4,150,S-shape,FCFS,Overloaded,1399.1,FTWB,1623.3666666666666,-224.26666666666668,-228.09850773705955,-220.4348255962738,0.0,A. Strict win
+4.0,4,200,Largest Gap,EDT,Overloaded,1388.6,FTWB,1623.3666666666666,-234.76666666666668,-239.4198601007198,-230.11347323261356,0.0,A. Strict win
+4.0,4,200,Largest Gap,FCFS,Overloaded,1388.6,FTWB,1623.3666666666666,-234.76666666666668,-239.4198601007198,-230.11347323261356,0.0,A. Strict win
+4.0,4,200,S-shape,EDT,Overloaded,1402.6666666666667,FTWB,1623.3666666666666,-220.7,-225.34126108807337,-216.0587389119266,0.0,A. Strict win
+4.0,4,200,S-shape,FCFS,Overloaded,1402.6666666666667,FTWB,1623.3666666666666,-220.7,-225.34126108807337,-216.0587389119266,0.0,A. Strict win
+4.0,5,100,Largest Gap,EDT,Overloaded,1363.2666666666667,FTWB,1623.3666666666666,-260.1,-264.074022369516,-256.12597763048404,0.0,A. Strict win
+4.0,5,100,Largest Gap,FCFS,Overloaded,1363.2666666666667,FTWB,1623.3666666666666,-260.1,-264.074022369516,-256.12597763048404,0.0,A. Strict win
+4.0,5,100,S-shape,EDT,Overloaded,1377.2666666666667,FTWB,1623.3666666666666,-246.1,-249.70079809134052,-242.49920190865947,0.0,A. Strict win
+4.0,5,100,S-shape,FCFS,Overloaded,1377.2666666666667,FTWB,1623.3666666666666,-246.1,-249.70079809134052,-242.49920190865947,0.0,A. Strict win
+4.0,5,150,Largest Gap,EDT,Overloaded,1347.1666666666667,FTWB,1623.3666666666666,-276.2,-279.8996524748397,-272.5003475251603,0.0,A. Strict win
+4.0,5,150,Largest Gap,FCFS,Overloaded,1347.1666666666667,FTWB,1623.3666666666666,-276.2,-279.8996524748397,-272.5003475251603,0.0,A. Strict win
+4.0,5,150,S-shape,EDT,Overloaded,1361.3666666666666,FTWB,1623.3666666666666,-262.0,-266.034836389845,-257.965163610155,0.0,A. Strict win
+4.0,5,150,S-shape,FCFS,Overloaded,1361.3666666666666,FTWB,1623.3666666666666,-262.0,-266.034836389845,-257.965163610155,0.0,A. Strict win
+4.0,5,200,Largest Gap,EDT,Overloaded,1347.7,FTWB,1623.3666666666666,-275.6666666666667,-279.8962037188796,-271.4371296144538,0.0,A. Strict win
+4.0,5,200,Largest Gap,FCFS,Overloaded,1347.7,FTWB,1623.3666666666666,-275.6666666666667,-279.8962037188796,-271.4371296144538,0.0,A. Strict win
+4.0,5,200,S-shape,EDT,Overloaded,1362.7666666666667,FTWB,1623.3666666666666,-260.6,-264.2777546776452,-256.92224532235485,0.0,A. Strict win
+4.0,5,200,S-shape,FCFS,Overloaded,1362.7666666666667,FTWB,1623.3666666666666,-260.6,-264.2777546776452,-256.92224532235485,0.0,A. Strict win
+4.0,6,100,Largest Gap,EDT,Overloaded,1327.0,FTWB,1623.3666666666666,-296.3666666666667,-301.22785828641213,-291.5054750469212,0.0,A. Strict win
+4.0,6,100,Largest Gap,FCFS,Overloaded,1327.0,FTWB,1623.3666666666666,-296.3666666666667,-301.22785828641213,-291.5054750469212,0.0,A. Strict win
+4.0,6,100,S-shape,EDT,Overloaded,1341.8,FTWB,1623.3666666666666,-281.56666666666666,-285.3463949084889,-277.78693842484444,0.0,A. Strict win
+4.0,6,100,S-shape,FCFS,Overloaded,1341.8,FTWB,1623.3666666666666,-281.56666666666666,-285.3463949084889,-277.78693842484444,0.0,A. Strict win
+4.0,6,150,Largest Gap,EDT,Overloaded,1304.6333333333334,FTWB,1623.3666666666666,-318.73333333333335,-322.9850926714539,-314.4815739952128,0.0,A. Strict win
+4.0,6,150,Largest Gap,FCFS,Overloaded,1304.6333333333334,FTWB,1623.3666666666666,-318.73333333333335,-322.9850926714539,-314.4815739952128,0.0,A. Strict win
+4.0,6,150,S-shape,EDT,Overloaded,1324.5333333333333,FTWB,1623.3666666666666,-298.8333333333333,-303.8422225374029,-293.8244441292637,0.0,A. Strict win
+4.0,6,150,S-shape,FCFS,Overloaded,1324.5333333333333,FTWB,1623.3666666666666,-298.8333333333333,-303.8422225374029,-293.8244441292637,0.0,A. Strict win
+4.0,6,200,Largest Gap,EDT,Overloaded,1303.4666666666667,SNH,1623.2,-319.73333333333335,-323.70443080165603,-315.76223586501067,0.0,A. Strict win
+4.0,6,200,Largest Gap,FCFS,Overloaded,1303.4666666666667,SNH,1623.2,-319.73333333333335,-323.70443080165603,-315.76223586501067,0.0,A. Strict win
+4.0,6,200,S-shape,EDT,Overloaded,1321.7333333333333,SNH,1623.1666666666667,-301.43333333333334,-306.59501118573803,-296.27165548092864,0.0,A. Strict win
+4.0,6,200,S-shape,FCFS,Overloaded,1321.7333333333333,SNH,1623.1666666666667,-301.43333333333334,-306.59501118573803,-296.27165548092864,0.0,A. Strict win
+4.0,7,100,Largest Gap,EDT,Overloaded,1293.6,SNH,1623.3333333333333,-329.73333333333335,-334.0434945811303,-325.4231720855364,0.0,A. Strict win
+4.0,7,100,Largest Gap,FCFS,Overloaded,1293.6,SNH,1623.3333333333333,-329.73333333333335,-334.0434945811303,-325.4231720855364,0.0,A. Strict win
+4.0,7,100,S-shape,EDT,Overloaded,1308.6666666666667,FTWB,1623.3666666666666,-314.7,-319.0081714718769,-310.3918285281231,0.0,A. Strict win
+4.0,7,100,S-shape,FCFS,Overloaded,1308.6666666666667,FTWB,1623.3666666666666,-314.7,-319.0081714718769,-310.3918285281231,0.0,A. Strict win
+4.0,7,150,Largest Gap,EDT,Overloaded,1263.2,UrgentCart,1622.8,-359.6,-363.58881560293247,-355.6111843970676,0.0,A. Strict win
+4.0,7,150,Largest Gap,FCFS,Overloaded,1263.2,SNH,1623.1666666666667,-359.96666666666664,-364.0020789666574,-355.9312543666759,0.0,A. Strict win
+4.0,7,150,S-shape,EDT,Overloaded,1284.0333333333333,MaxPicker,1623.2333333333333,-339.2,-343.7768456254078,-334.62315437459216,0.0,A. Strict win
+4.0,7,150,S-shape,FCFS,Overloaded,1284.0333333333333,SNH,1623.2666666666667,-339.23333333333335,-343.7968004677349,-334.6698661989318,0.0,A. Strict win
+4.0,7,200,Largest Gap,EDT,Overloaded,1263.6666666666667,MaxPicker,1621.9,-358.23333333333335,-361.97727474659706,-354.48939192006964,0.0,A. Strict win
+4.0,7,200,Largest Gap,FCFS,Overloaded,1263.6666666666667,SNH,1622.2,-358.53333333333336,-362.42345354358304,-354.6432131230837,0.0,A. Strict win
+4.0,7,200,S-shape,EDT,Overloaded,1287.4666666666667,MaxPicker,1622.7,-335.23333333333335,-340.1877887123378,-330.2788779543289,0.0,A. Strict win
+4.0,7,200,S-shape,FCFS,Overloaded,1287.4666666666667,SNH,1622.7,-335.23333333333335,-340.22067455263874,-330.24599211402796,0.0,A. Strict win
+4.0,8,100,Largest Gap,EDT,Overloaded,1259.0,MaxPicker,1622.9,-363.9,-368.9825159209936,-358.81748407900636,0.0,A. Strict win
+4.0,8,100,Largest Gap,FCFS,Overloaded,1259.0,SNH,1623.2,-364.2,-369.25124940606474,-359.14875059393523,0.0,A. Strict win
+4.0,8,100,S-shape,EDT,Overloaded,1279.3333333333333,SNH,1623.2333333333333,-343.9,-347.77478476754015,-340.0252152324598,0.0,A. Strict win
+4.0,8,100,S-shape,FCFS,Overloaded,1279.3333333333333,SNH,1623.2333333333333,-343.9,-347.77478476754015,-340.0252152324598,0.0,A. Strict win
+4.0,8,150,Largest Gap,EDT,Overloaded,1219.0,MaxPicker,1617.3333333333333,-398.3333333333333,-403.20623120633695,-393.4604354603297,0.0,A. Strict win
+4.0,8,150,Largest Gap,FCFS,Overloaded,1219.0,MaxPicker,1619.1333333333334,-400.1333333333333,-405.241687910933,-395.0249787557336,0.0,A. Strict win
+4.0,8,150,S-shape,EDT,Overloaded,1246.9333333333334,MaxPicker,1621.5666666666666,-374.6333333333333,-379.9072453778162,-369.35942128885046,0.0,A. Strict win
+4.0,8,150,S-shape,FCFS,Overloaded,1246.9333333333334,SNH,1622.5666666666666,-375.6333333333333,-381.171392847399,-370.0952738192677,0.0,A. Strict win
+4.0,8,200,Largest Gap,EDT,Overloaded,1216.9333333333334,MaxPicker,1611.6333333333334,-394.7,-399.98908452229114,-389.41091547770884,0.0,A. Strict win
+4.0,8,200,Largest Gap,FCFS,Overloaded,1216.9333333333334,MaxPicker,1607.1,-390.1666666666667,-395.80163480247353,-384.53169853085984,0.0,A. Strict win
+4.0,8,200,S-shape,EDT,Overloaded,1246.6333333333334,MaxPicker,1617.2666666666667,-370.6333333333333,-376.0785887117507,-365.18807795491597,0.0,A. Strict win
+4.0,8,200,S-shape,FCFS,Overloaded,1246.6333333333334,MaxPicker,1617.7333333333333,-371.1,-376.42369671004917,-365.7763032899509,0.0,A. Strict win
+4.0,9,100,Largest Gap,EDT,Overloaded,1228.0,UrgentCart,1619.8,-391.8,-396.14069230877936,-387.45930769122066,0.0,A. Strict win
+4.0,9,100,Largest Gap,FCFS,Overloaded,1228.0,UrgentCart,1621.3333333333333,-393.3333333333333,-397.96752747620064,-388.699139190466,0.0,A. Strict win
+4.0,9,100,S-shape,EDT,Overloaded,1247.4,UrgentCart,1622.5333333333333,-375.1333333333333,-379.20108316580814,-371.0655835008585,0.0,A. Strict win
+4.0,9,100,S-shape,FCFS,Overloaded,1247.4,SNH,1622.7,-375.3,-379.35996099751645,-371.24003900248357,0.0,A. Strict win
+4.0,9,150,Largest Gap,EDT,Overloaded,1168.8333333333333,MaxPicker,1602.8,-433.96666666666664,-437.9408503473816,-429.99248298595165,0.0,A. Strict win
+4.0,9,150,Largest Gap,FCFS,Overloaded,1168.8333333333333,MaxPicker,1595.1333333333334,-426.3,-431.864619856771,-420.735380143229,0.0,A. Strict win
+4.0,9,150,S-shape,EDT,Overloaded,1203.2,MaxPicker,1613.1666666666667,-409.96666666666664,-415.45063517223076,-404.4826981611025,0.0,A. Strict win
+4.0,9,150,S-shape,FCFS,Overloaded,1203.2,MaxPicker,1611.7666666666667,-408.56666666666666,-414.5754162831968,-402.55791705013655,0.0,A. Strict win
+4.0,9,200,Largest Gap,EDT,Overloaded,1153.6,VTWB,1571.9666666666667,-418.3666666666667,-425.53553020487317,-411.1978031284602,0.0,A. Strict win
+4.0,9,200,Largest Gap,FCFS,Overloaded,1153.6,MaxPicker,1560.0333333333333,-406.43333333333334,-412.8055672091877,-400.061099457479,0.0,A. Strict win
+4.0,9,200,S-shape,EDT,Overloaded,1191.0333333333333,VTWB,1599.7333333333333,-408.7,-413.94526897410077,-403.4547310258992,0.0,A. Strict win
+4.0,9,200,S-shape,FCFS,Overloaded,1191.0333333333333,MaxPicker,1589.3666666666666,-398.3333333333333,-403.7001904086645,-392.9664762580021,0.0,A. Strict win
+4.0,10,100,Largest Gap,EDT,Overloaded,1186.4666666666667,MaxPicker,1610.6666666666667,-424.2,-429.05913064343906,-419.3408693565609,0.0,A. Strict win
+4.0,10,100,Largest Gap,FCFS,Overloaded,1186.4666666666667,MaxPicker,1608.2,-421.73333333333335,-426.9184777383589,-416.5481889283078,0.0,A. Strict win
+4.0,10,100,S-shape,EDT,Overloaded,1217.4333333333334,MaxPicker,1617.2333333333333,-399.8,-405.85475647651486,-393.74524352348516,0.0,A. Strict win
+4.0,10,100,S-shape,FCFS,Overloaded,1217.4333333333334,MaxPicker,1618.6666666666667,-401.23333333333335,-407.7051409540799,-394.7615257125868,0.0,A. Strict win
+4.0,10,150,Largest Gap,EDT,Overloaded,1100.0666666666666,VTWB,1555.5333333333333,-455.46666666666664,-463.69314301591294,-447.24019031742034,0.0,A. Strict win
+4.0,10,150,Largest Gap,FCFS,Overloaded,1100.0666666666666,MaxPicker,1540.7,-440.6333333333333,-447.85764875057515,-433.4090179160915,0.0,A. Strict win
+4.0,10,150,S-shape,EDT,Overloaded,1152.8333333333333,VTWB,1592.2666666666667,-439.43333333333334,-446.58420008955113,-432.28246657711554,0.0,A. Strict win
+4.0,10,150,S-shape,FCFS,Overloaded,1152.8333333333333,MaxPicker,1578.3666666666666,-425.53333333333336,-432.37709105539636,-418.68957561127036,0.0,A. Strict win
+4.0,10,200,Largest Gap,EDT,Overloaded,1051.8333333333333,VTWB,1485.1666666666667,-433.3333333333333,-440.21743835332154,-426.4492283133451,0.0,A. Strict win
+4.0,10,200,Largest Gap,FCFS,Overloaded,1051.8333333333333,MaxPicker,1468.7,-416.8666666666667,-424.2348026181623,-409.49853071517106,0.0,A. Strict win
+4.0,10,200,S-shape,EDT,Overloaded,1125.5,VTWB,1543.5666666666666,-418.06666666666666,-425.6281581570848,-410.50517517624854,0.0,A. Strict win
+4.0,10,200,S-shape,FCFS,Overloaded,1125.5,MaxPicker,1528.2333333333333,-402.73333333333335,-409.5666855716107,-395.899981095056,0.0,A. Strict win
+4.0,11,100,Largest Gap,EDT,Overloaded,1136.3,MaxPicker,1590.1333333333334,-453.8333333333333,-458.50550025202716,-449.16116641463947,0.0,A. Strict win
+4.0,11,100,Largest Gap,FCFS,Overloaded,1136.3,MaxPicker,1574.4,-438.1,-443.54337138011135,-432.6566286198887,0.0,A. Strict win
+4.0,11,100,S-shape,EDT,Overloaded,1175.5666666666666,MaxPicker,1606.4333333333334,-430.8666666666667,-436.2873642105784,-425.44596912275495,0.0,A. Strict win
+4.0,11,100,S-shape,FCFS,Overloaded,1175.5666666666666,UrgentCart,1600.6,-425.03333333333336,-430.8043722244644,-419.26229444220235,0.0,A. Strict win
+4.0,11,150,Largest Gap,EDT,Overloaded,990.5666666666667,VTWB,1464.1333333333334,-473.56666666666666,-480.37940726968156,-466.75392606365176,0.0,A. Strict win
+4.0,11,150,Largest Gap,FCFS,Overloaded,990.5666666666667,MaxPicker,1447.2666666666667,-456.7,-463.51377560571933,-449.88622439428065,0.0,A. Strict win
+4.0,11,150,S-shape,EDT,Overloaded,1076.0333333333333,VTWB,1533.7333333333333,-457.7,-465.73333583085474,-449.66666416914524,0.0,A. Strict win
+4.0,11,150,S-shape,FCFS,Overloaded,1076.0333333333333,MaxPicker,1518.2666666666667,-442.23333333333335,-449.52139160672283,-434.94527505994387,0.0,A. Strict win
+4.0,11,200,Largest Gap,EDT,Overloaded,885.8333333333334,VTWB,1321.6333333333334,-435.8,-446.24497382785404,-425.355026172146,0.0,A. Strict win
+4.0,11,200,Largest Gap,FCFS,Overloaded,885.8333333333334,MaxPicker,1296.3,-410.46666666666664,-421.5544131369634,-399.3789201963699,0.0,A. Strict win
+4.0,11,200,S-shape,EDT,Overloaded,1008.7333333333333,VTWB,1441.0,-432.26666666666665,-440.189587295963,-424.3437460373703,0.0,A. Strict win
+4.0,11,200,S-shape,FCFS,Overloaded,1008.7333333333333,MaxPicker,1422.1333333333334,-413.4,-422.2372725248346,-404.56272747516533,0.0,A. Strict win
+4.0,12,100,Largest Gap,EDT,Overloaded,1059.3666666666666,VTWB,1538.7,-479.3333333333333,-485.15402127146075,-473.5126453952059,0.0,A. Strict win
+4.0,12,100,Largest Gap,FCFS,Overloaded,1059.3666666666666,MaxPicker,1516.4333333333334,-457.06666666666666,-462.4804414113031,-451.6528919220302,0.0,A. Strict win
+4.0,12,100,S-shape,EDT,Overloaded,1124.7333333333333,VTWB,1582.3666666666666,-457.6333333333333,-463.2447025084478,-452.02196415821885,0.0,A. Strict win
+4.0,12,100,S-shape,FCFS,Overloaded,1124.7333333333333,UrgentCart,1564.0333333333333,-439.3,-445.2090755793771,-433.3909244206229,0.0,A. Strict win
+4.0,12,150,Largest Gap,EDT,Overloaded,810.0666666666667,VTWB,1300.3,-490.23333333333335,-499.65726149500165,-480.80940517166505,0.0,A. Strict win
+4.0,12,150,Largest Gap,FCFS,Overloaded,810.0666666666667,MaxPicker,1274.3333333333333,-464.26666666666665,-474.3678962728145,-454.1654370605188,0.0,A. Strict win
+4.0,12,150,S-shape,EDT,Overloaded,958.9666666666667,VTWB,1435.5666666666666,-476.6,-484.35589525971153,-468.8441047402885,0.0,A. Strict win
+4.0,12,150,S-shape,FCFS,Overloaded,958.9666666666667,MaxPicker,1414.9666666666667,-456.0,-465.1638754960193,-446.8361245039807,0.0,A. Strict win
+4.0,12,200,Largest Gap,EDT,Overloaded,569.5666666666667,MaxPicker,986.6666666666666,-417.1,-449.52157077347033,-384.6784292265297,0.0,A. Strict win
+4.0,12,200,Largest Gap,FCFS,Overloaded,569.5666666666667,MaxPicker,977.5,-407.93333333333334,-425.8822758444965,-389.98439082217016,0.0,A. Strict win
+4.0,12,200,S-shape,EDT,Overloaded,819.4,VTWB,1245.4,-426.0,-437.2000378848667,-414.7999621151333,0.0,A. Strict win
+4.0,12,200,S-shape,FCFS,Overloaded,819.4,MaxPicker,1217.2,-397.8,-410.65627566116933,-384.9437243388307,0.0,A. Strict win
+8.0,1,100,Largest Gap,EDT,Overloaded,3177.3,FTWB,3249.6666666666665,-72.36666666666666,-75.06019950895141,-69.6731338243819,0.0,A. Strict win
+8.0,1,100,Largest Gap,FCFS,Overloaded,3177.3,FTWB,3249.6666666666665,-72.36666666666666,-75.06019950895141,-69.6731338243819,0.0,A. Strict win
+8.0,1,100,S-shape,EDT,Overloaded,3178.266666666667,FTWB,3249.6666666666665,-71.4,-74.1815537983794,-68.61844620162061,0.0,A. Strict win
+8.0,1,100,S-shape,FCFS,Overloaded,3178.266666666667,FTWB,3249.6666666666665,-71.4,-74.1815537983794,-68.61844620162061,0.0,A. Strict win
+8.0,1,150,Largest Gap,EDT,Overloaded,3176.4333333333334,FTWB,3249.6666666666665,-73.23333333333333,-75.77288005395232,-70.69378661271435,0.0,A. Strict win
+8.0,1,150,Largest Gap,FCFS,Overloaded,3176.4333333333334,FTWB,3249.6666666666665,-73.23333333333333,-75.77288005395232,-70.69378661271435,0.0,A. Strict win
+8.0,1,150,S-shape,EDT,Overloaded,3178.7,FTWB,3249.6666666666665,-70.96666666666667,-74.17955109001215,-67.75378224332118,0.0,A. Strict win
+8.0,1,150,S-shape,FCFS,Overloaded,3178.7,FTWB,3249.6666666666665,-70.96666666666667,-74.17955109001215,-67.75378224332118,0.0,A. Strict win
+8.0,1,200,Largest Gap,EDT,Overloaded,3176.766666666667,FTWB,3249.6666666666665,-72.9,-75.05143355604231,-70.7485664439577,0.0,A. Strict win
+8.0,1,200,Largest Gap,FCFS,Overloaded,3176.766666666667,FTWB,3249.6666666666665,-72.9,-75.05143355604231,-70.7485664439577,0.0,A. Strict win
+8.0,1,200,S-shape,EDT,Overloaded,3179.266666666667,FTWB,3249.6666666666665,-70.4,-72.71972393133372,-68.0802760686663,0.0,A. Strict win
+8.0,1,200,S-shape,FCFS,Overloaded,3179.266666666667,FTWB,3249.6666666666665,-70.4,-72.71972393133372,-68.0802760686663,0.0,A. Strict win
+8.0,2,100,Largest Gap,EDT,Overloaded,3115.266666666667,FTWB,3249.6666666666665,-134.4,-138.35127240373785,-130.44872759626216,0.0,A. Strict win
+8.0,2,100,Largest Gap,FCFS,Overloaded,3115.266666666667,FTWB,3249.6666666666665,-134.4,-138.35127240373785,-130.44872759626216,0.0,A. Strict win
+8.0,2,100,S-shape,EDT,Overloaded,3122.4333333333334,FTWB,3249.6666666666665,-127.23333333333333,-130.79429836200526,-123.6723683046614,0.0,A. Strict win
+8.0,2,100,S-shape,FCFS,Overloaded,3122.4333333333334,FTWB,3249.6666666666665,-127.23333333333333,-130.79429836200526,-123.6723683046614,0.0,A. Strict win
+8.0,2,150,Largest Gap,EDT,Overloaded,3111.9666666666667,FTWB,3249.6666666666665,-137.7,-141.4573587632562,-133.94264123674378,0.0,A. Strict win
+8.0,2,150,Largest Gap,FCFS,Overloaded,3111.9666666666667,FTWB,3249.6666666666665,-137.7,-141.4573587632562,-133.94264123674378,0.0,A. Strict win
+8.0,2,150,S-shape,EDT,Overloaded,3118.0333333333333,FTWB,3249.6666666666665,-131.63333333333333,-135.61597667627538,-127.65068999039126,0.0,A. Strict win
+8.0,2,150,S-shape,FCFS,Overloaded,3118.0333333333333,FTWB,3249.6666666666665,-131.63333333333333,-135.61597667627538,-127.65068999039126,0.0,A. Strict win
+8.0,2,200,Largest Gap,EDT,Overloaded,3111.366666666667,FTWB,3249.6666666666665,-138.3,-141.41820916069497,-135.18179083930505,0.0,A. Strict win
+8.0,2,200,Largest Gap,FCFS,Overloaded,3111.366666666667,FTWB,3249.6666666666665,-138.3,-141.41820916069497,-135.18179083930505,0.0,A. Strict win
+8.0,2,200,S-shape,EDT,Overloaded,3114.5666666666666,FTWB,3249.6666666666665,-135.1,-138.29166414979542,-131.90833585020457,0.0,A. Strict win
+8.0,2,200,S-shape,FCFS,Overloaded,3114.5666666666666,FTWB,3249.6666666666665,-135.1,-138.29166414979542,-131.90833585020457,0.0,A. Strict win
+8.0,3,100,Largest Gap,EDT,Overloaded,3062.5,FTWB,3249.6666666666665,-187.16666666666666,-192.18610360392404,-182.14722972940928,0.0,A. Strict win
+8.0,3,100,Largest Gap,FCFS,Overloaded,3062.5,FTWB,3249.6666666666665,-187.16666666666666,-192.18610360392404,-182.14722972940928,0.0,A. Strict win
+8.0,3,100,S-shape,EDT,Overloaded,3069.733333333333,FTWB,3249.6666666666665,-179.93333333333334,-184.43554475855026,-175.4311219081164,0.0,A. Strict win
+8.0,3,100,S-shape,FCFS,Overloaded,3069.733333333333,FTWB,3249.6666666666665,-179.93333333333334,-184.43554475855026,-175.4311219081164,0.0,A. Strict win
+8.0,3,150,Largest Gap,EDT,Overloaded,3056.0,FTWB,3249.6666666666665,-193.66666666666666,-198.47400241840788,-188.85933091492544,0.0,A. Strict win
+8.0,3,150,Largest Gap,FCFS,Overloaded,3056.0,FTWB,3249.6666666666665,-193.66666666666666,-198.47400241840788,-188.85933091492544,0.0,A. Strict win
+8.0,3,150,S-shape,EDT,Overloaded,3062.0666666666666,FTWB,3249.6666666666665,-187.6,-192.4977646121998,-182.7022353878002,0.0,A. Strict win
+8.0,3,150,S-shape,FCFS,Overloaded,3062.0666666666666,FTWB,3249.6666666666665,-187.6,-192.4977646121998,-182.7022353878002,0.0,A. Strict win
+8.0,3,200,Largest Gap,EDT,Overloaded,3055.0,FTWB,3249.6666666666665,-194.66666666666666,-198.60664702835695,-190.72668630497637,0.0,A. Strict win
+8.0,3,200,Largest Gap,FCFS,Overloaded,3055.0,FTWB,3249.6666666666665,-194.66666666666666,-198.60664702835695,-190.72668630497637,0.0,A. Strict win
+8.0,3,200,S-shape,EDT,Overloaded,3067.1,FTWB,3249.6666666666665,-182.56666666666666,-187.07394786093315,-178.05938547240018,0.0,A. Strict win
+8.0,3,200,S-shape,FCFS,Overloaded,3067.1,FTWB,3249.6666666666665,-182.56666666666666,-187.07394786093315,-178.05938547240018,0.0,A. Strict win
+8.0,4,100,Largest Gap,EDT,Overloaded,3014.9,FTWB,3249.6666666666665,-234.76666666666668,-239.57535241677348,-229.95798091655988,0.0,A. Strict win
+8.0,4,100,Largest Gap,FCFS,Overloaded,3014.9,FTWB,3249.6666666666665,-234.76666666666668,-239.57535241677348,-229.95798091655988,0.0,A. Strict win
+8.0,4,100,S-shape,EDT,Overloaded,3019.5333333333333,FTWB,3249.6666666666665,-230.13333333333333,-234.19871851556135,-226.0679481511053,0.0,A. Strict win
+8.0,4,100,S-shape,FCFS,Overloaded,3019.5333333333333,FTWB,3249.6666666666665,-230.13333333333333,-234.19871851556135,-226.0679481511053,0.0,A. Strict win
+8.0,4,150,Largest Gap,EDT,Overloaded,3002.5666666666666,FTWB,3249.6666666666665,-247.1,-252.13499429931733,-242.06500570068266,0.0,A. Strict win
+8.0,4,150,Largest Gap,FCFS,Overloaded,3002.5666666666666,FTWB,3249.6666666666665,-247.1,-252.13499429931733,-242.06500570068266,0.0,A. Strict win
+8.0,4,150,S-shape,EDT,Overloaded,3015.8333333333335,FTWB,3249.6666666666665,-233.83333333333334,-238.86807298150404,-228.79859368516264,0.0,A. Strict win
+8.0,4,150,S-shape,FCFS,Overloaded,3015.8333333333335,FTWB,3249.6666666666665,-233.83333333333334,-238.86807298150404,-228.79859368516264,0.0,A. Strict win
+8.0,4,200,Largest Gap,EDT,Overloaded,3003.366666666667,FTWB,3249.6666666666665,-246.3,-250.34691329199129,-242.25308670800874,0.0,A. Strict win
+8.0,4,200,Largest Gap,FCFS,Overloaded,3003.366666666667,FTWB,3249.6666666666665,-246.3,-250.34691329199129,-242.25308670800874,0.0,A. Strict win
+8.0,4,200,S-shape,EDT,Overloaded,3016.133333333333,FTWB,3249.6666666666665,-233.53333333333333,-238.35903655787914,-228.70763010878753,0.0,A. Strict win
+8.0,4,200,S-shape,FCFS,Overloaded,3016.133333333333,FTWB,3249.6666666666665,-233.53333333333333,-238.35903655787914,-228.70763010878753,0.0,A. Strict win
+8.0,5,100,Largest Gap,EDT,Overloaded,2968.0,FTWB,3249.6666666666665,-281.6666666666667,-286.6507772999444,-276.68255603338895,0.0,A. Strict win
+8.0,5,100,Largest Gap,FCFS,Overloaded,2968.0,FTWB,3249.6666666666665,-281.6666666666667,-286.6507772999444,-276.68255603338895,0.0,A. Strict win
+8.0,5,100,S-shape,EDT,Overloaded,2978.4333333333334,FTWB,3249.6666666666665,-271.23333333333335,-276.5165361075521,-265.9501305591146,0.0,A. Strict win
+8.0,5,100,S-shape,FCFS,Overloaded,2978.4333333333334,FTWB,3249.6666666666665,-271.23333333333335,-276.5165361075521,-265.9501305591146,0.0,A. Strict win
+8.0,5,150,Largest Gap,EDT,Overloaded,2956.8,FTWB,3249.6666666666665,-292.8666666666667,-298.1744293422413,-287.55890399109205,0.0,A. Strict win
+8.0,5,150,Largest Gap,FCFS,Overloaded,2956.8,FTWB,3249.6666666666665,-292.8666666666667,-298.1744293422413,-287.55890399109205,0.0,A. Strict win
+8.0,5,150,S-shape,EDT,Overloaded,2968.133333333333,FTWB,3249.6666666666665,-281.53333333333336,-286.40070264596085,-276.66596402070587,0.0,A. Strict win
+8.0,5,150,S-shape,FCFS,Overloaded,2968.133333333333,FTWB,3249.6666666666665,-281.53333333333336,-286.40070264596085,-276.66596402070587,0.0,A. Strict win
+8.0,5,200,Largest Gap,EDT,Overloaded,2956.8,FTWB,3249.6666666666665,-292.8666666666667,-298.61202980399355,-287.1213035293398,0.0,A. Strict win
+8.0,5,200,Largest Gap,FCFS,Overloaded,2956.8,FTWB,3249.6666666666665,-292.8666666666667,-298.61202980399355,-287.1213035293398,0.0,A. Strict win
+8.0,5,200,S-shape,EDT,Overloaded,2969.5333333333333,FTWB,3249.6666666666665,-280.1333333333333,-284.9610288116243,-275.30563785504233,0.0,A. Strict win
+8.0,5,200,S-shape,FCFS,Overloaded,2969.5333333333333,FTWB,3249.6666666666665,-280.1333333333333,-284.9610288116243,-275.30563785504233,0.0,A. Strict win
+8.0,6,100,Largest Gap,EDT,Overloaded,2922.2,FTWB,3249.6666666666665,-327.46666666666664,-332.01118258255667,-322.9221507507766,0.0,A. Strict win
+8.0,6,100,Largest Gap,FCFS,Overloaded,2922.2,FTWB,3249.6666666666665,-327.46666666666664,-332.01118258255667,-322.9221507507766,0.0,A. Strict win
+8.0,6,100,S-shape,EDT,Overloaded,2934.266666666667,FTWB,3249.6666666666665,-315.4,-319.43912395555185,-311.3608760444481,0.0,A. Strict win
+8.0,6,100,S-shape,FCFS,Overloaded,2934.266666666667,FTWB,3249.6666666666665,-315.4,-319.43912395555185,-311.3608760444481,0.0,A. Strict win
+8.0,6,150,Largest Gap,EDT,Overloaded,2909.9333333333334,FTWB,3249.6666666666665,-339.73333333333335,-344.60879590691127,-334.85787075975543,0.0,A. Strict win
+8.0,6,150,Largest Gap,FCFS,Overloaded,2909.9333333333334,FTWB,3249.6666666666665,-339.73333333333335,-344.60879590691127,-334.85787075975543,0.0,A. Strict win
+8.0,6,150,S-shape,EDT,Overloaded,2925.8333333333335,FTWB,3249.6666666666665,-323.8333333333333,-328.72371346740636,-318.9429531992603,0.0,A. Strict win
+8.0,6,150,S-shape,FCFS,Overloaded,2925.8333333333335,FTWB,3249.6666666666665,-323.8333333333333,-328.72371346740636,-318.9429531992603,0.0,A. Strict win
+8.0,6,200,Largest Gap,EDT,Overloaded,2907.733333333333,FTWB,3249.6666666666665,-341.93333333333334,-346.2334433195164,-337.63322334715025,0.0,A. Strict win
+8.0,6,200,Largest Gap,FCFS,Overloaded,2907.733333333333,FTWB,3249.6666666666665,-341.93333333333334,-346.2334433195164,-337.63322334715025,0.0,A. Strict win
+8.0,6,200,S-shape,EDT,Overloaded,2923.7,FTWB,3249.6666666666665,-325.96666666666664,-331.5788926091323,-320.35444072420097,0.0,A. Strict win
+8.0,6,200,S-shape,FCFS,Overloaded,2923.7,FTWB,3249.6666666666665,-325.96666666666664,-331.5788926091323,-320.35444072420097,0.0,A. Strict win
+8.0,7,100,Largest Gap,EDT,Overloaded,2874.6666666666665,FTWB,3249.6666666666665,-375.0,-379.9421316295862,-370.0578683704138,0.0,A. Strict win
+8.0,7,100,Largest Gap,FCFS,Overloaded,2874.6666666666665,FTWB,3249.6666666666665,-375.0,-379.9421316295862,-370.0578683704138,0.0,A. Strict win
+8.0,7,100,S-shape,EDT,Overloaded,2896.1666666666665,FTWB,3249.6666666666665,-353.5,-359.13126952964416,-347.86873047035584,0.0,A. Strict win
+8.0,7,100,S-shape,FCFS,Overloaded,2896.1666666666665,FTWB,3249.6666666666665,-353.5,-359.13126952964416,-347.86873047035584,0.0,A. Strict win
+8.0,7,150,Largest Gap,EDT,Overloaded,2867.0333333333333,FTWB,3249.6666666666665,-382.6333333333333,-388.30097134843083,-376.9656953182358,0.0,A. Strict win
+8.0,7,150,Largest Gap,FCFS,Overloaded,2867.0333333333333,FTWB,3249.6666666666665,-382.6333333333333,-388.30097134843083,-376.9656953182358,0.0,A. Strict win
+8.0,7,150,S-shape,EDT,Overloaded,2882.5,FTWB,3249.6666666666665,-367.1666666666667,-371.51143693552405,-362.8218963978093,0.0,A. Strict win
+8.0,7,150,S-shape,FCFS,Overloaded,2882.5,FTWB,3249.6666666666665,-367.1666666666667,-371.51143693552405,-362.8218963978093,0.0,A. Strict win
+8.0,7,200,Largest Gap,EDT,Overloaded,2859.5333333333333,FTWB,3249.6666666666665,-390.1333333333333,-395.1110730954821,-385.15559357118457,0.0,A. Strict win
+8.0,7,200,Largest Gap,FCFS,Overloaded,2859.5333333333333,FTWB,3249.6666666666665,-390.1333333333333,-395.1110730954821,-385.15559357118457,0.0,A. Strict win
+8.0,7,200,S-shape,EDT,Overloaded,2884.9666666666667,FTWB,3249.6666666666665,-364.7,-369.56086192225854,-359.83913807774144,0.0,A. Strict win
+8.0,7,200,S-shape,FCFS,Overloaded,2884.9666666666667,FTWB,3249.6666666666665,-364.7,-369.56086192225854,-359.83913807774144,0.0,A. Strict win
+8.0,8,100,Largest Gap,EDT,Overloaded,2838.0,FTWB,3249.6666666666665,-411.6666666666667,-417.92289280279937,-405.410440530534,0.0,A. Strict win
+8.0,8,100,Largest Gap,FCFS,Overloaded,2838.0,FTWB,3249.6666666666665,-411.6666666666667,-417.92289280279937,-405.410440530534,0.0,A. Strict win
+8.0,8,100,S-shape,EDT,Overloaded,2857.6666666666665,FTWB,3249.6666666666665,-392.0,-397.94949849099123,-386.05050150900877,0.0,A. Strict win
+8.0,8,100,S-shape,FCFS,Overloaded,2857.6666666666665,FTWB,3249.6666666666665,-392.0,-397.94949849099123,-386.05050150900877,0.0,A. Strict win
+8.0,8,150,Largest Gap,EDT,Overloaded,2822.4666666666667,FTWB,3249.6666666666665,-427.2,-432.211112466125,-422.188887533875,0.0,A. Strict win
+8.0,8,150,Largest Gap,FCFS,Overloaded,2822.4666666666667,FTWB,3249.6666666666665,-427.2,-432.211112466125,-422.188887533875,0.0,A. Strict win
+8.0,8,150,S-shape,EDT,Overloaded,2846.233333333333,FTWB,3249.6666666666665,-403.43333333333334,-407.38349015716136,-399.4831765095053,0.0,A. Strict win
+8.0,8,150,S-shape,FCFS,Overloaded,2846.233333333333,FTWB,3249.6666666666665,-403.43333333333334,-407.38349015716136,-399.4831765095053,0.0,A. Strict win
+8.0,8,200,Largest Gap,EDT,Overloaded,2825.0333333333333,FTWB,3249.6666666666665,-424.6333333333333,-429.7131366949037,-419.55352997176294,0.0,A. Strict win
+8.0,8,200,Largest Gap,FCFS,Overloaded,2825.0333333333333,FTWB,3249.6666666666665,-424.6333333333333,-429.7131366949037,-419.55352997176294,0.0,A. Strict win
+8.0,8,200,S-shape,EDT,Overloaded,2843.1666666666665,FTWB,3249.6666666666665,-406.5,-411.3465975782275,-401.6534024217725,0.0,A. Strict win
+8.0,8,200,S-shape,FCFS,Overloaded,2843.1666666666665,FTWB,3249.6666666666665,-406.5,-411.3465975782275,-401.6534024217725,0.0,A. Strict win
+8.0,9,100,Largest Gap,EDT,Overloaded,2798.0,FTWB,3249.6666666666665,-451.6666666666667,-457.0994136326743,-446.23391970065904,0.0,A. Strict win
+8.0,9,100,Largest Gap,FCFS,Overloaded,2798.0,FTWB,3249.6666666666665,-451.6666666666667,-457.0994136326743,-446.23391970065904,0.0,A. Strict win
+8.0,9,100,S-shape,EDT,Overloaded,2821.9666666666667,FTWB,3249.6666666666665,-427.7,-434.25336115560634,-421.14663884439364,0.0,A. Strict win
+8.0,9,100,S-shape,FCFS,Overloaded,2821.9666666666667,FTWB,3249.6666666666665,-427.7,-434.25336115560634,-421.14663884439364,0.0,A. Strict win
+8.0,9,150,Largest Gap,EDT,Overloaded,2778.9666666666667,FTWB,3249.6666666666665,-470.7,-475.5011475748688,-465.89885242513117,0.0,A. Strict win
+8.0,9,150,Largest Gap,FCFS,Overloaded,2778.9666666666667,FTWB,3249.6666666666665,-470.7,-475.5011475748688,-465.89885242513117,0.0,A. Strict win
+8.0,9,150,S-shape,EDT,Overloaded,2804.9333333333334,FTWB,3249.6666666666665,-444.73333333333335,-450.45790497977373,-439.00876168689297,0.0,A. Strict win
+8.0,9,150,S-shape,FCFS,Overloaded,2804.9333333333334,FTWB,3249.6666666666665,-444.73333333333335,-450.45790497977373,-439.00876168689297,0.0,A. Strict win
+8.0,9,200,Largest Gap,EDT,Overloaded,2778.233333333333,FTWB,3249.6666666666665,-471.43333333333334,-477.5891151511119,-465.27755151555476,0.0,A. Strict win
+8.0,9,200,Largest Gap,FCFS,Overloaded,2778.233333333333,FTWB,3249.6666666666665,-471.43333333333334,-477.5891151511119,-465.27755151555476,0.0,A. Strict win
+8.0,9,200,S-shape,EDT,Overloaded,2807.5333333333333,FTWB,3249.6666666666665,-442.1333333333333,-447.98729736391994,-436.2793693027467,0.0,A. Strict win
+8.0,9,200,S-shape,FCFS,Overloaded,2807.5333333333333,FTWB,3249.6666666666665,-442.1333333333333,-447.98729736391994,-436.2793693027467,0.0,A. Strict win
+8.0,10,100,Largest Gap,EDT,Overloaded,2760.4666666666667,FTWB,3249.6666666666665,-489.2,-495.61563470003813,-482.78436529996185,0.0,A. Strict win
+8.0,10,100,Largest Gap,FCFS,Overloaded,2760.4666666666667,FTWB,3249.6666666666665,-489.2,-495.61563470003813,-482.78436529996185,0.0,A. Strict win
+8.0,10,100,S-shape,EDT,Overloaded,2782.1666666666665,FTWB,3249.6666666666665,-467.5,-472.5696341439061,-462.4303658560939,0.0,A. Strict win
+8.0,10,100,S-shape,FCFS,Overloaded,2782.1666666666665,FTWB,3249.6666666666665,-467.5,-472.5696341439061,-462.4303658560939,0.0,A. Strict win
+8.0,10,150,Largest Gap,EDT,Overloaded,2740.4333333333334,FTWB,3249.6666666666665,-509.23333333333335,-514.5933326235948,-503.8733340430718,0.0,A. Strict win
+8.0,10,150,Largest Gap,FCFS,Overloaded,2740.4333333333334,FTWB,3249.6666666666665,-509.23333333333335,-514.5933326235948,-503.8733340430718,0.0,A. Strict win
+8.0,10,150,S-shape,EDT,Overloaded,2767.4666666666667,FTWB,3249.6666666666665,-482.2,-488.0774615116323,-476.3225384883677,0.0,A. Strict win
+8.0,10,150,S-shape,FCFS,Overloaded,2767.4666666666667,FTWB,3249.6666666666665,-482.2,-488.0774615116323,-476.3225384883677,0.0,A. Strict win
+8.0,10,200,Largest Gap,EDT,Overloaded,2740.4333333333334,FTWB,3249.6666666666665,-509.23333333333335,-515.8389678732134,-502.62769879345336,0.0,A. Strict win
+8.0,10,200,Largest Gap,FCFS,Overloaded,2740.4333333333334,FTWB,3249.6666666666665,-509.23333333333335,-515.8389678732134,-502.62769879345336,0.0,A. Strict win
+8.0,10,200,S-shape,EDT,Overloaded,2769.766666666667,FTWB,3249.6666666666665,-479.9,-485.5598846672694,-474.24011533273057,0.0,A. Strict win
+8.0,10,200,S-shape,FCFS,Overloaded,2769.766666666667,FTWB,3249.6666666666665,-479.9,-485.5598846672694,-474.24011533273057,0.0,A. Strict win
+8.0,11,100,Largest Gap,EDT,Overloaded,2728.266666666667,FTWB,3249.6666666666665,-521.4,-527.947819603606,-514.8521803963939,0.0,A. Strict win
+8.0,11,100,Largest Gap,FCFS,Overloaded,2728.266666666667,FTWB,3249.6666666666665,-521.4,-527.947819603606,-514.8521803963939,0.0,A. Strict win
+8.0,11,100,S-shape,EDT,Overloaded,2756.5333333333333,FTWB,3249.6666666666665,-493.1333333333333,-499.18597187341965,-487.080694793247,0.0,A. Strict win
+8.0,11,100,S-shape,FCFS,Overloaded,2756.5333333333333,FTWB,3249.6666666666665,-493.1333333333333,-499.18597187341965,-487.080694793247,0.0,A. Strict win
+8.0,11,150,Largest Gap,EDT,Overloaded,2702.5666666666666,FTWB,3249.6666666666665,-547.1,-553.1903461012574,-541.0096538987426,0.0,A. Strict win
+8.0,11,150,Largest Gap,FCFS,Overloaded,2702.5666666666666,FTWB,3249.6666666666665,-547.1,-553.1903461012574,-541.0096538987426,0.0,A. Strict win
+8.0,11,150,S-shape,EDT,Overloaded,2730.266666666667,FTWB,3249.6666666666665,-519.4,-525.9997483483403,-512.8002516516597,0.0,A. Strict win
+8.0,11,150,S-shape,FCFS,Overloaded,2730.266666666667,FTWB,3249.6666666666665,-519.4,-525.9997483483403,-512.8002516516597,0.0,A. Strict win
+8.0,11,200,Largest Gap,EDT,Overloaded,2701.6,SNH,3249.5,-547.9,-554.7498085892909,-541.0501914107091,0.0,A. Strict win
+8.0,11,200,Largest Gap,FCFS,Overloaded,2701.6,SNH,3249.5,-547.9,-554.7498085892909,-541.0501914107091,0.0,A. Strict win
+8.0,11,200,S-shape,EDT,Overloaded,2735.0,FTWB,3249.6666666666665,-514.6666666666666,-520.6034908575256,-508.72984247580763,0.0,A. Strict win
+8.0,11,200,S-shape,FCFS,Overloaded,2735.0,FTWB,3249.6666666666665,-514.6666666666666,-520.6034908575256,-508.72984247580763,0.0,A. Strict win
+8.0,12,100,Largest Gap,EDT,Overloaded,2694.733333333333,FTWB,3249.6666666666665,-554.9333333333333,-562.0830233509442,-547.7836433157223,0.0,A. Strict win
+8.0,12,100,Largest Gap,FCFS,Overloaded,2694.733333333333,FTWB,3249.6666666666665,-554.9333333333333,-562.0830233509442,-547.7836433157223,0.0,A. Strict win
+8.0,12,100,S-shape,EDT,Overloaded,2716.6,FTWB,3249.6666666666665,-533.0666666666667,-538.9723102975124,-527.161023035821,0.0,A. Strict win
+8.0,12,100,S-shape,FCFS,Overloaded,2716.6,FTWB,3249.6666666666665,-533.0666666666667,-538.9723102975124,-527.161023035821,0.0,A. Strict win
+8.0,12,150,Largest Gap,EDT,Overloaded,2658.3,UrgentCart,3249.5666666666666,-591.2666666666667,-598.7841561997044,-583.7491771336289,0.0,A. Strict win
+8.0,12,150,Largest Gap,FCFS,Overloaded,2658.3,SNH,3249.633333333333,-591.3333333333334,-598.8549150381635,-583.8117516285032,0.0,A. Strict win
+8.0,12,150,S-shape,EDT,Overloaded,2697.266666666667,FTWB,3249.6666666666665,-552.4,-558.4818536259193,-546.3181463740807,0.0,A. Strict win
+8.0,12,150,S-shape,FCFS,Overloaded,2697.266666666667,FTWB,3249.6666666666665,-552.4,-558.4818536259193,-546.3181463740807,0.0,A. Strict win
+8.0,12,200,Largest Gap,EDT,Overloaded,2663.4666666666667,SNH,3249.266666666667,-585.8,-592.1113674622593,-579.4886325377406,0.0,A. Strict win
+8.0,12,200,Largest Gap,FCFS,Overloaded,2663.4666666666667,SNH,3249.266666666667,-585.8,-592.1113674622593,-579.4886325377406,0.0,A. Strict win
+8.0,12,200,S-shape,EDT,Overloaded,2695.9333333333334,SNH,3249.633333333333,-553.7,-560.5045962317332,-546.8954037682669,0.0,A. Strict win
+8.0,12,200,S-shape,FCFS,Overloaded,2695.9333333333334,SNH,3249.633333333333,-553.7,-560.5045962317332,-546.8954037682669,0.0,A. Strict win
+16.0,1,100,Largest Gap,EDT,Overloaded,6413.5,FTWB,6481.866666666667,-68.36666666666666,-71.36593607055642,-65.3673972627769,0.0,A. Strict win
+16.0,1,100,Largest Gap,FCFS,Overloaded,6413.5,FTWB,6481.866666666667,-68.36666666666666,-71.36593607055642,-65.3673972627769,0.0,A. Strict win
+16.0,1,100,S-shape,EDT,Overloaded,6413.966666666666,FTWB,6481.866666666667,-67.9,-71.0492017669581,-64.7507982330419,0.0,A. Strict win
+16.0,1,100,S-shape,FCFS,Overloaded,6413.966666666666,FTWB,6481.866666666667,-67.9,-71.0492017669581,-64.7507982330419,0.0,A. Strict win
+16.0,1,150,Largest Gap,EDT,Overloaded,6413.0,FTWB,6481.866666666667,-68.86666666666666,-71.39302101190019,-66.34031232143313,0.0,A. Strict win
+16.0,1,150,Largest Gap,FCFS,Overloaded,6413.0,FTWB,6481.866666666667,-68.86666666666666,-71.39302101190019,-66.34031232143313,0.0,A. Strict win
+16.0,1,150,S-shape,EDT,Overloaded,6413.133333333333,FTWB,6481.866666666667,-68.73333333333333,-71.29033267580701,-66.17633399085966,0.0,A. Strict win
+16.0,1,150,S-shape,FCFS,Overloaded,6413.133333333333,FTWB,6481.866666666667,-68.73333333333333,-71.29033267580701,-66.17633399085966,0.0,A. Strict win
+16.0,1,200,Largest Gap,EDT,Overloaded,6412.6,FTWB,6481.866666666667,-69.26666666666667,-71.33975984837681,-67.19357348495652,0.0,A. Strict win
+16.0,1,200,Largest Gap,FCFS,Overloaded,6412.6,FTWB,6481.866666666667,-69.26666666666667,-71.33975984837681,-67.19357348495652,0.0,A. Strict win
+16.0,1,200,S-shape,EDT,Overloaded,6413.233333333334,FTWB,6481.866666666667,-68.63333333333334,-70.81612343289662,-66.45054323377006,0.0,A. Strict win
+16.0,1,200,S-shape,FCFS,Overloaded,6413.233333333334,FTWB,6481.866666666667,-68.63333333333334,-70.81612343289662,-66.45054323377006,0.0,A. Strict win
+16.0,2,100,Largest Gap,EDT,Overloaded,6351.466666666666,FTWB,6481.866666666667,-130.4,-133.7001655666538,-127.09983443334622,0.0,A. Strict win
+16.0,2,100,Largest Gap,FCFS,Overloaded,6351.466666666666,FTWB,6481.866666666667,-130.4,-133.7001655666538,-127.09983443334622,0.0,A. Strict win
+16.0,2,100,S-shape,EDT,Overloaded,6352.9,FTWB,6481.866666666667,-128.96666666666667,-132.3840463219029,-125.54928701143044,0.0,A. Strict win
+16.0,2,100,S-shape,FCFS,Overloaded,6352.9,FTWB,6481.866666666667,-128.96666666666667,-132.3840463219029,-125.54928701143044,0.0,A. Strict win
+16.0,2,150,Largest Gap,EDT,Overloaded,6349.9,FTWB,6481.866666666667,-131.96666666666667,-135.00891077641964,-128.9244225569137,0.0,A. Strict win
+16.0,2,150,Largest Gap,FCFS,Overloaded,6349.9,FTWB,6481.866666666667,-131.96666666666667,-135.00891077641964,-128.9244225569137,0.0,A. Strict win
+16.0,2,150,S-shape,EDT,Overloaded,6350.533333333334,FTWB,6481.866666666667,-131.33333333333334,-134.30336470996087,-128.3633019567058,0.0,A. Strict win
+16.0,2,150,S-shape,FCFS,Overloaded,6350.533333333334,FTWB,6481.866666666667,-131.33333333333334,-134.30336470996087,-128.3633019567058,0.0,A. Strict win
+16.0,2,200,Largest Gap,EDT,Overloaded,6350.366666666667,FTWB,6481.866666666667,-131.5,-134.58347689288897,-128.41652310711103,0.0,A. Strict win
+16.0,2,200,Largest Gap,FCFS,Overloaded,6350.366666666667,FTWB,6481.866666666667,-131.5,-134.58347689288897,-128.41652310711103,0.0,A. Strict win
+16.0,2,200,S-shape,EDT,Overloaded,6352.133333333333,FTWB,6481.866666666667,-129.73333333333332,-132.84812271326243,-126.6185439534042,0.0,A. Strict win
+16.0,2,200,S-shape,FCFS,Overloaded,6352.133333333333,FTWB,6481.866666666667,-129.73333333333332,-132.84812271326243,-126.6185439534042,0.0,A. Strict win
+16.0,3,100,Largest Gap,EDT,Overloaded,6295.4,FTWB,6481.866666666667,-186.46666666666667,-190.53677977557638,-182.39655355775696,0.0,A. Strict win
+16.0,3,100,Largest Gap,FCFS,Overloaded,6295.4,FTWB,6481.866666666667,-186.46666666666667,-190.53677977557638,-182.39655355775696,0.0,A. Strict win
+16.0,3,100,S-shape,EDT,Overloaded,6298.466666666666,FTWB,6481.866666666667,-183.4,-187.39964923498755,-179.40035076501246,0.0,A. Strict win
+16.0,3,100,S-shape,FCFS,Overloaded,6298.466666666666,FTWB,6481.866666666667,-183.4,-187.39964923498755,-179.40035076501246,0.0,A. Strict win
+16.0,3,150,Largest Gap,EDT,Overloaded,6292.3,FTWB,6481.866666666667,-189.56666666666666,-193.48136648234834,-185.651966850985,0.0,A. Strict win
+16.0,3,150,Largest Gap,FCFS,Overloaded,6292.3,FTWB,6481.866666666667,-189.56666666666666,-193.48136648234834,-185.651966850985,0.0,A. Strict win
+16.0,3,150,S-shape,EDT,Overloaded,6297.1,FTWB,6481.866666666667,-184.76666666666668,-189.35744530902363,-180.17588802430973,0.0,A. Strict win
+16.0,3,150,S-shape,FCFS,Overloaded,6297.1,FTWB,6481.866666666667,-184.76666666666668,-189.35744530902363,-180.17588802430973,0.0,A. Strict win
+16.0,3,200,Largest Gap,EDT,Overloaded,6291.4,FTWB,6481.866666666667,-190.46666666666667,-193.56722235728216,-187.36611097605117,0.0,A. Strict win
+16.0,3,200,Largest Gap,FCFS,Overloaded,6291.4,FTWB,6481.866666666667,-190.46666666666667,-193.56722235728216,-187.36611097605117,0.0,A. Strict win
+16.0,3,200,S-shape,EDT,Overloaded,6296.033333333334,FTWB,6481.866666666667,-185.83333333333334,-189.31979827609035,-182.34686839057633,0.0,A. Strict win
+16.0,3,200,S-shape,FCFS,Overloaded,6296.033333333334,FTWB,6481.866666666667,-185.83333333333334,-189.31979827609035,-182.34686839057633,0.0,A. Strict win
+16.0,4,100,Largest Gap,EDT,Overloaded,6238.733333333334,FTWB,6481.866666666667,-243.13333333333333,-247.0615812323145,-239.20508543435216,0.0,A. Strict win
+16.0,4,100,Largest Gap,FCFS,Overloaded,6238.733333333334,FTWB,6481.866666666667,-243.13333333333333,-247.0615812323145,-239.20508543435216,0.0,A. Strict win
+16.0,4,100,S-shape,EDT,Overloaded,6252.066666666667,FTWB,6481.866666666667,-229.8,-234.3005736488699,-225.29942635113014,0.0,A. Strict win
+16.0,4,100,S-shape,FCFS,Overloaded,6252.066666666667,FTWB,6481.866666666667,-229.8,-234.3005736488699,-225.29942635113014,0.0,A. Strict win
+16.0,4,150,Largest Gap,EDT,Overloaded,6236.1,FTWB,6481.866666666667,-245.76666666666668,-250.45691031595308,-241.07642301738028,0.0,A. Strict win
+16.0,4,150,Largest Gap,FCFS,Overloaded,6236.1,FTWB,6481.866666666667,-245.76666666666668,-250.45691031595308,-241.07642301738028,0.0,A. Strict win
+16.0,4,150,S-shape,EDT,Overloaded,6244.366666666667,FTWB,6481.866666666667,-237.5,-241.47087549134667,-233.52912450865333,0.0,A. Strict win
+16.0,4,150,S-shape,FCFS,Overloaded,6244.366666666667,FTWB,6481.866666666667,-237.5,-241.47087549134667,-233.52912450865333,0.0,A. Strict win
+16.0,4,200,Largest Gap,EDT,Overloaded,6235.733333333334,FTWB,6481.866666666667,-246.13333333333333,-250.6438668488125,-241.62279981785414,0.0,A. Strict win
+16.0,4,200,Largest Gap,FCFS,Overloaded,6235.733333333334,FTWB,6481.866666666667,-246.13333333333333,-250.6438668488125,-241.62279981785414,0.0,A. Strict win
+16.0,4,200,S-shape,EDT,Overloaded,6245.566666666667,FTWB,6481.866666666667,-236.3,-241.26557063007598,-231.33442936992404,0.0,A. Strict win
+16.0,4,200,S-shape,FCFS,Overloaded,6245.566666666667,FTWB,6481.866666666667,-236.3,-241.26557063007598,-231.33442936992404,0.0,A. Strict win
+16.0,5,100,Largest Gap,EDT,Overloaded,6190.9,FTWB,6481.866666666667,-290.96666666666664,-295.8702033890599,-286.0631299442734,0.0,A. Strict win
+16.0,5,100,Largest Gap,FCFS,Overloaded,6190.9,FTWB,6481.866666666667,-290.96666666666664,-295.8702033890599,-286.0631299442734,0.0,A. Strict win
+16.0,5,100,S-shape,EDT,Overloaded,6201.533333333334,FTWB,6481.866666666667,-280.3333333333333,-284.8858827932199,-275.78078387344675,0.0,A. Strict win
+16.0,5,100,S-shape,FCFS,Overloaded,6201.533333333334,FTWB,6481.866666666667,-280.3333333333333,-284.8858827932199,-275.78078387344675,0.0,A. Strict win
+16.0,5,150,Largest Gap,EDT,Overloaded,6185.9,FTWB,6481.866666666667,-295.96666666666664,-300.0020789666574,-291.9312543666759,0.0,A. Strict win
+16.0,5,150,Largest Gap,FCFS,Overloaded,6185.9,FTWB,6481.866666666667,-295.96666666666664,-300.0020789666574,-291.9312543666759,0.0,A. Strict win
+16.0,5,150,S-shape,EDT,Overloaded,6195.933333333333,FTWB,6481.866666666667,-285.93333333333334,-289.0326482225823,-282.8340184440844,0.0,A. Strict win
+16.0,5,150,S-shape,FCFS,Overloaded,6195.933333333333,FTWB,6481.866666666667,-285.93333333333334,-289.0326482225823,-282.8340184440844,0.0,A. Strict win
+16.0,5,200,Largest Gap,EDT,Overloaded,6182.733333333334,FTWB,6481.866666666667,-299.1333333333333,-303.0110743189581,-295.25559234770856,0.0,A. Strict win
+16.0,5,200,Largest Gap,FCFS,Overloaded,6182.733333333334,FTWB,6481.866666666667,-299.1333333333333,-303.0110743189581,-295.25559234770856,0.0,A. Strict win
+16.0,5,200,S-shape,EDT,Overloaded,6196.933333333333,FTWB,6481.866666666667,-284.93333333333334,-289.5296071061721,-280.3370595604946,0.0,A. Strict win
+16.0,5,200,S-shape,FCFS,Overloaded,6196.933333333333,FTWB,6481.866666666667,-284.93333333333334,-289.5296071061721,-280.3370595604946,0.0,A. Strict win
+16.0,6,100,Largest Gap,EDT,Overloaded,6142.433333333333,FTWB,6481.866666666667,-339.43333333333334,-344.4581315205563,-334.40853514611035,0.0,A. Strict win
+16.0,6,100,Largest Gap,FCFS,Overloaded,6142.433333333333,FTWB,6481.866666666667,-339.43333333333334,-344.4581315205563,-334.40853514611035,0.0,A. Strict win
+16.0,6,100,S-shape,EDT,Overloaded,6157.366666666667,FTWB,6481.866666666667,-324.5,-330.35890358321353,-318.64109641678647,0.0,A. Strict win
+16.0,6,100,S-shape,FCFS,Overloaded,6157.366666666667,FTWB,6481.866666666667,-324.5,-330.35890358321353,-318.64109641678647,0.0,A. Strict win
+16.0,6,150,Largest Gap,EDT,Overloaded,6134.2,FTWB,6481.866666666667,-347.6666666666667,-353.38821391367367,-341.9451194196597,0.0,A. Strict win
+16.0,6,150,Largest Gap,FCFS,Overloaded,6134.2,FTWB,6481.866666666667,-347.6666666666667,-353.38821391367367,-341.9451194196597,0.0,A. Strict win
+16.0,6,150,S-shape,EDT,Overloaded,6151.566666666667,FTWB,6481.866666666667,-330.3,-336.5699035645508,-324.0300964354492,0.0,A. Strict win
+16.0,6,150,S-shape,FCFS,Overloaded,6151.566666666667,FTWB,6481.866666666667,-330.3,-336.5699035645508,-324.0300964354492,0.0,A. Strict win
+16.0,6,200,Largest Gap,EDT,Overloaded,6135.866666666667,FTWB,6481.866666666667,-346.0,-350.7303757719653,-341.2696242280347,0.0,A. Strict win
+16.0,6,200,Largest Gap,FCFS,Overloaded,6135.866666666667,FTWB,6481.866666666667,-346.0,-350.7303757719653,-341.2696242280347,0.0,A. Strict win
+16.0,6,200,S-shape,EDT,Overloaded,6148.0,FTWB,6481.866666666667,-333.8666666666667,-339.806243748134,-327.9270895851993,0.0,A. Strict win
+16.0,6,200,S-shape,FCFS,Overloaded,6148.0,FTWB,6481.866666666667,-333.8666666666667,-339.806243748134,-327.9270895851993,0.0,A. Strict win
+16.0,7,100,Largest Gap,EDT,Overloaded,6095.1,FTWB,6481.866666666667,-386.76666666666665,-391.45998463152387,-382.07334870180944,0.0,A. Strict win
+16.0,7,100,Largest Gap,FCFS,Overloaded,6095.1,FTWB,6481.866666666667,-386.76666666666665,-391.45998463152387,-382.07334870180944,0.0,A. Strict win
+16.0,7,100,S-shape,EDT,Overloaded,6112.7,FTWB,6481.866666666667,-369.1666666666667,-376.6135673774471,-361.71976595588626,0.0,A. Strict win
+16.0,7,100,S-shape,FCFS,Overloaded,6112.7,FTWB,6481.866666666667,-369.1666666666667,-376.6135673774471,-361.71976595588626,0.0,A. Strict win
+16.0,7,150,Largest Gap,EDT,Overloaded,6091.333333333333,FTWB,6481.866666666667,-390.53333333333336,-395.7616936654462,-385.3049730012205,0.0,A. Strict win
+16.0,7,150,Largest Gap,FCFS,Overloaded,6091.333333333333,FTWB,6481.866666666667,-390.53333333333336,-395.7616936654462,-385.3049730012205,0.0,A. Strict win
+16.0,7,150,S-shape,EDT,Overloaded,6103.166666666667,FTWB,6481.866666666667,-378.7,-384.83345522307155,-372.5665447769284,0.0,A. Strict win
+16.0,7,150,S-shape,FCFS,Overloaded,6103.166666666667,FTWB,6481.866666666667,-378.7,-384.83345522307155,-372.5665447769284,0.0,A. Strict win
+16.0,7,200,Largest Gap,EDT,Overloaded,6094.4,FTWB,6481.866666666667,-387.46666666666664,-393.4248328386922,-381.50850049464105,0.0,A. Strict win
+16.0,7,200,Largest Gap,FCFS,Overloaded,6094.4,FTWB,6481.866666666667,-387.46666666666664,-393.4248328386922,-381.50850049464105,0.0,A. Strict win
+16.0,7,200,S-shape,EDT,Overloaded,6106.166666666667,FTWB,6481.866666666667,-375.7,-381.60174805579254,-369.79825194420744,0.0,A. Strict win
+16.0,7,200,S-shape,FCFS,Overloaded,6106.166666666667,FTWB,6481.866666666667,-375.7,-381.60174805579254,-369.79825194420744,0.0,A. Strict win
+16.0,8,100,Largest Gap,EDT,Overloaded,6049.966666666666,FTWB,6481.866666666667,-431.9,-436.9673574897963,-426.83264251020364,0.0,A. Strict win
+16.0,8,100,Largest Gap,FCFS,Overloaded,6049.966666666666,FTWB,6481.866666666667,-431.9,-436.9673574897963,-426.83264251020364,0.0,A. Strict win
+16.0,8,100,S-shape,EDT,Overloaded,6069.133333333333,FTWB,6481.866666666667,-412.73333333333335,-419.14411995229875,-406.32254671436795,0.0,A. Strict win
+16.0,8,100,S-shape,FCFS,Overloaded,6069.133333333333,FTWB,6481.866666666667,-412.73333333333335,-419.14411995229875,-406.32254671436795,0.0,A. Strict win
+16.0,8,150,Largest Gap,EDT,Overloaded,6043.766666666666,FTWB,6481.866666666667,-438.1,-444.0996742002439,-432.10032579975615,0.0,A. Strict win
+16.0,8,150,Largest Gap,FCFS,Overloaded,6043.766666666666,FTWB,6481.866666666667,-438.1,-444.0996742002439,-432.10032579975615,0.0,A. Strict win
+16.0,8,150,S-shape,EDT,Overloaded,6064.1,FTWB,6481.866666666667,-417.76666666666665,-424.8777531366406,-410.6555801966927,0.0,A. Strict win
+16.0,8,150,S-shape,FCFS,Overloaded,6064.1,FTWB,6481.866666666667,-417.76666666666665,-424.8777531366406,-410.6555801966927,0.0,A. Strict win
+16.0,8,200,Largest Gap,EDT,Overloaded,6041.3,FTWB,6481.866666666667,-440.56666666666666,-445.9059947297123,-435.22733860362104,0.0,A. Strict win
+16.0,8,200,Largest Gap,FCFS,Overloaded,6041.3,FTWB,6481.866666666667,-440.56666666666666,-445.9059947297123,-435.22733860362104,0.0,A. Strict win
+16.0,8,200,S-shape,EDT,Overloaded,6063.966666666666,FTWB,6481.866666666667,-417.9,-424.07268148120335,-411.7273185187966,0.0,A. Strict win
+16.0,8,200,S-shape,FCFS,Overloaded,6063.966666666666,FTWB,6481.866666666667,-417.9,-424.07268148120335,-411.7273185187966,0.0,A. Strict win
+16.0,9,100,Largest Gap,EDT,Overloaded,6008.0,FTWB,6481.866666666667,-473.8666666666667,-480.47306541975513,-467.2602679135782,0.0,A. Strict win
+16.0,9,100,Largest Gap,FCFS,Overloaded,6008.0,FTWB,6481.866666666667,-473.8666666666667,-480.47306541975513,-467.2602679135782,0.0,A. Strict win
+16.0,9,100,S-shape,EDT,Overloaded,6029.833333333333,FTWB,6481.866666666667,-452.03333333333336,-459.1334580803865,-444.9332085862802,0.0,A. Strict win
+16.0,9,100,S-shape,FCFS,Overloaded,6029.833333333333,FTWB,6481.866666666667,-452.03333333333336,-459.1334580803865,-444.9332085862802,0.0,A. Strict win
+16.0,9,150,Largest Gap,EDT,Overloaded,5997.166666666667,FTWB,6481.866666666667,-484.7,-491.7571068764701,-477.64289312352986,0.0,A. Strict win
+16.0,9,150,Largest Gap,FCFS,Overloaded,5997.166666666667,FTWB,6481.866666666667,-484.7,-491.7571068764701,-477.64289312352986,0.0,A. Strict win
+16.0,9,150,S-shape,EDT,Overloaded,6020.9,FTWB,6481.866666666667,-460.96666666666664,-468.22020633234945,-453.71312700098383,0.0,A. Strict win
+16.0,9,150,S-shape,FCFS,Overloaded,6020.9,FTWB,6481.866666666667,-460.96666666666664,-468.22020633234945,-453.71312700098383,0.0,A. Strict win
+16.0,9,200,Largest Gap,EDT,Overloaded,5995.466666666666,FTWB,6481.866666666667,-486.4,-493.38689027069904,-479.4131097293009,0.0,A. Strict win
+16.0,9,200,Largest Gap,FCFS,Overloaded,5995.466666666666,FTWB,6481.866666666667,-486.4,-493.38689027069904,-479.4131097293009,0.0,A. Strict win
+16.0,9,200,S-shape,EDT,Overloaded,6022.933333333333,FTWB,6481.866666666667,-458.93333333333334,-467.5910556545116,-450.2756110121551,0.0,A. Strict win
+16.0,9,200,S-shape,FCFS,Overloaded,6022.933333333333,FTWB,6481.866666666667,-458.93333333333334,-467.5910556545116,-450.2756110121551,0.0,A. Strict win
+16.0,10,100,Largest Gap,EDT,Overloaded,5966.533333333334,FTWB,6481.866666666667,-515.3333333333334,-520.9557020286543,-509.71096463801246,0.0,A. Strict win
+16.0,10,100,Largest Gap,FCFS,Overloaded,5966.533333333334,FTWB,6481.866666666667,-515.3333333333334,-520.9557020286543,-509.71096463801246,0.0,A. Strict win
+16.0,10,100,S-shape,EDT,Overloaded,5992.533333333334,FTWB,6481.866666666667,-489.3333333333333,-495.08254469012917,-483.58412197653746,0.0,A. Strict win
+16.0,10,100,S-shape,FCFS,Overloaded,5992.533333333334,FTWB,6481.866666666667,-489.3333333333333,-495.08254469012917,-483.58412197653746,0.0,A. Strict win
+16.0,10,150,Largest Gap,EDT,Overloaded,5957.8,FTWB,6481.866666666667,-524.0666666666667,-530.2093518794169,-517.9239814539166,0.0,A. Strict win
+16.0,10,150,Largest Gap,FCFS,Overloaded,5957.8,FTWB,6481.866666666667,-524.0666666666667,-530.2093518794169,-517.9239814539166,0.0,A. Strict win
+16.0,10,150,S-shape,EDT,Overloaded,5980.0,FTWB,6481.866666666667,-501.8666666666667,-508.8391828252983,-494.89415050803507,0.0,A. Strict win
+16.0,10,150,S-shape,FCFS,Overloaded,5980.0,FTWB,6481.866666666667,-501.8666666666667,-508.8391828252983,-494.89415050803507,0.0,A. Strict win
+16.0,10,200,Largest Gap,EDT,Overloaded,5957.533333333334,FTWB,6481.866666666667,-524.3333333333334,-530.1258685069706,-518.5407981596961,0.0,A. Strict win
+16.0,10,200,Largest Gap,FCFS,Overloaded,5957.533333333334,FTWB,6481.866666666667,-524.3333333333334,-530.1258685069706,-518.5407981596961,0.0,A. Strict win
+16.0,10,200,S-shape,EDT,Overloaded,5977.8,FTWB,6481.866666666667,-504.06666666666666,-511.6058704186931,-496.52746291464024,0.0,A. Strict win
+16.0,10,200,S-shape,FCFS,Overloaded,5977.8,FTWB,6481.866666666667,-504.06666666666666,-511.6058704186931,-496.52746291464024,0.0,A. Strict win
+16.0,11,100,Largest Gap,EDT,Overloaded,5924.6,FTWB,6481.866666666667,-557.2666666666667,-564.6009231449322,-549.9324101884011,0.0,A. Strict win
+16.0,11,100,Largest Gap,FCFS,Overloaded,5924.6,FTWB,6481.866666666667,-557.2666666666667,-564.6009231449322,-549.9324101884011,0.0,A. Strict win
+16.0,11,100,S-shape,EDT,Overloaded,5952.933333333333,FTWB,6481.866666666667,-528.9333333333333,-535.7540088596204,-522.1126578070462,0.0,A. Strict win
+16.0,11,100,S-shape,FCFS,Overloaded,5952.933333333333,FTWB,6481.866666666667,-528.9333333333333,-535.7540088596204,-522.1126578070462,0.0,A. Strict win
+16.0,11,150,Largest Gap,EDT,Overloaded,5911.8,FTWB,6481.866666666667,-570.0666666666667,-576.1826814874224,-563.950651845911,0.0,A. Strict win
+16.0,11,150,Largest Gap,FCFS,Overloaded,5911.8,FTWB,6481.866666666667,-570.0666666666667,-576.1826814874224,-563.950651845911,0.0,A. Strict win
+16.0,11,150,S-shape,EDT,Overloaded,5941.866666666667,FTWB,6481.866666666667,-540.0,-546.4987318228019,-533.5012681771981,0.0,A. Strict win
+16.0,11,150,S-shape,FCFS,Overloaded,5941.866666666667,FTWB,6481.866666666667,-540.0,-546.4987318228019,-533.5012681771981,0.0,A. Strict win
+16.0,11,200,Largest Gap,EDT,Overloaded,5914.7,FTWB,6481.866666666667,-567.1666666666666,-573.6625001466301,-560.6708331867031,0.0,A. Strict win
+16.0,11,200,Largest Gap,FCFS,Overloaded,5914.7,FTWB,6481.866666666667,-567.1666666666666,-573.6625001466301,-560.6708331867031,0.0,A. Strict win
+16.0,11,200,S-shape,EDT,Overloaded,5935.633333333333,FTWB,6481.866666666667,-546.2333333333333,-551.8850003161635,-540.5816663505032,0.0,A. Strict win
+16.0,11,200,S-shape,FCFS,Overloaded,5935.633333333333,FTWB,6481.866666666667,-546.2333333333333,-551.8850003161635,-540.5816663505032,0.0,A. Strict win
+16.0,12,100,Largest Gap,EDT,Overloaded,5883.966666666666,FTWB,6481.866666666667,-597.9,-606.1133838806352,-589.6866161193648,0.0,A. Strict win
+16.0,12,100,Largest Gap,FCFS,Overloaded,5883.966666666666,FTWB,6481.866666666667,-597.9,-606.1133838806352,-589.6866161193648,0.0,A. Strict win
+16.0,12,100,S-shape,EDT,Overloaded,5917.666666666667,FTWB,6481.866666666667,-564.2,-569.5480706546659,-558.8519293453342,0.0,A. Strict win
+16.0,12,100,S-shape,FCFS,Overloaded,5917.666666666667,FTWB,6481.866666666667,-564.2,-569.5480706546659,-558.8519293453342,0.0,A. Strict win
+16.0,12,150,Largest Gap,EDT,Overloaded,5874.933333333333,FTWB,6481.866666666667,-606.9333333333333,-613.7533039069525,-600.113362759714,0.0,A. Strict win
+16.0,12,150,Largest Gap,FCFS,Overloaded,5874.933333333333,FTWB,6481.866666666667,-606.9333333333333,-613.7533039069525,-600.113362759714,0.0,A. Strict win
+16.0,12,150,S-shape,EDT,Overloaded,5898.9,FTWB,6481.866666666667,-582.9666666666667,-589.4502017236969,-576.4831316096365,0.0,A. Strict win
+16.0,12,150,S-shape,FCFS,Overloaded,5898.9,FTWB,6481.866666666667,-582.9666666666667,-589.4502017236969,-576.4831316096365,0.0,A. Strict win
+16.0,12,200,Largest Gap,EDT,Overloaded,5869.3,FTWB,6481.866666666667,-612.5666666666667,-620.2591226859145,-604.874210647419,0.0,A. Strict win
+16.0,12,200,Largest Gap,FCFS,Overloaded,5869.3,FTWB,6481.866666666667,-612.5666666666667,-620.2591226859145,-604.874210647419,0.0,A. Strict win
+16.0,12,200,S-shape,EDT,Overloaded,5897.233333333334,FTWB,6481.866666666667,-584.6333333333333,-591.4367518265482,-577.8299148401185,0.0,A. Strict win
+16.0,12,200,S-shape,FCFS,Overloaded,5897.233333333334,FTWB,6481.866666666667,-584.6333333333333,-591.4367518265482,-577.8299148401185,0.0,A. Strict win

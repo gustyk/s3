@@ -1,0 +1,6 @@
+step,commit,description,canonical_pool_TLO,mpbh_TLO,relative_reduction_pct
+0,50c4298 / legacy,Legacy unverified dataset,1136.92,829.45,27.04
+1,bda8507..847631e,8-hour shift and arrival RNG stream alignment,1420.5,1115.1,21.5
+2,724519f,"Addition of Welch warm-up W=5,460s",1785.4,1512.2,15.3
+3,724519f,Pick time 5s/piece and calibrated surrogate,1940.1,1695.5,12.61
+4,724519f..db94fe7,"Current frozen model (beta=2 canonical, censoring-aware cohort TLO)",2002.3,1788.83,10.66

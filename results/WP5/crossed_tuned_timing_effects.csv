@@ -1,0 +1,2 @@
+simple_effect_timing_at_FCFS,simple_effect_timing_at_EDT,simple_effect_timing_at_MPBH,simple_effect_comp_MPBH_vs_FCFS_at_IMM,simple_effect_comp_MPBH_vs_FCFS_at_FTWB,interaction_timing_x_composition,path1_step1_timing,path1_step2_composition,path2_step1_composition,path2_step2_timing,interaction_ci95_low,interaction_ci95_high,clusters,df
+0.2884259259260489,0.3834876543210157,0.7067901234565852,-188.55925925925908,-188.14089506172851,0.4183641975305363,-0.2884259259260489,-188.55925925925908,-188.14089506172851,-0.7067901234565852,0.1041,0.7326,15,14

@@ -23,6 +23,25 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pytest
 ```
 
+### Data Download Step (Mendeley Data DOI)
+
+The full experimental dataset (`results.csv`, 207,360 factorial simulation runs) is permanently archived in Mendeley Data at:
+**DOI: [10.17632/49r2pmymrm.1](https://doi.org/10.17632/49r2pmymrm.1)**
+
+When performing an audit or reproducing analysis from a clean clone, the git repository contains complete code, configurations, and test suites, but large simulation outputs are git-ignored. Therefore, a clean clone requires `results.csv` copied in or downloaded from the DOI:
+
+```powershell
+# 1. Create target output directory
+New-Item -ItemType Directory -Force -Path "outputs/final-q1-v1/full-factorial"
+
+# 2. Download results.csv from Mendeley Data DOI (https://doi.org/10.17632/49r2pmymrm.1)
+#    and place results.csv into outputs/final-q1-v1/full-factorial/results.csv
+Copy-Item "path\to\downloaded\results.csv" "outputs\final-q1-v1\full-factorial\results.csv"
+
+# 3. Audit data integrity against manifest
+.\.venv\Scripts\python.exe -m src.audit_results outputs/final-q1-v1/full-factorial/results.csv
+```
+
 Run one selected configuration/repetition:
 
 ```powershell

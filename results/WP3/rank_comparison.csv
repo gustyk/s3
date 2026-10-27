@@ -1,0 +1,9 @@
+trigger_method,rank_TLO,rank_not_yet_late_run,rank_not_yet_late_pooled,rank_strict_ontime,rank_completed_ontime,rank_resolved_ontime
+MPBH,1,1,1,1,1,1
+MaxPicker,2,2,2,2,3,2
+MaxCart,3,3,3,3,4,3
+UrgentCart,3,3,3,3,4,3
+VTWB,5,5,5,6,2,5
+SNH,6,6,6,5,8,6
+UrgentPicker,7,7,7,7,6,7
+FTWB,8,8,8,8,7,8

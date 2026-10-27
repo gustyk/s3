@@ -1,0 +1,7 @@
+category,count
+A. Strict win,594
+"B. TLO tie, MPBH selected on throughput tie-break",134
+D. MPBH not selected (Competitor selected on throughput or tie),116
+"D. MPBH not selected (Competitor lower TLO, not significant)",13
+D. MPBH not selected (Competitor significantly lower TLO),6
+C. Exact tie (all policies TLO=0),1

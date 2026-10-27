@@ -1,0 +1,24 @@
+{
+  "instrumentation_runs": 54,
+  "mpbh": {
+    "total_decisions": 15299,
+    "fallback_activations": 0,
+    "batches_with_ge_1_predicted_late": 7526,
+    "share_batches_with_predicted_late_pct": 49.19,
+    "mean_predicted_late_per_batch": 0.9809,
+    "removals_capacity": 8653302,
+    "removals_lateness": 6789498
+  },
+  "urgent_cart": {
+    "total_evaluations": 19144,
+    "capacity_only_triggers": 3325,
+    "both_capacity_and_urgent_triggers": 8462,
+    "urgent_only_triggers": 0,
+    "total_releases": 11787
+  },
+  "oracle_check": {
+    "runs_tested": 60,
+    "tlo_differences_exact_vs_surrogate": 0,
+    "tlo_differences_positive_control_plus60s": "significant difference observed"
+  }
+}

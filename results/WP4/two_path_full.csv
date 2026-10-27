@@ -1,0 +1,3 @@
+path,step1_timing_diff,step2_composition_diff,total_reduction,timing_share_pct,composition_share_pct,step1_composition_diff,step2_timing_diff
+Path A (Timing First),45.846604938271604,189.10501543209875,234.95162037037036,19.513210790374824,80.48678920962517,,
+Path B (Composition First),,,234.95162037037036,36.66032506692177,63.33967493307823,148.8175925925926,86.13402777777777
