@@ -1,0 +1,12 @@
+column,zero_completed_runs_mean,positive_completed_runs_mean,all_runs_mean,handling_in_original_table,status_assessment
+mean_tardiness_seconds,0.0,6452.039938663316,5407.348383201218,Averaged as zero,UNDEFINED (averaged as zero)
+mean_late_tardiness_seconds,0.0,6873.695299354912,5760.730794745339,Averaged as zero,UNDEFINED (averaged as zero)
+p95_tardiness_seconds,0.0,9684.561874593346,8116.47176589605,Averaged as zero,UNDEFINED (averaged as zero)
+mean_flow_time_seconds,0.0,9290.89951872249,7786.549830541993,Averaged as zero,UNDEFINED (averaged as zero)
+p95_flow_time_seconds,0.0,12952.843015277818,10855.564349006829,Averaged as zero,UNDEFINED (averaged as zero)
+mean_waiting_time_seconds,0.0,8315.270051071213,6968.890845994457,Averaged as zero,UNDEFINED (averaged as zero)
+p95_waiting_time_seconds,0.0,11922.074863885353,9991.694541957542,Averaged as zero,UNDEFINED (averaged as zero)
+mean_cart_utilization_percent,0.0,74.09881779742288,62.10099850947693,Averaged as zero,UNDEFINED (0/0 in zero-trip runs; 74.1% over runs with trips)
+throughput_per_hour,0.0,52.21213064994102,43.75812656732253,Averaged as zero,DEFINED (0 trips / 0 throughput)
+picker_utility_percent,94.41412584765293,83.3203052158169,85.11657753310998,Averaged as zero,WELL-DEFINED (pickers active)
+trip_count,0.0,146.8883447938545,123.10470196759259,Averaged as zero,DEFINED (0 trips / 0 throughput)

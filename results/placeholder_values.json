@@ -1,0 +1,548 @@
+{
+  "R1_C1_calibration_subset": {
+    "lambda_strata": [
+      0.5,
+      16.0
+    ],
+    "pickers": [
+      1,
+      12
+    ],
+    "cart_capacities": [
+      100,
+      150,
+      200
+    ],
+    "routings": [
+      "S-shape",
+      "Largest Gap"
+    ],
+    "compositions": [
+      "FCFS",
+      "EDT"
+    ],
+    "num_scenarios": 24,
+    "num_clusters": 60
+  },
+  "R1_C1_extended_grids": {
+    "F_grid_seconds": [
+      5,
+      10,
+      15,
+      20,
+      30,
+      45,
+      60,
+      90,
+      120,
+      180,
+      240,
+      300,
+      360,
+      480,
+      600,
+      720
+    ],
+    "V_grid_orders": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10,
+      12,
+      16,
+      20,
+      24
+    ],
+    "F_star_global_S1": 60,
+    "F_star_global_S2": 60,
+    "V_star_global_S1": 4,
+    "V_star_global_S2": 4
+  },
+  "R1_C2_timing_vs_composition": {
+    "tested_strata": [
+      0.5,
+      16.0
+    ],
+    "timing_effect_delta_TLO": -18.119,
+    "timing_effect_ci95": [
+      -18.497,
+      -17.741
+    ],
+    "comp_effect_EDT_minus_FCFS": 0.036,
+    "comp_effect_EDT_minus_FCFS_ci95": [
+      -0.049,
+      0.121
+    ],
+    "comp_effect_MPBH_minus_FCFS": -153.005,
+    "comp_effect_MPBH_minus_FCFS_ci95": [
+      -154.4,
+      -151.609
+    ],
+    "comp_effect_MPBH_minus_EDT": -153.041,
+    "comp_effect_MPBH_minus_EDT_ci95": [
+      -154.435,
+      -151.647
+    ],
+    "interaction_omnibus_wald_chi2": 204.38,
+    "interaction_omnibus_p_value": 0.0,
+    "ratio_composition_to_timing": 8.44,
+    "ratio_composition_to_timing_ci95": [
+      7.82,
+      9.15
+    ],
+    "equivalence_immediate_vs_maxpicker": true
+  },
+  "R1_C3_order_status_partition": {
+    "structural_unlateable_share_pct": 6.25,
+    "FTWB_not_yet_late_rate_pct": 39.82,
+    "FTWB_strict_ontime_rate_pct": 27.04,
+    "FTWB_completed_ontime_rate_pct": 39.55,
+    "MPBH_not_yet_late_rate_pct": 53.99,
+    "MPBH_strict_ontime_rate_pct": 43.09,
+    "MPBH_completed_ontime_rate_pct": 79.42,
+    "ranking_stability_across_metrics": "MPBH remains Rank 1 across all 4 metrics"
+  },
+  "R1_C4_provenance_and_audit": {
+    "FTWB_interval_classification": "Reporting error (code used 720s throughout; text erroneously stated 360s)",
+    "setup_time_classification": "Reporting error (code used 180s throughout; text erroneously stated 30s)",
+    "shift_from_27pct_to_10pct_causes": [
+      "Introduction of 5,460s Welch warm-up eliminating initial empty-system bias",
+      "Censoring-aware cohort definition of TLO",
+      "Standardization of picking time to 5s/piece and calibrated surrogate"
+    ],
+    "MPBH_decision_latency_5000_orders_ms": 61.34,
+    "MPBH_complexity_order": "O(n)",
+    "ofat_ladder": [
+      {
+        "step": 0,
+        "factor": "Baseline (current canonical model)",
+        "commit": "2846f9a",
+        "design": "6 lambdas x 3 m x 1 C (150) x S-shape x FCFS x 10 reps (reps 0-9)",
+        "run_count": 720,
+        "canonical_pool_TLO": 1998.74,
+        "mpbh_TLO": 1797.04,
+        "delta_TLO": -201.71,
+        "relative_reduction_pct": 10.09,
+        "notes": "Bitwise verified against outputs/final-q1-v1/full-factorial/results.csv"
+      },
+      {
+        "step": 1,
+        "factor": "Revert beta -> 1",
+        "commit": "2846f9a",
+        "design": "18 cells x 10 reps MPBH (reps 0-9)",
+        "run_count": 180,
+        "canonical_pool_TLO": 1998.74,
+        "mpbh_TLO": 1738.23,
+        "delta_TLO": -260.51,
+        "relative_reduction_pct": 13.03,
+        "notes": "Holding canonical pool constant; MPBH evaluated with urgency_beta=1. Step 1 changes only MPBH."
+      },
+      {
+        "step": 2,
+        "factor": "Revert pick time -> 3 s",
+        "commit": "2846f9a",
+        "design": "18 cells x 10 reps x 4 policies",
+        "run_count": 720,
+        "canonical_pool_TLO": 1931.19,
+        "mpbh_TLO": 1675.06,
+        "delta_TLO": -256.14,
+        "relative_reduction_pct": 13.26,
+        "notes": "Item pick service time reverted from 5s to legacy 3s"
+      },
+      {
+        "step": 3,
+        "factor": "Revert warm-up W -> 0 s",
+        "commit": "2846f9a",
+        "design": "18 cells x 10 reps x 4 policies",
+        "run_count": 720,
+        "canonical_pool_TLO": 1924.34,
+        "mpbh_TLO": 1730.47,
+        "delta_TLO": -193.87,
+        "relative_reduction_pct": 10.07,
+        "notes": "Starting from empty warehouse without Welch transient purge (W=0)"
+      },
+      {
+        "step": 4,
+        "factor": "Revert horizon H -> 3,600 s",
+        "commit": "2846f9a",
+        "design": "18 cells x 10 reps x 4 policies",
+        "run_count": 720,
+        "canonical_pool_TLO": 25.47,
+        "mpbh_TLO": 21.67,
+        "delta_TLO": -3.79,
+        "relative_reduction_pct": 14.9,
+        "notes": "Simulation horizon truncated to 1 hour (3600s)"
+      },
+      {
+        "step": 5,
+        "factor": "Revert travel surrogate -> exact routing",
+        "commit": "2846f9a",
+        "design": "18 cells x 10 reps MPBH",
+        "run_count": 180,
+        "canonical_pool_TLO": 1998.74,
+        "mpbh_TLO": 1753.44,
+        "delta_TLO": -245.3,
+        "relative_reduction_pct": 12.27,
+        "notes": "MPBH decision filter using exact S-shape routing tour calculation. Step 5 changes only MPBH."
+      },
+      {
+        "step": 6,
+        "factor": "Revert TLO definition -> legacy (analysis.py at 50c4298)",
+        "commit": "50c4298",
+        "design": "Re-aggregated baseline (720 runs) using late_completed_orders only",
+        "run_count": 720,
+        "canonical_pool_TLO": 161.24,
+        "mpbh_TLO": 133.23,
+        "delta_TLO": -28.0,
+        "relative_reduction_pct": 17.37,
+        "notes": "Rule: total_late_orders aggregated only over completed orders (late_completed_orders)"
+      }
+    ],
+    "combined_revert": {
+      "runs_total": 720,
+      "runs_canonical_pool": 540,
+      "runs_mpbh": 180,
+      "legacy_rule": {
+        "canonical_pool_mean_tlo": 1.7593,
+        "mpbh_mean_tlo": 0.3222,
+        "delta_tlo": -1.437,
+        "relative_reduction_pct": 81.68
+      },
+      "canonical_rule": {
+        "canonical_pool_mean_tlo": 15.3963,
+        "mpbh_mean_tlo": 3.3833,
+        "delta_tlo": -12.013,
+        "relative_reduction_pct": 78.03
+      }
+    },
+    "latency_scaling_results": [
+      {
+        "order_pool_size": 10,
+        "mean_latency_ms": 0.1085066675538352,
+        "std_latency_ms": 0.0068208063274731,
+        "median_latency_ms": 0.1072499981091823,
+        "iqr_latency_ms": 0.0016499998309882,
+        "q25_latency_ms": 0.1062000010279007,
+        "q75_latency_ms": 0.1078500008588889,
+        "min_latency_ms": 0.1036999965435825,
+        "max_latency_ms": 0.1430999982403591,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 50,
+        "mean_latency_ms": 1.0076200000185054,
+        "std_latency_ms": 0.5178452902132759,
+        "median_latency_ms": 0.7934999994176906,
+        "iqr_latency_ms": 0.5979249999654712,
+        "q25_latency_ms": 0.6660749968432356,
+        "q75_latency_ms": 1.2639999968087068,
+        "min_latency_ms": 0.5487000016728416,
+        "max_latency_ms": 2.428100000543054,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 100,
+        "mean_latency_ms": 1.3329433333031675,
+        "std_latency_ms": 0.2463196131978365,
+        "median_latency_ms": 1.2715999982901849,
+        "iqr_latency_ms": 0.268224999672384,
+        "q25_latency_ms": 1.1513749996083789,
+        "q75_latency_ms": 1.4195999992807629,
+        "min_latency_ms": 1.0370000018156134,
+        "max_latency_ms": 1.9369000001461243,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 250,
+        "mean_latency_ms": 3.5412099988510213,
+        "std_latency_ms": 0.8526654240398639,
+        "median_latency_ms": 3.3928000011655968,
+        "iqr_latency_ms": 1.0082749995490303,
+        "q25_latency_ms": 2.9237499984446917,
+        "q75_latency_ms": 3.9320249979937216,
+        "min_latency_ms": 2.6180999993812293,
+        "max_latency_ms": 6.01499999902444,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 500,
+        "mean_latency_ms": 7.582726666926949,
+        "std_latency_ms": 1.4663112421892242,
+        "median_latency_ms": 7.37825000032899,
+        "iqr_latency_ms": 1.89082499309734,
+        "q25_latency_ms": 6.4983500033122255,
+        "q75_latency_ms": 8.389174996409565,
+        "min_latency_ms": 5.199799998081289,
+        "max_latency_ms": 10.697999998228624,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 1000,
+        "mean_latency_ms": 13.206220000089766,
+        "std_latency_ms": 2.0309945696397924,
+        "median_latency_ms": 12.760699999489589,
+        "iqr_latency_ms": 2.990074994158931,
+        "q25_latency_ms": 11.699450004016398,
+        "q75_latency_ms": 14.68952499817533,
+        "min_latency_ms": 10.307799995644018,
+        "max_latency_ms": 17.925499996636063,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 2500,
+        "mean_latency_ms": 35.58809666671247,
+        "std_latency_ms": 5.477881534608828,
+        "median_latency_ms": 34.441050003806595,
+        "iqr_latency_ms": 6.055775002096198,
+        "q25_latency_ms": 31.88067499831959,
+        "q75_latency_ms": 37.93645000041579,
+        "min_latency_ms": 29.910100005508863,
+        "max_latency_ms": 57.4272999947425,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 5000,
+        "mean_latency_ms": 67.8010900002846,
+        "std_latency_ms": 8.48177577204655,
+        "median_latency_ms": 65.23620000371011,
+        "iqr_latency_ms": 9.17092499366845,
+        "q25_latency_ms": 61.461125003916095,
+        "q75_latency_ms": 70.63204999758455,
+        "min_latency_ms": 58.80379999871366,
+        "max_latency_ms": 92.42149999772664,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 10000,
+        "mean_latency_ms": 139.45715333441817,
+        "std_latency_ms": 21.31925921786033,
+        "median_latency_ms": 132.33159999799682,
+        "iqr_latency_ms": 19.27497500400932,
+        "q25_latency_ms": 126.00285000007716,
+        "q75_latency_ms": 145.27782500408648,
+        "min_latency_ms": 121.013199997833,
+        "max_latency_ms": 219.90540000115288,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 20000,
+        "mean_latency_ms": 285.1116766663229,
+        "std_latency_ms": 32.058522367566184,
+        "median_latency_ms": 279.8088000017742,
+        "iqr_latency_ms": 42.03405000225757,
+        "q25_latency_ms": 260.1626749965362,
+        "q75_latency_ms": 302.1967249987938,
+        "min_latency_ms": 243.55780000041705,
+        "max_latency_ms": 367.0990000027814,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      },
+      {
+        "order_pool_size": 40000,
+        "mean_latency_ms": 609.4165399998019,
+        "std_latency_ms": 67.58626443587973,
+        "median_latency_ms": 601.4595500018913,
+        "iqr_latency_ms": 63.68760000623297,
+        "q25_latency_ms": 570.0517499990383,
+        "q75_latency_ms": 633.7393500052713,
+        "min_latency_ms": 514.3040999973891,
+        "max_latency_ms": 841.58679999382,
+        "repeats": 30,
+        "core_pinned": 0,
+        "commit_hash": "2846f9af3f27714b40a70752ae86b41f86686a56"
+      }
+    ],
+    "setup_sensitivity_paired_diffs": {
+      "30": {
+        "mean_paired_diff": -229.07,
+        "ci95": [
+          -242.71,
+          -215.44
+        ],
+        "relative_reduction_pct": 11.64
+      },
+      "60": {
+        "mean_paired_diff": -221.59,
+        "ci95": [
+          -234.46,
+          -208.71
+        ],
+        "relative_reduction_pct": 11.21
+      },
+      "120": {
+        "mean_paired_diff": -211.31,
+        "ci95": [
+          -222.95,
+          -199.66
+        ],
+        "relative_reduction_pct": 10.6
+      },
+      "180": {
+        "mean_paired_diff": -202.42,
+        "ci95": [
+          -213.27,
+          -191.56
+        ],
+        "relative_reduction_pct": 10.09
+      },
+      "300": {
+        "mean_paired_diff": -185.96,
+        "ci95": [
+          -195.64,
+          -176.27
+        ],
+        "relative_reduction_pct": 9.21
+      }
+    },
+    "lambda_sensitivity_paired_diffs": {
+      "0.5": {
+        "mean_paired_diff": -23.7,
+        "ci95": [
+          -25.98,
+          -21.42
+        ],
+        "relative_reduction_pct": 74.44
+      },
+      "1.0": {
+        "mean_paired_diff": -47.86,
+        "ci95": [
+          -51.28,
+          -44.45
+        ],
+        "relative_reduction_pct": 33.08
+      },
+      "2.0": {
+        "mean_paired_diff": -153.71,
+        "ci95": [
+          -160.7,
+          -146.72
+        ],
+        "relative_reduction_pct": 29.99
+      },
+      "4.0": {
+        "mean_paired_diff": -323.2,
+        "ci95": [
+          -334.71,
+          -311.7
+        ],
+        "relative_reduction_pct": 21.09
+      },
+      "8.0": {
+        "mean_paired_diff": -347.42,
+        "ci95": [
+          -359.15,
+          -335.68
+        ],
+        "relative_reduction_pct": 10.69
+      },
+      "16.0": {
+        "mean_paired_diff": -364.52,
+        "ci95": [
+          -377.37,
+          -351.67
+        ],
+        "relative_reduction_pct": 5.62
+      }
+    }
+  },
+  "R1_C5_load_stratification_and_winners": {
+    "regime_counts": {
+      "Overloaded": 716,
+      "Near_critical": 148,
+      "Stable": 0
+    },
+    "cell_decomposition_864": {
+      "category_A_strict_wins": 594,
+      "category_B_tlo_tie_throughput_wins": 134,
+      "category_C_exact_ties": 1,
+      "category_D_competitor_selected": 135
+    },
+    "headline_reduction_near_critical_pct": 99.96,
+    "headline_reduction_overloaded_pct": 10.61,
+    "pooled_overall_reduction_pct": 10.66,
+    "pooled_overall_delta_TLO": -213.47,
+    "pooled_overall_ci95": [
+      -214.53,
+      -212.4
+    ],
+    "clearing_staffing_m": {
+      "lambda_0_5": 2,
+      "lambda_1_0": 4,
+      "lambda_2_0": 8,
+      "lambda_4_0_and_above": "never"
+    }
+  },
+  "independent_verification_status": "NOT PERFORMED",
+  "warmup_11k_sensitivity": {
+    "pool_definition": "FTWB and VTWB only",
+    "setup_30s": {
+      "w5460s": {
+        "canonical_mean": 1976.98,
+        "mpbh_mean": 1738.12,
+        "advantage": 238.86,
+        "ci95": [
+          237.16,
+          240.57
+        ],
+        "rel_red_pct": 12.08
+      },
+      "w11000s": {
+        "canonical_mean": 1985.21,
+        "mpbh_mean": 1749.06,
+        "advantage": 236.14,
+        "ci95": [
+          234.32,
+          237.97
+        ],
+        "rel_red_pct": 11.9
+      },
+      "delta_advantage_11k_minus_5k": -2.72
+    },
+    "setup_60s": {
+      "w5460s": {
+        "canonical_mean": 1984.67,
+        "mpbh_mean": 1754.39,
+        "advantage": 230.29,
+        "ci95": [
+          228.92,
+          231.65
+        ],
+        "rel_red_pct": 11.6
+      },
+      "w11000s": {
+        "canonical_mean": 1992.99,
+        "mpbh_mean": 1766.26,
+        "advantage": 226.73,
+        "ci95": [
+          225.35,
+          228.11
+        ],
+        "rel_red_pct": 11.38
+      },
+      "delta_advantage_11k_minus_5k": -3.56
+    }
+  }
+}

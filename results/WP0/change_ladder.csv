@@ -1,0 +1,6 @@
+step,description,commit,FTWB_F,setup_time,warmup,TLO_definition,pooled_canonical_TLO,mpbh_TLO,relative_reduction_pct
+0,Legacy unverified results (simulation_results_legacy_unverified.csv),Initial submitted dataset,720,180,None (0 s),Completed late + unfinished overdue (1 hr / 8 hr unstated),1136.92,829.45,27.04
+1,Standardised 8-hour shift and arrival generator RNG stream alignment,bda8507..847631e,720,180,None (0 s),Raw simulation horizon count,1420.5,1115.1,21.5
+2,"Addition of Welch warm-up period (W = 5,460 s / 91 min) to purge empty-system bias",724519f,720,180,"5,460 s",Measurement cohort (W <= arrival < H),1785.4,1512.2,15.3
+3,Standardisation of pick time to 5 s/piece and calibrated O(1) surrogate,724519f,720,180,"5,460 s","Cohort orders (due allowance [1800, 7200])",1940.1,1695.5,12.61
+4,"Current frozen model (canonical full factorial 207,360 runs, censored horizon tracking)",724519f..db94fe7,720,180,"5,460 s","Completed late + outstanding overdue at H=34,260s",2002.3,1788.83,10.66

@@ -1,0 +1,7 @@
+lam,A. Strict win,"B. TLO tie, MPBH selected on throughput tie-break",C. Exact tie (all policies TLO=0),"D. MPBH not selected (Competitor lower TLO, not significant)",D. MPBH not selected (Competitor selected on throughput or tie),D. MPBH not selected (Competitor significantly lower TLO)
+0.5,21,45,0,4,74,0
+1.0,46,55,1,5,34,3
+2.0,95,34,0,4,8,3
+4.0,144,0,0,0,0,0
+8.0,144,0,0,0,0,0
+16.0,144,0,0,0,0,0

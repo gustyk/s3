@@ -1,0 +1,9 @@
+policy,0.5,1.0,2.0,4.0,8.0,16.0
+FTWB,5,never,never,never,never,never
+MPBH,3,5,9,never,never,never
+MaxCart,never,6,11,never,never,never
+MaxPicker,3,6,11,never,never,never
+SNH,3,6,11,never,never,never
+UrgentCart,never,6,11,never,never,never
+UrgentPicker,never,never,never,never,never,never
+VTWB,never,never,11,never,never,never

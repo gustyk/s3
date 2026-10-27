@@ -1,0 +1,7 @@
+lam,m,C,routing,composition,original_rule_winner,best_competitor_tlo,mpbh_tlo,diff_mean,ci_low,ci_high,p_val,category
+1.0,4,150,Largest Gap,EDT,MaxPicker,0.0333333333333333,0.4,0.3666666666666666,0.0646868215807897,0.6686465117525435,0.0190435681681666,D. Competitor lower mean TLO (significant) (MaxPicker)
+1.0,4,200,Largest Gap,EDT,MaxPicker,0.7333333333333333,1.7,0.9666666666666668,0.2167491312180085,1.7165842021153248,0.0133212616321805,D. Competitor lower mean TLO (significant) (MaxPicker)
+1.0,4,200,S-shape,EDT,MaxCart,2.566666666666667,4.766666666666667,2.2,0.6859138893044663,3.714086110695534,0.0058998823264153,D. Competitor lower mean TLO (significant) (MaxCart)
+2.0,8,200,Largest Gap,EDT,MaxCart,0.1,0.7,0.6,0.1136319885584168,1.086368011441583,0.0173723557245384,D. Competitor lower mean TLO (significant) (MaxCart)
+2.0,8,200,S-shape,EDT,MaxCart,0.5,2.4,1.9,0.7933840523204163,3.006615947679584,0.0014788439116388,D. Competitor lower mean TLO (significant) (MaxCart)
+2.0,9,200,S-shape,EDT,MaxCart,0.0666666666666666,0.4333333333333333,0.3666666666666666,0.1590329084803594,0.5743004248529738,0.001135000390388,D. Competitor lower mean TLO (significant) (MaxCart)

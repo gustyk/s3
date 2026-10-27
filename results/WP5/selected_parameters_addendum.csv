@@ -1,0 +1,101 @@
+level,stratum_label,method,criterion,selected_value,unit,grid_spread_pct,is_uninformative,note
+global,all,FTWB,S1 (Minimum TLO),5.0,seconds,2.56,False,Global S1 minimum TLO (orders)
+global,all,FTWB,S2 (Pre-specified),5.0,seconds,2.56,False,Global pre-specified S2
+global,all,VTWB,S1 (Minimum TLO),8.0,orders,3.36,False,Global S1 minimum TLO (orders)
+global,all,VTWB,S2 (Pre-specified),6.0,orders,3.36,False,Global pre-specified S2 (orders)
+per_lambda,lambda=0.5,FTWB,S1 (Minimum TLO),5.0,seconds,47.27535185853483,False,Per-lambda S1
+per_lambda,lambda=0.5,FTWB,S2 (Pre-specified),5.0,seconds,47.27535185853483,False,Per-lambda S2
+per_lambda,lambda=1.0,FTWB,S1 (Minimum TLO),5.0,seconds,35.08212106992022,False,Per-lambda S1
+per_lambda,lambda=1.0,FTWB,S2 (Pre-specified),5.0,seconds,35.08212106992022,False,Per-lambda S2
+per_lambda,lambda=2.0,FTWB,S1 (Minimum TLO),5.0,seconds,31.889247508271936,False,Per-lambda S1
+per_lambda,lambda=2.0,FTWB,S2 (Pre-specified),5.0,seconds,31.889247508271936,False,Per-lambda S2
+per_lambda,lambda=4.0,FTWB,S1 (Minimum TLO),5.0,seconds,1.5598020716680305,False,Per-lambda S1
+per_lambda,lambda=4.0,FTWB,S2 (Pre-specified),5.0,seconds,1.5598020716680305,False,Per-lambda S2
+per_lambda,lambda=8.0,FTWB,S1 (Minimum TLO),uninformative,seconds,0.00017152423294113428,True,Per-lambda S1
+per_lambda,lambda=8.0,FTWB,S2 (Pre-specified),uninformative,seconds,0.00017152423294113428,True,Per-lambda S2
+per_lambda,lambda=16.0,FTWB,S1 (Minimum TLO),uninformative,seconds,0.0,True,Per-lambda S1
+per_lambda,lambda=16.0,FTWB,S2 (Pre-specified),uninformative,seconds,0.0,True,Per-lambda S2
+per_lambda,lambda=0.5,VTWB,S1 (Minimum TLO),5.0,orders,67.41803278688523,False,Per-lambda S1
+per_lambda,lambda=0.5,VTWB,S2 (Pre-specified),5.0,orders,67.41803278688523,False,Per-lambda S2
+per_lambda,lambda=1.0,VTWB,S1 (Minimum TLO),6.0,orders,42.35356952109666,False,Per-lambda S1
+per_lambda,lambda=1.0,VTWB,S2 (Pre-specified),6.0,orders,42.35356952109666,False,Per-lambda S2
+per_lambda,lambda=2.0,VTWB,S1 (Minimum TLO),8.0,orders,36.54357993746608,False,Per-lambda S1
+per_lambda,lambda=2.0,VTWB,S2 (Pre-specified),8.0,orders,36.54357993746608,False,Per-lambda S2
+per_lambda,lambda=4.0,VTWB,S1 (Minimum TLO),8.0,orders,1.6526925698704829,False,Per-lambda S1
+per_lambda,lambda=4.0,VTWB,S2 (Pre-specified),8.0,orders,1.6526925698704829,False,Per-lambda S2
+per_lambda,lambda=8.0,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda S1
+per_lambda,lambda=8.0,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda S2
+per_lambda,lambda=16.0,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda S1
+per_lambda,lambda=16.0,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda S2
+per_lambda_group,lambda=0.5_group=1-4,FTWB,S1 (Minimum TLO),5.0,seconds,43.15912333030736,False,Per-lambda x group S1
+per_lambda_group,lambda=0.5_group=1-4,FTWB,S2 (Pre-specified),5.0,seconds,43.15912333030736,False,Per-lambda x group S2
+per_lambda_group,lambda=0.5_group=5-8,FTWB,S1 (Minimum TLO),5.0,seconds,100.0,False,Per-lambda x group S1
+per_lambda_group,lambda=0.5_group=5-8,FTWB,S2 (Pre-specified),5.0,seconds,100.0,False,Per-lambda x group S2
+per_lambda_group,lambda=0.5_group=9-12,FTWB,S1 (Minimum TLO),5.0,seconds,100.0,False,Per-lambda x group S1
+per_lambda_group,lambda=0.5_group=9-12,FTWB,S2 (Pre-specified),5.0,seconds,100.0,False,Per-lambda x group S2
+per_lambda_group,lambda=1.0_group=1-4,FTWB,S1 (Minimum TLO),5.0,seconds,14.385117277832837,False,Per-lambda x group S1
+per_lambda_group,lambda=1.0_group=1-4,FTWB,S2 (Pre-specified),5.0,seconds,14.385117277832837,False,Per-lambda x group S2
+per_lambda_group,lambda=1.0_group=5-8,FTWB,S1 (Minimum TLO),5.0,seconds,99.74122254860819,False,Per-lambda x group S1
+per_lambda_group,lambda=1.0_group=5-8,FTWB,S2 (Pre-specified),5.0,seconds,99.74122254860819,False,Per-lambda x group S2
+per_lambda_group,lambda=1.0_group=9-12,FTWB,S1 (Minimum TLO),5.0,seconds,100.0,False,Per-lambda x group S1
+per_lambda_group,lambda=1.0_group=9-12,FTWB,S2 (Pre-specified),5.0,seconds,100.0,False,Per-lambda x group S2
+per_lambda_group,lambda=2.0_group=1-4,FTWB,S1 (Minimum TLO),5.0,seconds,0.1341773189118359,False,Per-lambda x group S1
+per_lambda_group,lambda=2.0_group=1-4,FTWB,S2 (Pre-specified),5.0,seconds,0.1341773189118359,False,Per-lambda x group S2
+per_lambda_group,lambda=2.0_group=5-8,FTWB,S1 (Minimum TLO),5.0,seconds,28.372430973635048,False,Per-lambda x group S1
+per_lambda_group,lambda=2.0_group=5-8,FTWB,S2 (Pre-specified),5.0,seconds,28.372430973635048,False,Per-lambda x group S2
+per_lambda_group,lambda=2.0_group=9-12,FTWB,S1 (Minimum TLO),5.0,seconds,97.59280132969069,False,Per-lambda x group S1
+per_lambda_group,lambda=2.0_group=9-12,FTWB,S2 (Pre-specified),5.0,seconds,97.59280132969069,False,Per-lambda x group S2
+per_lambda_group,lambda=4.0_group=1-4,FTWB,S1 (Minimum TLO),uninformative,seconds,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=4.0_group=1-4,FTWB,S2 (Pre-specified),uninformative,seconds,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=4.0_group=5-8,FTWB,S1 (Minimum TLO),5.0,seconds,0.14059304703476946,False,Per-lambda x group S1
+per_lambda_group,lambda=4.0_group=5-8,FTWB,S2 (Pre-specified),5.0,seconds,0.14059304703476946,False,Per-lambda x group S2
+per_lambda_group,lambda=4.0_group=9-12,FTWB,S1 (Minimum TLO),5.0,seconds,4.541175989113846,False,Per-lambda x group S1
+per_lambda_group,lambda=4.0_group=9-12,FTWB,S2 (Pre-specified),5.0,seconds,4.541175989113846,False,Per-lambda x group S2
+per_lambda_group,lambda=8.0_group=1-4,FTWB,S1 (Minimum TLO),uninformative,seconds,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=8.0_group=1-4,FTWB,S2 (Pre-specified),uninformative,seconds,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=8.0_group=5-8,FTWB,S1 (Minimum TLO),uninformative,seconds,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=8.0_group=5-8,FTWB,S2 (Pre-specified),uninformative,seconds,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=8.0_group=9-12,FTWB,S1 (Minimum TLO),uninformative,seconds,0.0005145726988374428,True,Per-lambda x group S1
+per_lambda_group,lambda=8.0_group=9-12,FTWB,S2 (Pre-specified),uninformative,seconds,0.0005145726988374428,True,Per-lambda x group S2
+per_lambda_group,lambda=16.0_group=1-4,FTWB,S1 (Minimum TLO),uninformative,seconds,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=16.0_group=1-4,FTWB,S2 (Pre-specified),uninformative,seconds,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=16.0_group=5-8,FTWB,S1 (Minimum TLO),uninformative,seconds,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=16.0_group=5-8,FTWB,S2 (Pre-specified),uninformative,seconds,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=16.0_group=9-12,FTWB,S1 (Minimum TLO),uninformative,seconds,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=16.0_group=9-12,FTWB,S2 (Pre-specified),uninformative,seconds,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=0.5_group=1-4,VTWB,S1 (Minimum TLO),6.0,orders,44.14829173733948,False,Per-lambda x group S1
+per_lambda_group,lambda=0.5_group=1-4,VTWB,S2 (Pre-specified),6.0,orders,44.14829173733948,False,Per-lambda x group S2
+per_lambda_group,lambda=0.5_group=5-8,VTWB,S1 (Minimum TLO),1.0,orders,100.0,False,Per-lambda x group S1
+per_lambda_group,lambda=0.5_group=5-8,VTWB,S2 (Pre-specified),1.0,orders,100.0,False,Per-lambda x group S2
+per_lambda_group,lambda=0.5_group=9-12,VTWB,S1 (Minimum TLO),1.0,orders,100.0,False,Per-lambda x group S1
+per_lambda_group,lambda=0.5_group=9-12,VTWB,S2 (Pre-specified),1.0,orders,100.0,False,Per-lambda x group S2
+per_lambda_group,lambda=1.0_group=1-4,VTWB,S1 (Minimum TLO),6.0,orders,13.005588904988604,False,Per-lambda x group S1
+per_lambda_group,lambda=1.0_group=1-4,VTWB,S2 (Pre-specified),6.0,orders,13.005588904988604,False,Per-lambda x group S2
+per_lambda_group,lambda=1.0_group=5-8,VTWB,S1 (Minimum TLO),4.0,orders,99.81789486463518,False,Per-lambda x group S1
+per_lambda_group,lambda=1.0_group=5-8,VTWB,S2 (Pre-specified),4.0,orders,99.81789486463518,False,Per-lambda x group S2
+per_lambda_group,lambda=1.0_group=9-12,VTWB,S1 (Minimum TLO),1.0,orders,100.0,False,Per-lambda x group S1
+per_lambda_group,lambda=1.0_group=9-12,VTWB,S2 (Pre-specified),1.0,orders,100.0,False,Per-lambda x group S2
+per_lambda_group,lambda=2.0_group=1-4,VTWB,S1 (Minimum TLO),uninformative,orders,0.06350376925597978,True,Per-lambda x group S1
+per_lambda_group,lambda=2.0_group=1-4,VTWB,S2 (Pre-specified),uninformative,orders,0.06350376925597978,True,Per-lambda x group S2
+per_lambda_group,lambda=2.0_group=5-8,VTWB,S1 (Minimum TLO),8.0,orders,26.909120728182206,False,Per-lambda x group S1
+per_lambda_group,lambda=2.0_group=5-8,VTWB,S2 (Pre-specified),8.0,orders,26.909120728182206,False,Per-lambda x group S2
+per_lambda_group,lambda=2.0_group=9-12,VTWB,S1 (Minimum TLO),16.0,orders,96.17980793363539,False,Per-lambda x group S1
+per_lambda_group,lambda=2.0_group=9-12,VTWB,S2 (Pre-specified),16.0,orders,96.17980793363539,False,Per-lambda x group S2
+per_lambda_group,lambda=4.0_group=1-4,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=4.0_group=1-4,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=4.0_group=5-8,VTWB,S1 (Minimum TLO),8.0,orders,0.11349693251533183,False,Per-lambda x group S1
+per_lambda_group,lambda=4.0_group=5-8,VTWB,S2 (Pre-specified),8.0,orders,0.11349693251533183,False,Per-lambda x group S2
+per_lambda_group,lambda=4.0_group=9-12,VTWB,S1 (Minimum TLO),8.0,orders,4.844580777096116,False,Per-lambda x group S1
+per_lambda_group,lambda=4.0_group=9-12,VTWB,S2 (Pre-specified),8.0,orders,4.844580777096116,False,Per-lambda x group S2
+per_lambda_group,lambda=8.0_group=1-4,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=8.0_group=1-4,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=8.0_group=5-8,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=8.0_group=5-8,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=8.0_group=9-12,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=8.0_group=9-12,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=16.0_group=1-4,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=16.0_group=1-4,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=16.0_group=5-8,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=16.0_group=5-8,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda x group S2
+per_lambda_group,lambda=16.0_group=9-12,VTWB,S1 (Minimum TLO),uninformative,orders,0.0,True,Per-lambda x group S1
+per_lambda_group,lambda=16.0_group=9-12,VTWB,S2 (Pre-specified),uninformative,orders,0.0,True,Per-lambda x group S2

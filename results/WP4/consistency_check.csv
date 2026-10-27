@@ -1,0 +1,5 @@
+scope,contrast,estimate,ci95_low,ci95_high
+Full factorial (864 cells),MPBH - MaxPicker (composition proxy),-188.87295524691356,-189.75463092614893,-187.9912795676782
+Full factorial (864 cells),MaxPicker - FTWB (timing proxy),-45.44228395061729,-46.34067768031114,-44.54389022092344
+Restricted tested subset (24 cells),MPBH - MaxPicker (composition proxy),-179.4597222222222,-180.98016412868398,-177.93928031576044
+Restricted tested subset (24 cells),MaxPicker - FTWB (timing proxy),-0.49444444444444446,-0.6407957886249738,-0.3480931002639151

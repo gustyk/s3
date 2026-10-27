@@ -1,0 +1,145 @@
+incoming_rate,num_pickers,cart_capacity,routing_policy,batching_method
+0.5,2,100,S-shape,EDT
+0.5,2,200,Largest Gap,FCFS
+0.5,4,150,S-shape,FCFS
+0.5,1,200,Largest Gap,FCFS
+0.5,1,150,Largest Gap,FCFS
+0.5,4,200,Largest Gap,FCFS
+0.5,4,200,Largest Gap,EDT
+0.5,2,200,S-shape,FCFS
+0.5,7,100,Largest Gap,EDT
+0.5,5,200,S-shape,EDT
+0.5,5,150,Largest Gap,FCFS
+0.5,7,100,S-shape,EDT
+0.5,7,200,Largest Gap,EDT
+0.5,6,150,S-shape,EDT
+0.5,8,150,Largest Gap,FCFS
+0.5,6,100,S-shape,FCFS
+0.5,12,200,S-shape,EDT
+0.5,10,150,Largest Gap,EDT
+0.5,12,150,S-shape,EDT
+0.5,9,150,S-shape,EDT
+0.5,12,100,S-shape,EDT
+0.5,10,150,S-shape,EDT
+0.5,11,200,S-shape,FCFS
+0.5,9,150,Largest Gap,FCFS
+1.0,4,100,S-shape,FCFS
+1.0,2,200,S-shape,EDT
+1.0,2,100,Largest Gap,EDT
+1.0,3,100,Largest Gap,EDT
+1.0,3,100,Largest Gap,FCFS
+1.0,3,200,S-shape,EDT
+1.0,2,100,Largest Gap,FCFS
+1.0,4,100,S-shape,EDT
+1.0,6,200,Largest Gap,FCFS
+1.0,5,100,Largest Gap,FCFS
+1.0,5,150,S-shape,FCFS
+1.0,7,100,Largest Gap,EDT
+1.0,5,200,Largest Gap,EDT
+1.0,7,150,S-shape,FCFS
+1.0,6,150,Largest Gap,EDT
+1.0,7,200,Largest Gap,FCFS
+1.0,9,200,S-shape,FCFS
+1.0,12,150,Largest Gap,FCFS
+1.0,12,100,Largest Gap,FCFS
+1.0,10,100,Largest Gap,FCFS
+1.0,11,200,S-shape,EDT
+1.0,9,100,Largest Gap,FCFS
+1.0,10,100,S-shape,EDT
+1.0,12,200,Largest Gap,FCFS
+2.0,4,150,Largest Gap,EDT
+2.0,4,150,S-shape,EDT
+2.0,4,100,Largest Gap,FCFS
+2.0,1,150,S-shape,FCFS
+2.0,4,100,Largest Gap,EDT
+2.0,1,150,Largest Gap,FCFS
+2.0,1,100,S-shape,EDT
+2.0,1,100,Largest Gap,FCFS
+2.0,6,150,S-shape,EDT
+2.0,5,100,Largest Gap,FCFS
+2.0,6,100,S-shape,FCFS
+2.0,6,100,Largest Gap,EDT
+2.0,6,200,S-shape,FCFS
+2.0,5,150,S-shape,EDT
+2.0,7,150,Largest Gap,EDT
+2.0,7,200,Largest Gap,EDT
+2.0,10,150,Largest Gap,FCFS
+2.0,10,200,Largest Gap,FCFS
+2.0,10,150,S-shape,EDT
+2.0,12,100,Largest Gap,FCFS
+2.0,11,150,Largest Gap,EDT
+2.0,9,100,S-shape,EDT
+2.0,12,150,S-shape,FCFS
+2.0,11,150,Largest Gap,FCFS
+4.0,2,200,Largest Gap,FCFS
+4.0,4,150,Largest Gap,EDT
+4.0,2,100,Largest Gap,EDT
+4.0,2,100,Largest Gap,FCFS
+4.0,2,150,S-shape,EDT
+4.0,1,150,S-shape,FCFS
+4.0,3,200,S-shape,FCFS
+4.0,3,200,Largest Gap,EDT
+4.0,6,100,Largest Gap,EDT
+4.0,7,200,S-shape,EDT
+4.0,7,150,S-shape,EDT
+4.0,8,150,Largest Gap,EDT
+4.0,7,150,S-shape,FCFS
+4.0,6,100,S-shape,EDT
+4.0,8,200,Largest Gap,EDT
+4.0,6,200,Largest Gap,EDT
+4.0,12,150,S-shape,EDT
+4.0,9,100,S-shape,FCFS
+4.0,11,100,S-shape,EDT
+4.0,9,150,Largest Gap,EDT
+4.0,10,150,S-shape,FCFS
+4.0,9,100,Largest Gap,EDT
+4.0,11,200,S-shape,FCFS
+4.0,11,150,Largest Gap,EDT
+8.0,4,100,Largest Gap,FCFS
+8.0,3,200,Largest Gap,EDT
+8.0,3,150,S-shape,EDT
+8.0,1,100,Largest Gap,FCFS
+8.0,2,200,S-shape,FCFS
+8.0,3,200,S-shape,FCFS
+8.0,3,200,S-shape,EDT
+8.0,3,100,Largest Gap,FCFS
+8.0,5,150,Largest Gap,FCFS
+8.0,5,100,S-shape,EDT
+8.0,6,200,S-shape,EDT
+8.0,5,100,Largest Gap,EDT
+8.0,7,200,S-shape,FCFS
+8.0,8,100,S-shape,FCFS
+8.0,7,200,Largest Gap,EDT
+8.0,5,100,Largest Gap,FCFS
+8.0,9,100,S-shape,FCFS
+8.0,11,150,S-shape,FCFS
+8.0,12,100,S-shape,EDT
+8.0,11,100,Largest Gap,EDT
+8.0,11,200,S-shape,FCFS
+8.0,11,200,Largest Gap,EDT
+8.0,11,200,Largest Gap,FCFS
+8.0,10,200,S-shape,FCFS
+16.0,2,150,Largest Gap,EDT
+16.0,3,150,S-shape,EDT
+16.0,2,150,Largest Gap,FCFS
+16.0,3,200,Largest Gap,FCFS
+16.0,3,200,S-shape,FCFS
+16.0,4,200,S-shape,FCFS
+16.0,2,200,Largest Gap,FCFS
+16.0,1,100,S-shape,FCFS
+16.0,6,100,Largest Gap,EDT
+16.0,6,100,Largest Gap,FCFS
+16.0,6,150,S-shape,FCFS
+16.0,7,150,S-shape,EDT
+16.0,8,200,Largest Gap,FCFS
+16.0,7,100,Largest Gap,FCFS
+16.0,5,200,Largest Gap,FCFS
+16.0,7,200,S-shape,EDT
+16.0,9,100,S-shape,EDT
+16.0,11,100,Largest Gap,EDT
+16.0,10,100,S-shape,FCFS
+16.0,11,200,Largest Gap,EDT
+16.0,12,200,S-shape,EDT
+16.0,10,100,Largest Gap,EDT
+16.0,12,100,S-shape,EDT
+16.0,10,200,Largest Gap,EDT

@@ -1,0 +1,13 @@
+Parameter,(a) Printed in submitted manuscript,(b) Value in code at original-submission commit (50bdad2 / 50c4298),(c) Value in legacy run metadata,(d) Value in current code,(e) Value in current results,Classification
+FTWB interval F,LEAD_TO_FILL,720 s (config/parameters.yaml:25),NOT AVAILABLE (legacy CSV does not record interval column),720 s (config/parameters.yaml:33),720 s (sampled_ftwb_interval_seconds),same
+VTWB threshold V,LEAD_TO_FILL,12 orders (config/parameters.yaml:26),NOT AVAILABLE,12 orders (config/parameters.yaml:34),12 orders (sampled_vtwb_threshold_orders),same
+Setup time t_setup,LEAD_TO_FILL,180 s (config/parameters.yaml:69),NOT AVAILABLE,180 s (config/parameters.yaml:108),180 s (sampled_setup_time),same
+Urgency beta,LEAD_TO_FILL,1 (config/parameters.yaml:27),NOT AVAILABLE,2 (config/parameters.yaml:35),2 (sampled_urgency_beta),code differs from current
+Cart capacity set C,LEAD_TO_FILL,"{100, 150, 200} (config/parameters.yaml:10)","{100, 150, 200} (recorded in cart_capacity column)","{100, 150, 200} (config/parameters.yaml:12)","{100, 150, 200} (cart_capacity)",same
+Pick time per piece,LEAD_TO_FILL,3 s (config/parameters.yaml:66),NOT AVAILABLE,5 s (config/parameters.yaml:106),5 s (sampled_picking_time_per_item),code differs from current
+Walking speed / times,LEAD_TO_FILL,"depot=2s, between_aisles=4s, between_shelves=2s",NOT AVAILABLE,"depot=2s, between_aisles=4s, between_shelves=2s","depot=2s, between_aisles=4s, between_shelves=2s",same
+Warm-up W,LEAD_TO_FILL,0 s (no warmup present),0 s (system started empty at t=0),"5,460 s (config/parameters.yaml:49)","5,460 s (warmup_seconds)",code differs from current
+Simulation length,LEAD_TO_FILL,"3,600 s (config/parameters.yaml:43 at 50bdad2)","NOT AVAILABLE (Note: the 1-hour horizon gives canonical TLO of 15–25 orders vs 1,136.92 in the legacy dataset, so the legacy results were not produced with H = 3,600 s; 27.04% is not reproducible)","28,800 s (config/parameters.yaml:48)","28,800 s (observation_duration)",code differs from current
+Due allowance range,LEAD_TO_FILL,"[1800, 7200] s (src/order_generator.py:38 at dd1dae0)",NOT AVAILABLE,"[1800, 7200] s (config/parameters.yaml:57)","[1800, 7200] s (sampled_due_time_min/max_seconds)",same
+Travel estimation in policy,LEAD_TO_FILL,Exact routing / placeholder (no surrogate),NOT AVAILABLE,Calibrated O(1) linear surrogate (config/parameters.yaml:113),seed-20260814-n-10000-config-3b55f3efad6b,code differs from current
+TLO definition,LEAD_TO_FILL,completed late + overdue pool orders at raw horizon,total_late_orders column,completed late + outstanding overdue at H for cohort,total_late_orders,code differs from current

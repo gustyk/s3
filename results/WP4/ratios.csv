@@ -1,0 +1,5 @@
+attribution_method,ratio_estimate,ci95_low,ci95_high,status,notes
+Marginal-means ratio (|comp| / |timing| averaged),8.445,7.82,9.15,stable,Published ratio comparing marginal composition effect (-153.02) to marginal timing effect (-18.12)
+Shapley average (|comp| / |timing|),5.676336467860365,5.564036801087087,5.79473259615031,stable,Equal weight between Path A and Path B (-153.005 / -26.955)
+Path B (Composition first: 126.59 / 53.37),2.3720494469746263,2.315426142136028,2.4316743659058084,stable,"Composition introduced under FTWB timing, then timing switched to immediate"
+Path A (Timing first: 179.42 / 0.54),331.23333333333335,,,unstable,"Timing effect under FCFS is -0.542 with CI [-0.69, -0.39] spanning 0; ratio denominator is near-zero."

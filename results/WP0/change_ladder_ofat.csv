@@ -1,0 +1,8 @@
+step,factor,commit,design,run_count,canonical_pool_TLO,mpbh_TLO,delta_TLO,relative_reduction_pct,notes
+0,Baseline (current canonical model),2846f9a,6 lambdas x 3 m x 1 C (150) x S-shape x FCFS x 10 reps (reps 0-9),720,1998.74,1797.04,-201.71,10.09,"Pool definition: FTWB + VTWB + MaxPicker (540 canonical runs + 180 MPBH runs = 720 runs; with FTWB + VTWB only, canonical TLO is 2003.75, reduction 10.32%). Bitwise verified against outputs/final-q1-v1/full-factorial/results.csv"
+1,Revert beta -> 1,2846f9a,18 cells x 10 reps MPBH (reps 0-9),180,1998.74,1738.23,-260.51,13.03,Holding canonical pool constant; MPBH evaluated with urgency_beta=1. Step 1 changes only MPBH.
+2,Revert pick time -> 3 s,2846f9a,18 cells x 10 reps x 4 policies,720,1931.19,1675.06,-256.14,13.26,Item pick service time reverted from 5s to legacy 3s
+3,Revert warm-up W -> 0 s,2846f9a,18 cells x 10 reps x 4 policies,720,1924.34,1730.47,-193.87,10.07,Starting from empty warehouse without Welch transient purge (W=0)
+4,"Revert horizon H -> 3,600 s",2846f9a,18 cells x 10 reps x 4 policies,720,25.47,21.67,-3.79,14.9,"Simulation horizon truncated to 1 hour (3600s). Note: the 1-hour horizon gives canonical TLO of 15–25 orders vs 1,136.92 in the legacy dataset, so the legacy results were not produced with H = 3,600 s; 27.04% is not reproducible."
+5,Revert travel surrogate -> exact routing,2846f9a,18 cells x 10 reps MPBH,180,1998.74,1753.44,-245.3,12.27,MPBH decision filter using exact S-shape routing tour calculation. Step 5 changes only MPBH.
+6,Revert TLO definition -> legacy (analysis.py at 50c4298),50c4298,Re-aggregated baseline (720 runs) using late_completed_orders only,720,161.24,133.23,-28.0,17.37,Rule: total_late_orders aggregated only over completed orders (late_completed_orders)

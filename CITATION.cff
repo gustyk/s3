@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software or simulation artifact, please cite it as below."
+title: "S3 Warehouse Simulation: Discrete-Event Simulation of Warehouse Order Batching and Routing"
+authors:
+  - family-names: "Kuswantoro"
+    given-names: "Cakty"
+version: 0.1.0
+date-released: 2026-10-24
+license: MIT
+repository-code: "https://github.com/caktyk/s3-warehouse-simulation"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Kuswantoro"
+      given-names: "Cakty"
+  title: "Adaptive Batch-Release and Composition Heuristics for Same-Day Delivery Warehouses"
+  journal: "European Journal of Industrial Engineering"
+  year: 2026

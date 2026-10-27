@@ -1,0 +1,6 @@
+contrast,printed_manuscript_table5,recomputed_cluster_aware,status,explanation
+MaxPicker - pooled canonical,"-24.65 [-25.72, -23.58]","-24.59 [-25.10, -24.09]",MISMATCH (corrected),Printed Table 5 used unweighted block variance or shared MPBH half-width (1.065); recomputed correctly uses stratified cluster-aware covariance over 180 clusters.
+MaxCart / UrgentCart - pooled canonical,"-23.87 [-24.93, -22.80]","-23.88 [-24.38, -23.39]",MISMATCH (corrected),"Recomputed matches Table 4a means exactly (2,002.30 - 1,978.41 = 23.88); printed CI shared MPBH half-width 1.065."
+UrgentPicker - pooled canonical,"-3.47 [-4.54, -2.40]","-3.39 [-3.66, -3.11]",MISMATCH (corrected),"Recomputed matches Table 4a means exactly (2,002.30 - 1,998.91 = 3.39); printed CI shared MPBH half-width 1.065."
+SNH - pooled canonical,"-10.16 [-11.23, -9.09]","-10.24 [-10.58, -9.89]",MISMATCH (corrected),"Recomputed matches Table 4a means exactly (2,002.30 - 1,992.06 = 10.24); printed CI shared MPBH half-width 1.065."
+MPBH - pooled canonical,"-213.47 [-214.53, -212.40]","-213.47 [-214.53, -212.40]",MATCH,Exact bitwise match on point estimate and stratified cluster CI.

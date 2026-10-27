@@ -1,0 +1,5 @@
+benchmark,criterion,selected_value,unit,canonical_value,tuning_replications,tuning_cells
+FTWB,S1 (Minimum TLO),5,seconds,720,0-14 (15 reps),144
+FTWB,S2 (Maximum Composite Score),5,seconds,720,0-14 (15 reps),144
+VTWB,S1 (Minimum TLO),8,orders,12,0-14 (15 reps),144
+VTWB,S2 (Maximum Composite Score),6,orders,12,0-14 (15 reps),144
