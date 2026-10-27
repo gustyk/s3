@@ -70,24 +70,38 @@ def score_blocks(
     if frame.duplicated([*BLOCK_COLUMNS, "trigger_method"]).any():
         raise ValueError("Composite input has duplicate method rows within a matched block")
     expected = set(REFERENCE_METHODS)
-    for identity, block in frame.groupby(list(BLOCK_COLUMNS), dropna=False):
-        observed = set(block["trigger_method"])
-        if observed != expected:
-            raise ValueError(
-                f"Matched block {identity} has methods {sorted(observed)}, expected {sorted(expected)}"
-            )
+    observed_methods = set(frame["trigger_method"].dropna().unique())
+    if observed_methods != expected:
+        raise ValueError(
+            f"Composite input has methods {sorted(observed_methods)}, expected {sorted(expected)}"
+        )
+    completeness = frame.groupby(list(BLOCK_COLUMNS), dropna=False)["trigger_method"].agg(
+        rows="size", methods="nunique"
+    )
+    incomplete = completeness[
+        (completeness["rows"] != len(REFERENCE_METHODS))
+        | (completeness["methods"] != len(REFERENCE_METHODS))
+    ]
+    if not incomplete.empty:
+        raise ValueError(
+            f"Composite input has {len(incomplete)} incomplete matched blocks; "
+            f"first={incomplete.index[0]!r}"
+        )
 
     scored = frame.copy()
     groups = scored.groupby(list(BLOCK_COLUMNS), group_keys=False, dropna=False)
-    scored["tlo_normalized"] = groups["total_late_orders"].transform(
-        lambda values: _matched_minmax(values, lower_is_better=True)
-    )
-    scored["throughput_normalized"] = groups["throughput_per_hour"].transform(
-        lambda values: _matched_minmax(values, lower_is_better=False)
-    )
-    scored["utilisation_normalized"] = groups["picker_utility_percent"].transform(
-        lambda values: _matched_minmax(values, lower_is_better=False)
-    )
+    for source, target, lower_is_better in (
+        ("total_late_orders", "tlo_normalized", True),
+        ("throughput_per_hour", "throughput_normalized", False),
+        ("picker_utility_percent", "utilisation_normalized", False),
+    ):
+        minimum = groups[source].transform("min")
+        maximum = groups[source].transform("max")
+        span = maximum - minimum
+        normalized = (scored[source] - minimum) / span.where(~np.isclose(span, 0.0), 1.0)
+        if lower_is_better:
+            normalized = 1.0 - normalized
+        scored[target] = normalized.where(~np.isclose(span, 0.0), 0.5)
     scored["composite_score"] = (
         weights[0] * scored["tlo_normalized"]
         + weights[1] * scored["throughput_normalized"]

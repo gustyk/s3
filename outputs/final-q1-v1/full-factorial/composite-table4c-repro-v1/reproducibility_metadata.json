@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "executed_at_utc": "2026-09-04T22:51:22Z",
+  "git_commit": "231d4a60b36f3736fbf71538b919b279d29c1cc5",
+  "git_tag": "table4c-repro-v1",
+  "git_dirty": false,
+  "source_results": "../results.csv",
+  "source_results_sha256": "720f2d70f8ee9e6b440ae30b639aa8513a007ec9fc462b7dc1f4710d362b4448",
+  "run_rows_processed": 207360,
+  "expected_run_rows": 207360,
+  "matched_blocks_processed": 25920,
+  "expected_matched_blocks": 25920,
+  "methods_per_block": 8,
+  "missing_or_failed_runs": 0,
+  "weights": {
+    "original": [0.6, 0.3, 0.1],
+    "equal": [0.3333333333333333, 0.3333333333333333, 0.3333333333333333],
+    "throughput_priority": [0.3, 0.6, 0.1],
+    "utilisation_priority": [0.3, 0.1, 0.6]
+  },
+  "normalisation": "Within each complete (scenario, replication) block across the eight trigger methods; TLO reversed, throughput and utilisation beneficial, constant range assigned 0.5.",
+  "ground_truth_checks": {
+    "mpbh_original_composite": 0.9919728027540662,
+    "manuscript_mpbh_original_composite": 0.9920,
+    "mpbh_original_absolute_difference": 0.0000271972459338,
+    "operational_cells": 864,
+    "mpbh_operational_cell_wins": 770,
+    "global_pareto_non_dominated": ["MPBH", "MaxPicker"]
+  },
+  "analysis_script": "src/composite_score.py"
+}

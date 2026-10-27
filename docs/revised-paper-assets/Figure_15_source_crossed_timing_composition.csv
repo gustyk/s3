@@ -1,0 +1,5 @@
+contrast,factor,paired_blocks,mean_difference_total_late,standard_error,ci95_lower,ci95_upper,paired_t_p_value,interpretation
+MPBH - FTWB,timing_policy,2160,-18.11898148148148,1.0343796034250647,-20.1474654352546,-16.09049752770836,2.4327241844324458e-64,negative values mean the first-named level has lower TLO
+EDT - FCFS,composition_rule,1440,0.03611111111111111,0.021614910991775354,-0.0062889988209661185,0.07851122104318833,0.09500682294904537,negative values mean the first-named level has lower TLO
+MPBH - FCFS,composition_rule,1440,-153.0048611111111,5.515246334562321,-163.82364500417958,-142.1860772180426,4.784106239172247e-136,negative values mean the first-named level has lower TLO
+MPBH - EDT,composition_rule,1440,-153.04097222222222,5.5148618260713365,-163.85900185808865,-142.2229425863558,4.103243364135806e-136,negative values mean the first-named level has lower TLO

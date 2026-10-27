@@ -1,0 +1,85 @@
+{
+  "input": "D:\\Apps\\S3\\Response_to_Reviewers_EJIE-337519.docx",
+  "fonts_by_char_count": {
+    "Calibri": 23071
+  },
+  "direct_run_formatting_runs": 143,
+  "direct_paragraph_formatting_paragraphs": 7,
+  "heading_like_paragraphs_not_heading_style": [
+    {
+      "para_index": 3,
+      "text": "Journal: European Journal of Industrial Engineering",
+      "style": "Normal"
+    },
+    {
+      "para_index": 117,
+      "text": "The Authors",
+      "style": "Normal"
+    },
+    {
+      "para_index": 118,
+      "text": "EJIE-337519  |  RESPONSE TO REVIEWERS",
+      "style": "Header"
+    }
+  ],
+  "examples": {
+    "direct_paragraph_formatting": [
+      {
+        "para_index": 3,
+        "text": "Journal: European Journal of Industrial Engineering",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "text": "Original title: Adaptive Heuristics for Order Batching Initiation Timing in Same-Day Delivery Warehouses",
+        "style": "Normal"
+      },
+      {
+        "para_index": 5,
+        "text": "Revised title: Adaptive Batch-Release and Composition Heuristics for Same-Day Delivery Warehouses: A Discrete-Event Simu",
+        "style": "Normal"
+      },
+      {
+        "para_index": 116,
+        "text": "Sincerely,",
+        "style": "Normal"
+      },
+      {
+        "para_index": 117,
+        "text": "The Authors",
+        "style": "Normal"
+      }
+    ],
+    "direct_run_formatting": [
+      {
+        "para_index": 3,
+        "run_text": "Journal: ",
+        "style": "Normal"
+      },
+      {
+        "para_index": 3,
+        "run_text": "European Journal of Industrial Engineering",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "run_text": "Original title: ",
+        "style": "Normal"
+      },
+      {
+        "para_index": 4,
+        "run_text": "Adaptive Heuristics for Order Batching Initiation Timing in Same-Day Delivery Wa",
+        "style": "Normal"
+      },
+      {
+        "para_index": 5,
+        "run_text": "Revised title: ",
+        "style": "Normal"
+      }
+    ]
+  },
+  "notes": [
+    "Direct formatting is not always wrong, but it often causes inconsistent output when templates change.",
+    "Heading-like paragraphs not using Heading styles can break TOC and accessibility."
+  ]
+}

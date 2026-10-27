@@ -689,13 +689,13 @@ dan artifact final diisi pada ruang konfirmasi di bawah.
 final results; verifikasi expected configurations × repetitions, run UUID/ID,
 seed map, missing/finite/range checks, invariants, failures, dan checksums.
 
-- Tag/commit/config hash: ____________________________________________
-- Results path/SHA-256: _____________________________________________
-- Expected versus actual rows: ______________________________________
-- Audit command/report: _____________________________________________
-- Missing/duplicate/failed runs: ____________________________________
-- Verifier/date: ____________________________________________________
-- [ ] Audit pass tanpa exception yang tidak disetujui
+- Tag/commit/config hash: commit `724519fb...` with `git_dirty=True`; config `d359bc8f...42234f`; clean-tag deviation remains open
+- Results path/SHA-256: `outputs/final-q1-v1/full-factorial/results.csv`; `720f2d70...62b4448`
+- Expected versus actual rows: 207.360 versus 207.360; raw orders 621.955.584; measurement cohort 522.713.088
+- Audit command/report: `python -m src.audit_results ...`; `full-factorial/audit.json` = pass
+- Missing/duplicate/failed runs: 0 / 0 / 0; all run IDs and UUIDs complete/unique
+- Verifier/date: automated local certification, 2026-08-18; independent verifier pending
+- [x] Audit pass tanpa exception yang tidak disetujui
 
 ## FD-02 — Membekukan raw output
 
@@ -703,12 +703,12 @@ seed map, missing/finite/range checks, invariants, failures, dan checksums.
 read-only storage; derived transformations harus berada di path terpisah dan
 selalu menyimpan source checksum.
 
-- Raw storage URI/path: ______________________________________________
-- Access controls/read-only evidence: ________________________________
-- Raw bundle checksum: ______________________________________________
-- Retention/backup policy: __________________________________________
-- Derived-output root: ______________________________________________
-- Custodian/date: ___________________________________________________
+- Raw storage URI/path: local `outputs/final-q1-v1/full-factorial/` plus three worker roots; external immutable URI pending
+- Access controls/read-only evidence: none; local files remain writable — blocker
+- Raw bundle checksum: results `720f2d70...`; orders `32820601...`; manifest stores full hashes
+- Retention/backup policy: not yet supplied by owner
+- Derived-output root: `outputs/final-q1-v1/full-factorial/{analysis,composite,additional-metrics}`
+- Custodian/date: owner/custodian confirmation pending; local evidence 2026-08-18
 - [ ] Raw output tidak dapat tertimpa pipeline
 
 ## FD-03 — Menyimpan manifest dan audit final
@@ -717,12 +717,12 @@ selalu menyimpan source checksum.
 execution-order seed, result checksum, run counts/status, audit report, command,
 dan logs bersama raw dataset; verifikasi silang seluruh hash.
 
-- Manifest path/SHA-256: ____________________________________________
-- Audit report path/SHA-256: ________________________________________
-- Config/environment/log paths: _____________________________________
-- Cross-check result: _______________________________________________
-- Archive location: _________________________________________________
-- [ ] Manifest/audit bundle lengkap dan konsisten
+- Manifest path/SHA-256: `full-factorial/manifest.json`; `BADCB993...6792F6`
+- Audit report path/SHA-256: `full-factorial/audit.json`; `E544D9FF...8C417`
+- Config/environment/log paths: `config/parameters.yaml`; `parallel-preflight.json`; worker/postprocess logs
+- Cross-check result: `analysis-certification.json` = pass with documented dirty-tag/model warnings
+- Archive location: local only; DOI/immutable archive pending
+- [x] Manifest/audit bundle lengkap dan konsisten
 
 ## FD-04 — Melaporkan hasil negatif/non-supportive
 
@@ -730,12 +730,12 @@ dan logs bersama raw dataset; verifikasi silang seluruh hash.
 yang tidak didukung, null/negative effects, losing/tie scenarios, estimation
 failures, dan deviations; jangan hanya memilih hasil signifikan.
 
-- Hypothesis disposition table: _____________________________________
-- Negative/null effects dan CI: _____________________________________
-- Win/tie/loss report: ______________________________________________
-- Non-estimable/model failures: _____________________________________
-- Manuscript sections/tables: _______________________________________
-- Reviewer confirmation: ____________________________________________
+- Hypothesis disposition table: `docs/FINAL_SIMULATION_RESULTS_AND_PAPER_IMPACT_2026-08-18.md`
+- Negative/null effects dan CI: P4 not supported; EDT−FCFS CI crosses zero; all planned contrasts retained
+- Win/tie/loss report: `analysis/scenario_winners.csv`; MPBH 770, MaxPicker 59, SNH 31, MaxCart 4 of 864 cells
+- Non-estimable/model failures: Poisson overdispersed; negative-binomial nonconverged and excluded from inference
+- Manuscript sections/tables: Abstract; Sections 3–6; Tables 4–6; all result figures
+- Reviewer confirmation: external statistical/OR reviewer pending
 - [ ] Semua hasil relevan dilaporkan tanpa outcome-based censorship
 
 ## FD-05 — Trade-off performa versus biaya komputasi
@@ -744,12 +744,12 @@ failures, dan deviations; jangan hanya memilih hasil signifikan.
 gabungkan outcome effect/CI dengan wall time, CPU, RSS, disk, dan route scaling;
 laporkan Pareto dan cost of improvement per metode/scenario.
 
-- Hardware/software/tag: ____________________________________________
-- Benchmark results/manifest: _______________________________________
-- Operational effect/CI source: _____________________________________
-- Trade-off/Pareto table/figure: ____________________________________
-- Scaling/parallelism evidence: ______________________________________
-- Interpretation/limitations: _______________________________________
+- Hardware/software/tag: i7-7700, 4C/8T, 31.88 GiB, Windows 11, Python 3.14.6; dirty-tag deviation noted
+- Benchmark results/manifest: `reviewer/decision-benchmark/` (1.440 measurements)
+- Operational effect/CI source: `analysis/planned_adaptive_vs_static_contrasts.csv` and `paired_effects_ci_holm.csv`
+- Trade-off/Pareto table/figure: `analysis/trigger_summary_and_pareto.csv`, Pareto PNG, beta sweep summary
+- Scaling/parallelism evidence: MPBH 61,34 ms median at n=5.000; deterministic 3-worker full run
+- Interpretation/limitations: computational latency excludes WMS/network latency; MPID/domain cost conversion pending
 - [ ] Konfirmasi oleh OR/statistical reviewer
 
 ## FD-06 — Gate E: sertifikasi final data
@@ -758,12 +758,12 @@ laporkan Pareto dan cost of improvement per metode/scenario.
 signed tag, 100% run sukses, complete/unique/finite, schema/invariants/checksums
 lulus, dan raw bundle immutable.
 
-- Signed tag/commit: ________________________________________________
-- FD-01 audit: ______________________________________________________
-- FD-02 immutable storage: __________________________________________
-- FD-03 manifest bundle: ____________________________________________
-- Exceptions/deviations: ____________________________________________
-- PI/release owner/verifier signatures: _____________________________
+- Signed tag/commit: not satisfied; run records commit `724519fb...` with `git_dirty=True`
+- FD-01 audit: technical audit pass, 207.360/207.360 success
+- FD-02 immutable storage: not satisfied; local writable storage only
+- FD-03 manifest bundle: locally complete and cross-checked
+- Exceptions/deviations: dirty source state; Poisson overdispersion; NB nonconvergence; all documented
+- PI/release owner/verifier signatures: pending
 - [ ] Gate E approved
 
 ---

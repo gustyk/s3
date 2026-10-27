@@ -1,0 +1,9 @@
+policy,median_latency_at_n_5000,empirical_fit
+FTWB,<0.001 ms,practically constant
+VTWB,<0.001 ms,practically constant
+MaxPicker,<0.001 ms,practically constant
+MaxCart,0.382 ms,O(n)
+UrgentPicker,5.161 ms,O(n)
+UrgentCart,6.114 ms,O(n log n)
+SNH,14.071 ms,O(n)
+MPBH,61.339 ms,O(n)

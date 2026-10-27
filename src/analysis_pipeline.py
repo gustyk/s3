@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import itertools
 import json
 from pathlib import Path
@@ -27,12 +28,14 @@ FACTOR_COLUMNS = [
     "num_pickers",
 ]
 OUTCOMES = [
+    "total_late_orders",
     "service_level_percent",
     "throughput_per_hour",
     "picker_utility_percent",
     "mean_cart_utilization_percent",
     "mean_tardiness_seconds",
 ]
+ADAPTIVE_METHODS = ["MaxPicker", "MaxCart", "UrgentPicker", "UrgentCart", "SNH", "MPBH"]
 
 
 def holm_adjust(p_values: list[float]) -> list[float]:
@@ -86,6 +89,50 @@ def paired_trigger_comparisons(df: pd.DataFrame, outcome: str) -> pd.DataFrame:
     return pd.DataFrame(records)
 
 
+def planned_adaptive_vs_static_contrasts(df: pd.DataFrame) -> pd.DataFrame:
+    """Paired CRN contrasts against the mean of the two static benchmarks."""
+    index = [
+        "seed",
+        "incoming_rate",
+        "cart_capacity",
+        "batching_method",
+        "routing_policy",
+        "num_pickers",
+    ]
+    pivot = df.pivot_table(
+        index=index, columns="trigger_method", values="total_late_orders", aggfunc="first"
+    )
+    static = (pivot["FTWB"] + pivot["VTWB"]) / 2.0
+    records = []
+    for method in ADAPTIVE_METHODS:
+        differences = (pivot[method] - static).dropna().to_numpy()
+        mean = float(np.mean(differences))
+        sem = float(st.sem(differences))
+        critical = float(st.t.ppf(0.975, len(differences) - 1))
+        t_result = st.ttest_1samp(differences, popmean=0.0)
+        try:
+            wilcoxon_p = float(st.wilcoxon(differences).pvalue) if np.any(differences) else 1.0
+        except ValueError:
+            wilcoxon_p = 1.0
+        static_mean = float(np.mean(static))
+        records.append(
+            {
+                "contrast": f"{method} minus mean(FTWB, VTWB)",
+                "method": method,
+                "paired_n": len(differences),
+                "mean_difference_total_late_orders": mean,
+                "ci95_low": mean - critical * sem,
+                "ci95_high": mean + critical * sem,
+                "paired_t_p": float(t_result.pvalue),
+                "wilcoxon_p": wilcoxon_p,
+                "static_benchmark_mean_tlo": static_mean,
+                "method_mean_tlo": float(np.mean(pivot[method])),
+                "relative_reduction_percent": -100.0 * mean / static_mean,
+            }
+        )
+    return pd.DataFrame(records)
+
+
 def pareto_front(summary: pd.DataFrame) -> pd.DataFrame:
     values = summary[["late_rate", "throughput_per_hour", "picker_utility_percent"]].to_numpy()
     dominated = np.zeros(len(summary), dtype=bool)
@@ -104,7 +151,24 @@ def pareto_front(summary: pd.DataFrame) -> pd.DataFrame:
 
 
 def run_pipeline(results: Path, manifest: Path, output_dir: Path) -> None:
-    audit_report = audit(results, manifest)
+    certified_audit = manifest.with_name("audit.json")
+    if certified_audit.exists():
+        audit_report = json.loads(certified_audit.read_text(encoding="utf-8"))
+        manifest_data = json.loads(manifest.read_text(encoding="utf-8"))
+        digest = hashlib.sha256()
+        with results.open("rb") as handle:
+            for block in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(block)
+        actual_digest = digest.hexdigest()
+        if (
+            audit_report.get("status") != "pass"
+            or int(audit_report.get("rows", -1)) != int(manifest_data["expected_runs"])
+            or audit_report.get("sha256") != actual_digest
+            or manifest_data.get("results_sha256") != actual_digest
+        ):
+            raise ValueError("Certified audit or results checksum is inconsistent")
+    else:
+        audit_report = audit(results, manifest)
     if audit_report["status"] != "pass":
         raise ValueError(f"Dataset failed audit: {audit_report['errors']}")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -149,6 +213,9 @@ def run_pipeline(results: Path, manifest: Path, output_dir: Path) -> None:
         [paired_trigger_comparisons(df, outcome) for outcome in OUTCOMES], ignore_index=True
     )
     comparisons.to_csv(output_dir / "paired_effects_ci_holm.csv", index=False)
+    planned_adaptive_vs_static_contrasts(df).to_csv(
+        output_dir / "planned_adaptive_vs_static_contrasts.csv", index=False
+    )
 
     formula = (
         "late_orders ~ C(trigger_method) * (C(batching_method) + C(routing_policy) + "
@@ -165,26 +232,60 @@ def run_pipeline(results: Path, manifest: Path, output_dir: Path) -> None:
             encoding="utf-8",
         )
     else:
-        if df["late_orders"].nunique() > 1:
+        # Secondary factorial models operate on one row per factorial cell.  The
+        # primary trigger inference above remains paired at the replication level.
+        # Cell aggregation avoids constructing a multi-gigabyte 207,360-row dummy
+        # matrix while retaining the complete balanced factorial structure.
+        model_df = df.groupby(FACTOR_COLUMNS, as_index=False).agg(
+            late_orders=("late_orders", "sum"),
+            generated_orders=("generated_orders", "sum"),
+            throughput_per_hour=("throughput_per_hour", "mean"),
+        )
+        model_df["service_proportion"] = 1.0 - (
+            model_df["late_orders"] / model_df["generated_orders"]
+        )
+        model_df["log_generated_orders"] = np.log(model_df["generated_orders"])
+        diagnostics["model_input"] = {
+            "unit": "factorial-cell aggregate across 30 CRN replications",
+            "rows": len(model_df),
+            "primary_inference": "replication-level paired contrasts with Holm adjustment",
+            "secondary_role": "factorial structure and interaction diagnostics",
+        }
+        if model_df["late_orders"].nunique() > 1:
             try:
-                poisson = smf.glm(formula, data=df, family=sm.families.Poisson()).fit(
-                    cov_type="HC3"
-                )
+                poisson = smf.glm(
+                    formula,
+                    data=model_df,
+                    family=sm.families.Poisson(),
+                    offset=model_df["log_generated_orders"],
+                ).fit(cov_type="HC3")
                 dispersion = float(poisson.pearson_chi2 / poisson.df_resid)
                 (output_dir / "poisson_count_model.txt").write_text(
                     poisson.summary().as_text(), encoding="utf-8"
                 )
                 diagnostics["models"]["poisson"] = {  # type: ignore[index]
-                    "status": "fit",
+                    "status": (
+                        "fit"
+                        if dispersion <= 2.0
+                        else "overdispersed_descriptive_only"
+                    ),
                     "aic": float(poisson.aic),
                     "pearson_dispersion": dispersion,
                 }
-                negative_binomial = smf.negativebinomial(formula, data=df).fit(disp=0)
+                negative_binomial = smf.negativebinomial(
+                    formula,
+                    data=model_df,
+                    offset=model_df["log_generated_orders"],
+                ).fit(disp=0)
                 (output_dir / "negative_binomial_model.txt").write_text(
                     negative_binomial.summary().as_text(), encoding="utf-8"
                 )
                 diagnostics["models"]["negative_binomial"] = {  # type: ignore[index]
-                    "status": "fit",
+                    "status": (
+                        "fit"
+                        if bool(negative_binomial.mle_retvals.get("converged", False))
+                        else "nonconverged_do_not_use_for_inference"
+                    ),
                     "aic": float(negative_binomial.aic),
                 }
             except (ValueError, np.linalg.LinAlgError) as error:
@@ -198,15 +299,14 @@ def run_pipeline(results: Path, manifest: Path, output_dir: Path) -> None:
                 "reason": "late_orders is constant",
             }
 
-        df["service_proportion"] = df["service_level_percent"] / 100
         service_formula = formula.replace("late_orders", "service_proportion")
-        if df["service_proportion"].nunique() > 1:
+        if model_df["service_proportion"].nunique() > 1:
             try:
                 service_model = smf.glm(
                     service_formula,
-                    data=df,
+                    data=model_df,
                     family=sm.families.Binomial(),
-                    freq_weights=df["generated_orders"],
+                    freq_weights=model_df["generated_orders"],
                 ).fit(cov_type="HC3")
                 (output_dir / "binomial_service_model.txt").write_text(
                     service_model.summary().as_text(), encoding="utf-8"
@@ -222,7 +322,7 @@ def run_pipeline(results: Path, manifest: Path, output_dir: Path) -> None:
                 }
 
         continuous_formula = formula.replace("late_orders", "throughput_per_hour")
-        ols = smf.ols(continuous_formula, data=df).fit(cov_type="HC3")
+        ols = smf.ols(continuous_formula, data=model_df).fit(cov_type="HC3")
         (output_dir / "ols_throughput_robust.txt").write_text(
             ols.summary().as_text(), encoding="utf-8"
         )
@@ -286,6 +386,7 @@ def run_pipeline(results: Path, manifest: Path, output_dir: Path) -> None:
         "rows": len(df),
         "count_model_formula": formula,
         "count_model_pearson_dispersion": dispersion,
+        "factorial_model_unit": "factorial-cell aggregate across CRN replications",
         "factorial_models_fit": factorial_ready,
         "multiplicity": "Holm family-wise adjustment per outcome",
         "pairing": "Common-random-number seed and all non-trigger scenario factors",

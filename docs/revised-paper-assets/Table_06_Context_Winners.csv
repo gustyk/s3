@@ -1,0 +1,5 @@
+operational_context,incoming_rate_orders_per_minute,num_pickers,best_method_or_ties,mean_total_late_orders,secondary_factors_fixed
+Low rate / low pickers,0.5,1,MPBH,151.46666666666667,FCFS; cart capacity 100; S-shape
+Low rate / high pickers,0.5,12,FTWB; MPBH; MaxPicker; SNH,0.0,FCFS; cart capacity 100; S-shape
+High rate / low pickers,16.0,1,MPBH,6413.966666666666,FCFS; cart capacity 100; S-shape
+High rate / high pickers,16.0,12,MPBH,5917.666666666667,FCFS; cart capacity 100; S-shape

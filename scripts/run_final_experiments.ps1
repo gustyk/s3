@@ -20,6 +20,7 @@ function Invoke-PythonChecked {
 $ResolvedOutputRoot = [System.IO.Path]::GetFullPath((Join-Path $ProjectRoot $OutputRoot))
 $ReviewerRoot = Join-Path $ResolvedOutputRoot "reviewer"
 $FullRoot = Join-Path $ResolvedOutputRoot "full-factorial"
+$FullWorkersRoot = Join-Path $ResolvedOutputRoot "full-factorial-workers"
 $PreflightRoot = Join-Path $ResolvedOutputRoot "preflight"
 New-Item -ItemType Directory -Force -Path $PreflightRoot | Out-Null
 
@@ -42,6 +43,13 @@ if ($Stage -in @("full", "all")) {
 if ($Stage -in @("postprocess", "all")) {
     Invoke-PythonChecked -Arguments @("-m", "src.audit_results", (Join-Path $FullRoot "results.csv"), "--manifest", (Join-Path $FullRoot "manifest.json"), "--report", (Join-Path $FullRoot "audit_report.json"))
     Invoke-PythonChecked -Arguments @("-m", "src.analysis_pipeline", (Join-Path $FullRoot "results.csv"), "--manifest", (Join-Path $FullRoot "manifest.json"), "--output-dir", (Join-Path $FullRoot "analysis"))
-    Invoke-PythonChecked -Arguments @("-m", "src.additional_metrics", (Join-Path $FullRoot "results.csv"), (Join-Path $FullRoot "orders.csv.gz"), "--output-dir", (Join-Path $FullRoot "additional-metrics"))
+    if (Test-Path (Join-Path $FullWorkersRoot "worker-00\orders.csv.gz")) {
+        Invoke-PythonChecked -Arguments @("-m", "src.additional_metrics_parallel", (Join-Path $FullRoot "results.csv"), "--workers-dir", $FullWorkersRoot, "--output-dir", (Join-Path $FullRoot "additional-metrics"), "--worker-count", "3")
+    }
+    else {
+        Invoke-PythonChecked -Arguments @("-m", "src.additional_metrics", (Join-Path $FullRoot "results.csv"), (Join-Path $FullRoot "orders.csv.gz"), "--output-dir", (Join-Path $FullRoot "additional-metrics"))
+    }
     Invoke-PythonChecked -Arguments @("-m", "src.composite_score", (Join-Path $FullRoot "results.csv"), "--output-dir", (Join-Path $FullRoot "composite"))
+    Invoke-PythonChecked -Arguments @("-m", "src.manuscript_tables", $FullRoot, "--output-dir", (Join-Path $FullRoot "manuscript-tables"))
+    Invoke-PythonChecked -Arguments @("-m", "src.certify_final_analysis", $FullRoot)
 }

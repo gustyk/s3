@@ -1,0 +1,9 @@
+policy,mean_flow_time_seconds,mean_waiting_time_seconds,mean_cart_utilisation_percent,mean_completed_trips
+FTWB,8262.198,7484.428,60.350,65.920
+VTWB,7009.527,6228.793,61.047,86.757
+MaxPicker,8039.816,7320.957,52.506,151.177
+MaxCart,8228.670,7391.306,61.995,103.454
+UrgentPicker,8555.148,7704.622,66.939,90.827
+UrgentCart,8228.670,7391.306,61.995,103.454
+SNH,9817.755,8850.562,76.294,166.138
+MPBH,4150.616,3379.152,55.682,217.112

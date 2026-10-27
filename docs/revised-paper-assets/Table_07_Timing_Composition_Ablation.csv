@@ -1,0 +1,5 @@
+planned_contrast,mean_delta_TLO,cluster_aware_CI95_low,cluster_aware_CI95_high,interpretation
+MPBH timing minus FTWB timing,-18.119,-18.497,-17.741,MPBH timing improves TLO
+EDT minus FCFS,0.036,-0.049,0.121,no supported difference
+MPBH composition minus FCFS,-153.005,-154.400,-151.609,MPBH composition improves TLO
+MPBH composition minus EDT,-153.041,-154.435,-151.647,MPBH composition improves TLO

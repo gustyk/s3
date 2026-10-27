@@ -1,5 +1,6 @@
 # Supplementary Material Index
 
+- **New revision appendix:** [ALGORITHM_APPENDIX.md](ALGORITHM_APPENDIX.md) — complete pseudocode and deterministic edge-case checks for FTWB, VTWB, MaxPicker, MaxCart, UrgentPicker, UrgentCart, SNH, and MPBH.
 - Conceptual equations, algorithms, assumptions: `MODEL_SPECIFICATION.md`
 - Parameter provenance and input uncertainty: `PARAMETER_PROVENANCE.md`
 - Data schema and KPI definitions: `DATA_DICTIONARY.md`
@@ -22,5 +23,6 @@
 The final release must add the approved pilot precision decision,
 sensitivity/ablation outputs from validated ranges, final-data audit, all
 table/figure hashes, and signed external validation/review records. Conceptual
-equations and pseudocode are already supplied in `MODEL_SPECIFICATION.md` and
-must be typeset in the selected journal's manuscript format.
+equations remain in `MODEL_SPECIFICATION.md`; the complete algorithm
+pseudocode added in this revision is maintained in `ALGORITHM_APPENDIX.md`
+and must be typeset in the selected journal's manuscript format.

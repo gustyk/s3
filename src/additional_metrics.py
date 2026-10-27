@@ -6,29 +6,18 @@ import argparse
 import json
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
 
-def build_extended_metrics(
-    results_path: Path, orders_path: Path, output_dir: Path
-) -> Path:
-    """Aggregate run and order evidence without treating censored times as completions."""
-    results = pd.read_csv(results_path)
-    required_results = {
-        "run_uuid",
-        "trigger_method",
-        "generated_orders",
-        "total_late_orders",
-        "late_order_ratio",
-        "on_time_rate_percent",
-        "mean_tardiness_seconds",
-        "mean_late_tardiness_seconds",
-    }
-    missing = required_results - set(results)
-    if missing:
-        raise ValueError(f"Result fields missing: {sorted(missing)}")
-
+def aggregate_order_evidence(
+    orders_path: Path,
+    *,
+    chunksize: int = 1_000_000,
+    progress_label: str = "orders",
+) -> pd.DataFrame:
+    """Stream one immutable order artifact into run-level sufficient statistics."""
     partials = []
     columns = [
         "run_uuid",
@@ -37,7 +26,8 @@ def build_extended_metrics(
         "tardiness_seconds",
         "tardiness_lower_bound_seconds",
     ]
-    for chunk in pd.read_csv(orders_path, usecols=columns, chunksize=100_000):
+    processed = 0
+    for chunk in pd.read_csv(orders_path, usecols=columns, chunksize=chunksize):
         eligible = chunk["measurement_eligible"].astype(str).str.lower().eq("true")
         measured = chunk.loc[eligible].copy()
         measured["completed"] = measured["completion_seconds"].notna()
@@ -58,8 +48,44 @@ def build_extended_metrics(
                 ),
             )
         )
+        processed += len(chunk)
+        if processed % (10 * chunksize) == 0:
+            print(f"{progress_label}: {processed:,} order rows processed", flush=True)
     raw = pd.concat(partials, ignore_index=True)
-    raw = raw.groupby("run_uuid", as_index=False).sum(numeric_only=True)
+    return raw.groupby("run_uuid", as_index=False).sum(numeric_only=True)
+
+
+def build_extended_metrics_from_aggregate(
+    results_path: Path,
+    raw: pd.DataFrame,
+    output_dir: Path,
+    *,
+    order_sources: list[str],
+    source_metadata: dict[str, Any] | None = None,
+) -> Path:
+    """Join run-level order evidence and create reviewer-ready metric outputs."""
+    results = pd.read_csv(results_path)
+    required_results = {
+        "run_uuid",
+        "trigger_method",
+        "generated_orders",
+        "total_late_orders",
+        "late_order_ratio",
+        "on_time_rate_percent",
+        "mean_tardiness_seconds",
+        "mean_late_tardiness_seconds",
+        "throughput_per_hour",
+        "picker_utility_percent",
+        "mean_cart_utilization_percent",
+        "trip_count",
+        "mean_flow_time_seconds",
+        "p95_flow_time_seconds",
+        "mean_waiting_time_seconds",
+        "p95_waiting_time_seconds",
+    }
+    missing = required_results - set(results)
+    if missing:
+        raise ValueError(f"Result fields missing: {sorted(missing)}")
     merged = results.merge(raw, on="run_uuid", how="left", validate="one_to_one")
     if not (merged["raw_measurement_orders"] == merged["generated_orders"]).all():
         raise ValueError("Raw-order measurement cohort does not match aggregate denominator")
@@ -75,6 +101,14 @@ def build_extended_metrics(
         "mean_tardiness_seconds",
         "mean_late_tardiness_seconds",
         "mean_tardiness_lower_bound_all_orders_seconds",
+        "throughput_per_hour",
+        "picker_utility_percent",
+        "mean_cart_utilization_percent",
+        "trip_count",
+        "mean_flow_time_seconds",
+        "p95_flow_time_seconds",
+        "mean_waiting_time_seconds",
+        "p95_waiting_time_seconds",
     ]
     records = []
     for method, rows in merged.groupby("trigger_method"):
@@ -101,13 +135,28 @@ def build_extended_metrics(
         "reviewer_id": "R1-Mayor #5",
         "generated_at_utc": datetime.now(UTC).isoformat(),
         "results": str(results_path.resolve()),
-        "orders": str(orders_path.resolve()),
+        "orders": order_sources,
         "runs": len(results),
         "raw_measurement_orders": int(raw["raw_measurement_orders"].sum()),
+        "raw_total_order_rows": (source_metadata or {}).get("raw_total_order_rows"),
         "censoring_rule": "outstanding exact tardiness unavailable; report horizon lower bound",
+        "source_metadata": source_metadata or {},
     }
     (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     return output
+
+
+def build_extended_metrics(
+    results_path: Path, orders_path: Path, output_dir: Path
+) -> Path:
+    """Aggregate run and order evidence without treating censored times as completions."""
+    raw = aggregate_order_evidence(orders_path)
+    return build_extended_metrics_from_aggregate(
+        results_path,
+        raw,
+        output_dir,
+        order_sources=[str(orders_path.resolve())],
+    )
 
 
 def main() -> int:

@@ -40,6 +40,46 @@ Setiap item harus memiliki pemilik, target tanggal, PR/commit, bukti pengujian, 
   adalah clean commit/tag oleh owner serta seluruh approval/data eksternal yang
   memang tidak dapat dipenuhi dari repository.
 
+### Reviewer-results update — 2026-08-16
+
+- **DONE_LOCAL:** seluruh computational reviewer experiments dari
+  `docs/REVISI01.md` telah selesai: ablation 4.320 run, F/V calibration 24.480
+  run, β sensitivity 23.040 run, dan decision benchmark 1.440 measurements.
+- **DONE_LOCAL:** seluruh 39 simulation cells lolos artifact audit; seluruh
+  aggregate rows berstatus success dan run UUID unik.
+- **DECISION FROZEN:** main factorial tetap memakai F=720 s, V=12, β=2 sesuai
+  paper-canonical definition. Tuned F=60 dan V=4/6 hanya dilaporkan sebagai
+  calibration/robustness evidence.
+- **CLAIM REVISION REQUIRED:** hasil ablation menunjukkan MPBH composition
+  effect sekitar −153 TLO, sedangkan MPBH timing effect sekitar −18 TLO.
+  Proposisi 4 harus dipersempit dan tidak boleh menyatakan timing secara umum
+  lebih penting daripada composition.
+- **READY_FOR_MAIN:** readiness gate terdokumentasi di
+  `docs/MAIN_EXPERIMENT_READINESS_2026-08-16.md`; main run tetap menunggu
+  strict preflight pass dan tidak boleh dilakukan dengan source/config yang
+  berubah.
+
+### Main-results update — 2026-08-18
+
+- **DONE_LOCAL:** main factorial selesai 207.360/207.360 run, 0 failed;
+  `outputs/final-q1-v1/full-factorial/audit.json` berstatus `pass`.
+- **DONE_LOCAL:** 621.955.584 raw order rows direkonsiliasi; 522.713.088
+  measurement-eligible rows setelah warm-up cocok tepat dengan denominator
+  `generated_orders`.
+- **DONE_LOCAL:** paired CRN effects, Pareto, corrected composite empat skema
+  bobot, censoring-aware extended metrics, dan analysis certification tersedia.
+- **FINAL FINDING:** MPBH mengurangi mean TLO 10,66% terhadap pooled canonical
+  FTWB/VTWB, bukan 27,04%; MPBH peringkat pertama di empat skema composite.
+- **FINAL NEGATIVE RESULT:** Proposition 4 tidak didukung. MPBH composition
+  effect sekitar −153 TLO, jauh lebih besar daripada MPBH timing effect −18,119.
+- **MODEL WARNING:** Poisson sangat overdispersed; secondary negative-binomial
+  tidak konvergen. Primary inference wajib memakai paired CRN effect + 95% CI.
+- **DEVIATION/BLOCKER:** manifest main mencatat `git_dirty=True` pada commit
+  `724519fb...`; source/config checksum tersedia, tetapi clean signed-tag dan
+  immutable archive Gate E belum terpenuhi.
+- **QUALITY GATE:** Ruff dan mypy lulus; 67 tests lulus; coverage 93,91%.
+- Ringkasan dampak paper: `docs/FINAL_SIMULATION_RESULTS_AND_PAPER_IMPACT_2026-08-18.md`.
+
 Status di bawah bersifat evidence-based. `DONE_LOCAL` berarti implementasi dan
 verifikasi otomatis lokal selesai, tetapi belum memenuhi Definition of Done
 global yang mensyaratkan review orang kedua. `BLOCKED_EXTERNAL` memerlukan data,

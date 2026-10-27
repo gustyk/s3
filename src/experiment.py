@@ -549,7 +549,16 @@ def scenarios(params: dict[str, Any], mode: str) -> Iterable[Scenario]:
     )
 
 
-def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetitions: int) -> Path:
+def run_experiment(
+    config: LoadedConfig,
+    output_dir: Path,
+    mode: str,
+    repetitions: int,
+    worker_index: int = 0,
+    worker_count: int = 1,
+) -> Path:
+    if worker_count < 1 or not 0 <= worker_index < worker_count:
+        raise ValueError("worker_index must satisfy 0 <= worker_index < worker_count")
     persist_order_records = bool(config.values.get("persist_order_records", True))
     order_compression = str(config.values.get("order_output_compression", "gzip"))
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -566,6 +575,8 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
             manifest.get("config_sha256") != config.sha256
             or manifest.get("mode") != mode
             or int(manifest.get("expected_runs", -1)) != expected
+            or int(manifest.get("worker_index", 0)) != worker_index
+            or int(manifest.get("worker_count", 1)) != worker_count
         ):
             raise ValueError("Completed output belongs to a different experiment plan")
         current_source_hash, _ = _source_provenance()
@@ -587,7 +598,7 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
     checkpoint = output_dir / "checkpoint.json"
     if checkpoint.exists() and not order_partial.exists() and order_output.exists():
         order_output.replace(order_partial)
-    planned = [
+    planned_all = [
         (scenario, repetition)
         for scenario in scenarios(config.values, mode)
         for repetition in range(repetitions)
@@ -599,9 +610,17 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
         "big",
     )
     if config.values.get("randomize_execution_order", True):
-        np.random.default_rng(execution_order_seed).shuffle(planned)
+        np.random.default_rng(execution_order_seed).shuffle(planned_all)
+    # Partition only after constructing and shuffling the canonical global plan.  This
+    # preserves the exact scenario/repetition -> seed/run_uuid mapping across workers.
+    planned = [
+        (global_id, scenario, repetition)
+        for global_id, (scenario, repetition) in enumerate(planned_all, 1)
+        if (global_id - 1) % worker_count == worker_index
+    ]
     planned_uuids = {
-        _run_uuid(config.sha256, scenario, repetition) for scenario, repetition in planned
+        _run_uuid(config.sha256, scenario, repetition)
+        for _, scenario, repetition in planned
     }
     current_source_hash, _ = _source_provenance()
     existing: dict[str, dict[str, Any]] = {}
@@ -615,6 +634,10 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
             raise ValueError("Checkpoint belongs to a different configuration")
         if checkpoint_data.get("expected_runs") != len(planned):
             raise ValueError("Checkpoint expected-run count differs from current plan")
+        if checkpoint_data.get("worker_index", 0) != worker_index or checkpoint_data.get(
+            "worker_count", 1
+        ) != worker_count:
+            raise ValueError("Checkpoint worker partition differs from current plan")
         if not partial.exists():
             raise ValueError("Checkpoint exists without partial results")
         # Roll back any append that was not certified by the last atomic checkpoint.
@@ -682,6 +705,9 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
                 "config_sha256": config.sha256,
                 "completed_runs": 0,
                 "expected_runs": len(planned),
+                "global_expected_runs": len(planned_all),
+                "worker_index": worker_index,
+                "worker_count": worker_count,
                 "last_run_uuid": None,
                 "batch_started_at_utc": batch_started_at_utc,
                 "last_checkpoint_utc": datetime.now(UTC).isoformat(),
@@ -700,7 +726,7 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
         if item.get("status") == "success"
     )
     successful_count = sum(item.get("status") == "success" for item in existing.values())
-    for run_id, (scenario, repetition) in enumerate(planned, 1):
+    for global_run_id, scenario, repetition in planned:
         expected_uuid = _run_uuid(config.sha256, scenario, repetition)
         if expected_uuid in existing:
             row = existing[expected_uuid]
@@ -739,7 +765,7 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
                 "model_version": MODEL_VERSION,
             }
             failures.append(row)
-        row["run_id"] = run_id
+        row["run_id"] = global_run_id
         rows.append(row)
         if row.get("status") == "success":
             successful_wall += float(row.get("wall_seconds", 0) or 0)
@@ -766,6 +792,9 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
             "config_sha256": config.sha256,
             "completed_runs": len(rows),
             "expected_runs": len(planned),
+            "global_expected_runs": len(planned_all),
+            "worker_index": worker_index,
+            "worker_count": worker_count,
             "last_run_uuid": row["run_uuid"],
             "batch_started_at_utc": batch_started_at_utc,
             "last_checkpoint_utc": datetime.now(UTC).isoformat(),
@@ -804,6 +833,9 @@ def run_experiment(config: LoadedConfig, output_dir: Path, mode: str, repetition
         "status": "failed" if failures else "success",
         "mode": mode,
         "expected_runs": len(planned),
+        "global_expected_runs": len(planned_all),
+        "worker_index": worker_index,
+        "worker_count": worker_count,
         "successful_runs": len(planned) - len(failures),
         "failed_runs": len(failures),
         "execution_order_randomized": bool(config.values.get("randomize_execution_order", True)),
@@ -850,6 +882,8 @@ def main() -> int:
     parser.add_argument("--mode", choices=("selected", "smoke", "full"), default="selected")
     parser.add_argument("--repetitions", type=int)
     parser.add_argument("--log-level", default="WARNING")
+    parser.add_argument("--worker-index", type=int, default=0)
+    parser.add_argument("--worker-count", type=int, default=1)
     args = parser.parse_args()
     logging.basicConfig(
         level=args.log_level, format="%(asctime)s %(levelname)s %(name)s %(message)s"
@@ -860,7 +894,14 @@ def main() -> int:
     )
     if repetitions <= 0:
         parser.error("--repetitions must be positive")
-    output = run_experiment(config, args.output_dir.resolve(), args.mode, repetitions)
+    output = run_experiment(
+        config,
+        args.output_dir.resolve(),
+        args.mode,
+        repetitions,
+        worker_index=args.worker_index,
+        worker_count=args.worker_count,
+    )
     print(output)
     return 0
 
