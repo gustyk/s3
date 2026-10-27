@@ -44,6 +44,9 @@ Every algorithmic specification and queue invariant is covered by direct unit te
 | **UrgentCart Dual Trigger** | Fires if $\sum \text{pieces} \ge C$ OR $U(t) \ge \beta$ | `test_urgent_cart_capacity_only_and_urgency_only` | [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py) |
 | **SNH 4-Step Hierarchy** | Tests Urgency Dominance, Full Fit, Capacity Fill, Hybrid Fallback | `test_snh_four_step_logic` | [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py) |
 | **MaxCart Waiting Pieces** | Triggers iff $\sum_{o \in \mathcal{W}(t)} \text{pieces}(o) \ge C$ and $r_t > 0$ | `test_max_cart_pieces_trigger` | [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py) |
+| **FTWB Periodic Epoch** | Triggers only at periodic interval $F$; no release between epochs | `test_ftwb_periodic_epoch_trigger` | [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py) |
+| **MaxPicker Immediate** | Triggers immediately when $|\mathcal{W}(t)| > 0$ and $r_t > 0$ | `test_max_picker_immediate_release` | [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py) |
+| **MPBH Fallback Branch** | Dispatches earliest-due order regardless of predicted lateness | `test_mpbh_fallback_branch` | [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py) |
 | **MPBH $\beta=1, 2$ Trimming** | Trims latest order while $\text{PredictedLate}(\mathcal{B}) > \beta$ | `test_mpbh_beta_trimming` | [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py) |
 | **MPBH 1-Order No-Trim** | Candidate with 1 order $\le C$ is NEVER dropped for $\beta \ge 1$ | `test_property_single_order_never_trimmed` | [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py) |
 
@@ -107,6 +110,10 @@ Every algorithmic specification and queue invariant is covered by direct unit te
      While $\sum_{i \in \mathcal{B}} \text{pieces}(i) > C$ OR $\text{PredictedLate}(\mathcal{B}) > \beta$:
      $$\text{latest} = \arg\max_{i \in \mathcal{B}} \text{EDT}(i)$$
      $$\mathcal{B} \leftarrow \mathcal{B} \setminus \{\text{latest}\}$$
-  3. *Deadlock-Free Fallback*: If $\mathcal{B} \neq \emptyset$, dispatch $\mathcal{B}$. If $\mathcal{B} == \emptyset$ (every order would be predicted late under extreme congestion), dispatch the single earliest-due capacity-feasible order:
+  3. *Deadlock-Free Fallback*: If $\mathcal{B} \neq \emptyset$, dispatch $\mathcal{B}$. If $\mathcal{B} == \emptyset$ (for instance when every order is predicted late and $\beta=0$), dispatch the single earliest-due capacity-feasible order regardless of its predicted lateness:
      $$\mathcal{B}_{\text{fallback}} = \text{CapacityFill}(\text{SortByEDT}(\mathcal{W}(t)), C)[:1]$$
-* **Unit Test**: `test_snh_and_mpbh_return_capacity_feasible_deterministic_batches` in [`tests/test_reviewer_revision.py`](file:///d:/Apps/S3/tests/test_reviewer_revision.py).
+     This guarantees progress without deadlocking the system.
+* **Unit Tests**:
+  - `test_mpbh_beta_trimming` in [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py)
+  - `test_mpbh_fallback_branch` in [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py)
+  - `test_property_single_order_never_trimmed` in [`tests/test_appendix_a_rules.py`](file:///d:/Apps/S3/tests/test_appendix_a_rules.py)

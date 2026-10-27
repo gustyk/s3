@@ -319,3 +319,74 @@ def test_property_single_order_never_trimmed(small_params):
         batch = _mpbh_batch(env, [order], cart_capacity, urgent_threshold=beta, routing_name="S-shape", params=small_params)
         assert len(batch) == 1
         assert batch[0]["Order ID"] == "P1"
+
+
+# --- Additional Dedicated Rule Tests (Reviewer Revision F7) ---
+import simpy
+from src.io_pool import IOPool
+from src.order_pool import OrderPool
+from src.trigger_method import _mpbh_batch, ftwb_trigger, max_picker_trigger
+from tests.conftest import make_order
+
+
+# F7a. Dedicated test of MPBH fallback branch
+def test_mpbh_fallback_branch(small_params):
+    """When beta=0 and all orders are predicted late, candidate empties and fallback dispatches earliest-due order."""
+    env = simpy.Environment(initial_time=100.0)
+    # Orders with past due dates: predicted late count is always > 0
+    o1 = make_order("O_LATE_1", created=10.0, due=50.0, total=5, item=1)
+    o2 = make_order("O_LATE_2", created=15.0, due=60.0, total=5, item=2)
+    o3 = make_order("O_LATE_3", created=20.0, due=40.0, total=5, item=3)  # Earliest due: 40.0
+
+    waiting = [o1, o2, o3]
+    # With urgent_threshold=0, any predicted late count > 0 triggers trimming
+    batch = _mpbh_batch(env, waiting, cart_capacity=100, urgent_threshold=0, routing_name="S-shape", params=small_params)
+    assert len(batch) == 1
+    # Must dispatch the earliest-due waiting order (O_LATE_3 with due=40.0)
+    assert batch[0]["Order ID"] == "O_LATE_3"
+
+
+# F7b. Dedicated FTWB periodic epoch test
+def test_ftwb_periodic_epoch_trigger(small_params):
+    """FTWB must NOT release between epochs; releases only at periodic interval F when release slots > 0."""
+    env = simpy.Environment(initial_time=0)
+    order_pool = OrderPool(env)
+    io_pool = IOPool(env, num_pickers=1)
+    
+    o1 = make_order("O1", created=0.0, due=1000.0, total=5, item=1)
+    order_pool.add_order(o1)
+    
+    F = 720.0
+    env.process(ftwb_trigger(env, order_pool, cart_capacity=100, io_pool=io_pool, time_window=F, batching_type="FCFS"))
+
+    # Advance time to before epoch F
+    env.run(until=719.0)
+    assert order_pool.get_order_count() == 1
+    assert len(io_pool.batches) == 0
+
+    # Step into epoch F (env.step or until > 720.0)
+    env.run(until=720.001)
+    assert order_pool.get_order_count() == 0
+    assert len(io_pool.batches) == 1
+
+
+# F7b. Dedicated MaxPicker immediate release test
+def test_max_picker_immediate_release(small_params):
+    """MaxPicker must trigger immediately as soon as pool is non-empty and release slots > 0."""
+    env = simpy.Environment(initial_time=0)
+    order_pool = OrderPool(env)
+    io_pool = IOPool(env, num_pickers=1)
+
+    env.process(max_picker_trigger(env, order_pool, cart_capacity=100, io_pool=io_pool, num_pickers=1, batching_type="FCFS"))
+
+    env.run(until=10.0)
+    assert len(io_pool.batches) == 0
+
+    # Add order at t=10
+    o1 = make_order("O1", created=10.0, due=1000.0, total=5, item=1)
+    order_pool.add_order(o1)
+
+    # MaxPicker should fire immediately without waiting for an epoch
+    env.run(until=10.001)
+    assert order_pool.get_order_count() == 0
+    assert len(io_pool.batches) == 1
