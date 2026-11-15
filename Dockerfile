@@ -12,7 +12,7 @@ COPY src ./src
 COPY tests ./tests
 COPY config ./config
 COPY docs ./docs
-COPY CHANGELOG.md DATA_LICENSE.md QUALITY_TODO_Q1.md ./
+COPY CHANGELOG.md DATA_LICENSE.md ./
 RUN python -m pip install --no-cache-dir --no-deps .
 
 CMD ["python", "-m", "src.experiment", "--mode", "selected", "--repetitions", "1", "--output-dir", "outputs/container-smoke"]
