@@ -17,9 +17,11 @@ GEN = ROOT / "docs" / "revised-paper-assets" / "generated"
 MAX_ROWS = 40
 
 TLO = "TLO = total late orders per run (count of orders); times in seconds; arrival rate in orders/min."
-CI_UNVERIFIED = (
-    "The 95% CI columns are taken from the source file as stored; the estimator "
-    "is not documented in the repository and is therefore not verifiable here."
+NO_CI = "No confidence intervals reported."
+CI_CLUSTER30 = (
+    "Two-sided 95% t interval over the 30 replication-cluster means of the arrival-rate stratum (df = 29). "
+    "Differences are paired within scenario x replication blocks; for a single arrival rate the stratified "
+    "cluster estimator has one stratum."
 )
 
 # (id, title, [(csv path, sub-caption)], units, CI note)
@@ -29,44 +31,53 @@ TABLES = [
       ("results/WP5/tuning_surface_class.csv", "Per-class tuning surface"),
       ("results/WP5/selected_parameters.csv", "Selected parameters")],
      TLO + " FTWB interval and VTWB threshold per the `unit` column.",
-     "No confidence intervals; std_tlo is the standard deviation across cells/replications as defined in scripts/g1_tuning_analysis.py."),
+     NO_CI),
     ("Table S2", "Run-status partition (order-weighted) and tardiness summary, including conditional-late and p95",
      [("results/WP3/table4d_status_partition_exact.csv", "Status partition of cohort orders (shares)"),
       ("results/WP3/tardiness_all_policies_summary.csv", "Tardiness summary (seconds)")],
      "Shares are fractions of cohort orders; tardiness in seconds.",
-     "No confidence intervals. p95 definitions (run-mean vs order-weighted) are given in the header comments of the source CSV."),
+     NO_CI + " p95 definitions (run-mean vs order-weighted) are given in the header comments of the tardiness source file."),
     ("Table S3", "MPBH versus canonical pool by arrival rate and picker group",
      [("results/WP9/table10_v3.csv", "MPBH vs canonical, per arrival rate x picker group")],
-     TLO + " `*_pct_of_N` columns in percent of cohort orders N.", CI_UNVERIFIED),
+     TLO + " `*_pct_of_N` columns in percent of cohort orders N.",
+     CI_CLUSTER30 + " Each row pools the cells of one picker group, so the 30 clusters are the replication means within that row. "
+     "Interval for the difference MPBH minus canonical pool (FTWB and VTWB)."),
     ("Table S4", "All-arrivals TLO and inherited backlog",
      [("results/WP8/all_arrivals_tlo_v4.csv", "All-arrivals TLO by slice"),
       ("results/WP8/backlog_triage_v4.csv", "Backlog triage by policy and class")],
-     TLO + " Ages in seconds.", CI_UNVERIFIED),
+     TLO + " Ages in seconds.",
+     "All-arrivals TLO: two-sided 95% t interval over the 30 per-replication mean paired differences "
+     "(canonical pool minus MPBH) within each slice (overall, arrival rate, load band), df = 29. "
+     "Backlog triage: no confidence intervals reported."),
     ("Table S5", "Crossed timing x composition effects per arrival rate and Shapley decomposition (canonical and tuned)",
      [("results/WP4/crossed_effects_by_lambda_ci.csv", "Canonical: crossed effects per arrival rate"),
       ("results/WP4/shapley_by_lambda.csv", "Canonical: Shapley decomposition"),
       ("results/WP5/crossed_tuned_timing_effects_by_lambda_ci.csv", "Tuned: crossed effects per arrival rate"),
       ("results/WP5/crossed_tuned_timing_shapley.csv", "Tuned: Shapley decomposition")],
      "Effects in late orders per run; shares in percent.",
-     "Source files report `clusters` and `df` columns, indicating cluster-level inference; " + CI_UNVERIFIED),
+     "Canonical effects: " + CI_CLUSTER30 + " Canonical Shapley timing share: point estimate is the ratio of the mean Shapley timing "
+     "contribution to the mean total reduction; the interval is a two-sided 95% t interval (df = 29) based on the standard "
+     "deviation of the 30 per-replication shares. "
+     "Tuned (held-out replications 15-29): two-sided 95% t interval over the 15 replication-level mean differences (df = 14); "
+     "the tuned Shapley timing share uses the same ratio estimate with the t interval over the 15 per-replication shares (df = 14)."),
     ("Table S6", "Sensitivity to setup time and to warm-up length (5,460 s vs 11,000 s)",
      [("results/WP6/setup_sensitivity_with_tuned_and_cis.csv", "Setup-time sensitivity"),
       ("results/WP6/warmup_11k_vs_5k_by_setup.csv", "Warm-up comparison by setup time"),
       ("results/WP6/warmup_11k_vs_5k_by_lambda.csv", "Warm-up comparison by setup time and arrival rate")],
      TLO + " Setup time in seconds.",
-     "Warm-up files: 95% CI of the paired difference using a t critical value with df = 29 (scripts/analyze_warmup_sensitivity.py). "
-     "Setup-sensitivity CIs: generating script not in the repository, not verifiable."),
+     "Setup-time sensitivity (36-cell subset): two-sided 95% t interval over the 30 replication cluster means (df = 29). "
+     "Warm-up comparison files: paired differences per replication, t interval with df = 29."),
     ("Table S7", "Surrogate accuracy at batch level and oracle check",
      [("results/WP7/surrogate_batch_validation.csv", "Surrogate vs exact tour time by batch size"),
       ("results/WP7/oracle_decision_mismatch.csv", "Oracle decision mismatches"),
       ("results/WP7/oracle_check_results_rerun.csv", "Oracle check results")],
      "Tour-time errors in seconds (mae, rmse, signed_bias); TLO in orders per run; mismatch rate in percent.",
-     "No confidence intervals reported."),
+     NO_CI),
     ("Table S8", "Single-change (one-factor-at-a-time) change ladder and combined revert",
      [("results/WP0/change_ladder_ofat.csv", "Change ladder, one change at a time"),
       ("results/WP0/combined_revert_results.csv", "Combined revert, per-run results")],
      TLO + " Commit column as stored in the source file.",
-     "No confidence intervals reported."),
+     NO_CI),
 ]
 
 FIGURES = [
@@ -100,7 +111,12 @@ def fmt(value: str) -> str:
     return f"{number:.3f}"
 
 
-def limited(rows):
+FULL = {"results/WP0/change_ladder_ofat.csv", "results/WP0/combined_revert_results.csv"}
+
+
+def limited(rows, path=""):
+    if path in FULL:
+        return rows, len(rows) - 1
     shown = rows[: MAX_ROWS + 1]
     return shown, len(rows) - 1
 
@@ -118,7 +134,7 @@ def build_md() -> tuple[str, list]:
         sec = {"id": tid, "title": title, "units": units, "ci": ci, "parts": []}
         for path, cap in parts:
             comments, rows = read_csv(ROOT / path)
-            shown, total = limited(rows)
+            shown, total = limited(rows, path)
             md += [f"*{cap}* — source: `{path}` ({total} rows)", ""]
             for c in comments:
                 md.append(f"> {c}")

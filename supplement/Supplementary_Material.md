@@ -14,7 +14,7 @@ Provenance of implementation parameters: [results/WP0/provenance_table_B1.csv](.
 
 **Units.** TLO = total late orders per run (count of orders); times in seconds; arrival rate in orders/min. FTWB interval and VTWB threshold per the `unit` column.
 
-**CI method.** No confidence intervals; std_tlo is the standard deviation across cells/replications as defined in scripts/g1_tuning_analysis.py.
+**CI method.** No confidence intervals reported.
 
 *Global tuning surface* — source: `results/WP5/tuning_surface_global.csv` (35 rows)
 
@@ -116,7 +116,7 @@ Provenance of implementation parameters: [results/WP0/provenance_table_B1.csv](.
 
 **Units.** Shares are fractions of cohort orders; tardiness in seconds.
 
-**CI method.** No confidence intervals. p95 definitions (run-mean vs order-weighted) are given in the header comments of the source CSV.
+**CI method.** No confidence intervals reported. p95 definitions (run-mean vs order-weighted) are given in the header comments of the tardiness source file.
 
 *Status partition of cohort orders (shares)* — source: `results/WP3/table4d_status_partition_exact.csv` (16 rows)
 
@@ -161,7 +161,7 @@ Provenance of implementation parameters: [results/WP0/provenance_table_B1.csv](.
 
 **Units.** TLO = total late orders per run (count of orders); times in seconds; arrival rate in orders/min. `*_pct_of_N` columns in percent of cohort orders N.
 
-**CI method.** The 95% CI columns are taken from the source file as stored; the estimator is not documented in the repository and is therefore not verifiable here.
+**CI method.** Two-sided 95% t interval over the 30 replication-cluster means of the arrival-rate stratum (df = 29). Differences are paired within scenario x replication blocks; for a single arrival rate the stratified cluster estimator has one stratum. Each row pools the cells of one picker group, so the 30 clusters are the replication means within that row. Interval for the difference MPBH minus canonical pool (FTWB and VTWB).
 
 *MPBH vs canonical, per arrival rate x picker group* — source: `results/WP9/table10_v3.csv` (18 rows)
 
@@ -190,7 +190,7 @@ Provenance of implementation parameters: [results/WP0/provenance_table_B1.csv](.
 
 **Units.** TLO = total late orders per run (count of orders); times in seconds; arrival rate in orders/min. Ages in seconds.
 
-**CI method.** The 95% CI columns are taken from the source file as stored; the estimator is not documented in the repository and is therefore not verifiable here.
+**CI method.** All-arrivals TLO: two-sided 95% t interval over the 30 per-replication mean paired differences (canonical pool minus MPBH) within each slice (overall, arrival rate, load band), df = 29. Backlog triage: no confidence intervals reported.
 
 *All-arrivals TLO by slice* — source: `results/WP8/all_arrivals_tlo_v4.csv` (10 rows)
 
@@ -258,7 +258,7 @@ Provenance of implementation parameters: [results/WP0/provenance_table_B1.csv](.
 
 **Units.** Effects in late orders per run; shares in percent.
 
-**CI method.** Source files report `clusters` and `df` columns, indicating cluster-level inference; The 95% CI columns are taken from the source file as stored; the estimator is not documented in the repository and is therefore not verifiable here.
+**CI method.** Canonical effects: Two-sided 95% t interval over the 30 replication-cluster means of the arrival-rate stratum (df = 29). Differences are paired within scenario x replication blocks; for a single arrival rate the stratified cluster estimator has one stratum. Canonical Shapley timing share: point estimate is the ratio of the mean Shapley timing contribution to the mean total reduction; the interval is a two-sided 95% t interval (df = 29) based on the standard deviation of the 30 per-replication shares. Tuned (held-out replications 15-29): two-sided 95% t interval over the 15 replication-level mean differences (df = 14); the tuned Shapley timing share uses the same ratio estimate with the t interval over the 15 per-replication shares (df = 14).
 
 *Canonical: crossed effects per arrival rate* — source: `results/WP4/crossed_effects_by_lambda_ci.csv` (6 rows)
 
@@ -309,7 +309,7 @@ Provenance of implementation parameters: [results/WP0/provenance_table_B1.csv](.
 
 **Units.** TLO = total late orders per run (count of orders); times in seconds; arrival rate in orders/min. Setup time in seconds.
 
-**CI method.** Warm-up files: 95% CI of the paired difference using a t critical value with df = 29 (scripts/analyze_warmup_sensitivity.py). Setup-sensitivity CIs: generating script not in the repository, not verifiable.
+**CI method.** Setup-time sensitivity (36-cell subset): two-sided 95% t interval over the 30 replication cluster means (df = 29). Warm-up comparison files: paired differences per replication, t interval with df = 29.
 
 *Setup-time sensitivity* — source: `results/WP6/setup_sensitivity_with_tuned_and_cis.csv` (5 rows)
 
@@ -490,12 +490,12 @@ Provenance of implementation parameters: [results/WP0/provenance_table_B1.csv](.
 
 | step | factor | commit | design | run_count | canonical_pool_TLO | mpbh_TLO | delta_TLO | relative_reduction_pct | notes |
 |---|---|---|---|---|---|---|---|---|---|
-| 0 | Baseline (current canonical model) | 2846f9a | 6 lambdas x 3 m x 1 C (150) x S-shape x FCFS x 10 reps (reps 0-9) | 720 | 1998.740 | 1797.040 | -201.710 | 10.090 | Pool definition: FTWB + VTWB + MaxPicker (540 canonical runs + 180 MPBH runs = 720 runs; with FTWB + VTWB only, canonical TLO is 2003.75, reduction 10.32%). Bitwise verified against outputs/final-q1-v1/full-factorial/results.csv |
-| 1 | Revert beta -> 1 | 2846f9a | 18 cells x 10 reps MPBH (reps 0-9) | 180 | 1998.740 | 1738.230 | -260.510 | 13.030 | Holding canonical pool constant; MPBH evaluated with urgency_beta=1. Step 1 changes only MPBH. |
-| 2 | Revert pick time -> 3 s | 2846f9a | 18 cells x 10 reps x 4 policies | 720 | 1931.190 | 1675.060 | -256.140 | 13.260 | Item pick service time reverted from 5s to legacy 3s |
-| 3 | Revert warm-up W -> 0 s | 2846f9a | 18 cells x 10 reps x 4 policies | 720 | 1924.340 | 1730.470 | -193.870 | 10.070 | Starting from empty warehouse without Welch transient purge (W=0) |
-| 4 | Revert horizon H -> 3,600 s | 2846f9a | 18 cells x 10 reps x 4 policies | 720 | 25.470 | 21.670 | -3.790 | 14.900 | Simulation horizon truncated to 1 hour (3600s). Note: the 1-hour horizon gives canonical TLO of 15–25 orders vs 1,136.92 in the legacy dataset, so the legacy results were not produced with H = 3,600 s; 27.04% is not reproducible. |
-| 5 | Revert travel surrogate -> exact routing | 2846f9a | 18 cells x 10 reps MPBH | 180 | 1998.740 | 1753.440 | -245.300 | 12.270 | MPBH decision filter using exact S-shape routing tour calculation. Step 5 changes only MPBH. |
+| 0 | Baseline (current canonical model) | a2e7d35 | 6 lambdas x 3 m x 1 C (150) x S-shape x FCFS x 10 reps (reps 0-9) | 720 | 1998.740 | 1797.040 | -201.710 | 10.090 | Pool definition: FTWB + VTWB + MaxPicker (540 canonical runs + 180 MPBH runs = 720 runs; with FTWB + VTWB only, canonical TLO is 2003.75, reduction 10.32%). Bitwise verified against outputs/final-q1-v1/full-factorial/results.csv |
+| 1 | Revert beta -> 1 | a2e7d35 | 18 cells x 10 reps MPBH (reps 0-9) | 180 | 1998.740 | 1738.230 | -260.510 | 13.030 | Holding canonical pool constant; MPBH evaluated with urgency_beta=1. Step 1 changes only MPBH. |
+| 2 | Revert pick time -> 3 s | a2e7d35 | 18 cells x 10 reps x 4 policies | 720 | 1931.190 | 1675.060 | -256.140 | 13.260 | Item pick service time reverted from 5s to legacy 3s |
+| 3 | Revert warm-up W -> 0 s | a2e7d35 | 18 cells x 10 reps x 4 policies | 720 | 1924.340 | 1730.470 | -193.870 | 10.070 | Starting from empty warehouse without Welch transient purge (W=0) |
+| 4 | Revert horizon H -> 3,600 s | a2e7d35 | 18 cells x 10 reps x 4 policies | 720 | 25.470 | 21.670 | -3.790 | 14.900 | Simulation horizon truncated to 1 hour (3600s). Note: the 1-hour horizon gives canonical TLO of 15–25 orders vs 1,136.92 in the legacy dataset, so the legacy results were not produced with H = 3,600 s; 27.04% is not reproducible. |
+| 5 | Revert travel surrogate -> exact routing | a2e7d35 | 18 cells x 10 reps MPBH | 180 | 1998.740 | 1753.440 | -245.300 | 12.270 | MPBH decision filter using exact S-shape routing tour calculation. Step 5 changes only MPBH. |
 | 6 | Revert TLO definition -> legacy (analysis.py at 50c4298) | 50c4298 | Re-aggregated baseline (720 runs) using late_completed_orders only | 720 | 161.240 | 133.230 | -28.000 | 17.370 | Rule: total_late_orders aggregated only over completed orders (late_completed_orders) |
 
 *Combined revert, per-run results* — source: `results/WP0/combined_revert_results.csv` (720 rows)
@@ -542,6 +542,686 @@ Provenance of implementation parameters: [results/WP0/provenance_table_B1.csv](.
 | FTWB | 1.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 21 | 58 | 0 |
 | FTWB | 1.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 18 | 56 | 0 |
 | FTWB | 1.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 2 | 20 | 55 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 37 | 61 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 34 | 61 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 49 | 69 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 39 | 63 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 39 | 62 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 33 | 51 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 31 | 53 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 37 | 58 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 28 | 56 | 0 |
+| FTWB | 1.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 55 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 43 | 61 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 34 | 61 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 49 | 69 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 39 | 63 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 39 | 62 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 35 | 51 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 31 | 53 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 37 | 58 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 28 | 56 | 0 |
+| FTWB | 1.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 55 | 0 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 18 | 140 | 2 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 0 | 20 | 131 | 5 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 7 | 1 | 13 | 120 | 6 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 11 | 3 | 17 | 122 | 8 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 9 | 2 | 18 | 141 | 7 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 1 | 17 | 110 | 3 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 1 | 25 | 114 | 3 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 8 | 2 | 19 | 129 | 6 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 0 | 20 | 112 | 5 |
+| FTWB | 2.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 0 | 18 | 130 | 2 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 56 | 140 | 0 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 56 | 131 | 0 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 53 | 120 | 0 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 55 | 122 | 1 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 54 | 141 | 1 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 52 | 110 | 0 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 114 | 0 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 50 | 129 | 0 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 41 | 112 | 1 |
+| FTWB | 2.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 53 | 130 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 74 | 140 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 80 | 131 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 72 | 120 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 84 | 122 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 83 | 141 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 76 | 110 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 67 | 114 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 76 | 129 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 75 | 112 | 0 |
+| FTWB | 2.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 82 | 130 | 0 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 1 | 20 | 263 | 14 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 14 | 2 | 19 | 244 | 12 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 7 | 0 | 17 | 218 | 7 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 13 | 0 | 14 | 240 | 13 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 17 | 2 | 18 | 253 | 15 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 11 | 1 | 18 | 231 | 10 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 20 | 1 | 13 | 267 | 19 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 21 | 1 | 16 | 260 | 20 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 20 | 2 | 20 | 252 | 18 |
+| FTWB | 4.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 14 | 2 | 26 | 227 | 12 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 7 | 2 | 61 | 263 | 5 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 10 | 4 | 51 | 244 | 6 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 1 | 52 | 218 | 3 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 10 | 5 | 48 | 240 | 5 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 14 | 5 | 51 | 253 | 9 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 1 | 53 | 231 | 4 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 12 | 5 | 47 | 267 | 7 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 11 | 2 | 56 | 260 | 9 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 12 | 1 | 60 | 252 | 11 |
+| FTWB | 4.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 11 | 2 | 57 | 227 | 9 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 113 | 263 | 1 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 97 | 244 | 1 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 1 | 92 | 218 | 1 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 93 | 240 | 1 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 1 | 104 | 253 | 3 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 98 | 231 | 1 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 1 | 97 | 267 | 4 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 1 | 100 | 260 | 4 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 2 | 110 | 252 | 1 |
+| FTWB | 4.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 96 | 227 | 0 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 36 | 2 | 16 | 474 | 34 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 39 | 3 | 17 | 433 | 36 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 40 | 6 | 21 | 505 | 34 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 36 | 2 | 16 | 469 | 34 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 31 | 3 | 21 | 441 | 28 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 41 | 2 | 21 | 502 | 39 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 25 | 3 | 23 | 458 | 22 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 33 | 1 | 17 | 428 | 32 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 43 | 3 | 20 | 485 | 40 |
+| FTWB | 8.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 35 | 0 | 21 | 505 | 35 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 28 | 2 | 50 | 474 | 26 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 28 | 3 | 54 | 433 | 25 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 28 | 1 | 60 | 505 | 27 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 26 | 6 | 54 | 469 | 20 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 21 | 4 | 54 | 441 | 17 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 31 | 2 | 61 | 502 | 29 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 16 | 1 | 55 | 458 | 15 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 25 | 3 | 51 | 428 | 22 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 31 | 2 | 58 | 485 | 29 |
+| FTWB | 8.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 32 | 3 | 56 | 505 | 29 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 20 | 5 | 110 | 474 | 15 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 19 | 8 | 102 | 433 | 11 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 19 | 4 | 112 | 505 | 15 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 16 | 4 | 109 | 469 | 12 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 11 | 2 | 101 | 441 | 9 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 21 | 7 | 107 | 502 | 14 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 10 | 3 | 110 | 458 | 7 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 6 | 99 | 428 | 9 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 20 | 8 | 112 | 485 | 12 |
+| FTWB | 8.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 24 | 4 | 108 | 505 | 20 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 97 | 3 | 20 | 919 | 94 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 75 | 3 | 18 | 922 | 72 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 86 | 0 | 14 | 958 | 86 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 76 | 1 | 16 | 976 | 75 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 65 | 1 | 18 | 965 | 64 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 84 | 2 | 17 | 976 | 82 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 87 | 3 | 19 | 972 | 84 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 86 | 1 | 16 | 977 | 85 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 64 | 0 | 14 | 967 | 64 |
+| FTWB | 16.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 72 | 0 | 13 | 1020 | 72 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 86 | 6 | 54 | 919 | 80 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 67 | 5 | 54 | 922 | 62 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 81 | 5 | 49 | 958 | 76 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 71 | 4 | 47 | 976 | 67 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 56 | 6 | 49 | 965 | 50 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 76 | 5 | 52 | 976 | 71 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 80 | 8 | 57 | 972 | 72 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 77 | 7 | 47 | 977 | 70 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 61 | 6 | 48 | 967 | 55 |
+| FTWB | 16.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 67 | 10 | 52 | 1020 | 57 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 73 | 8 | 103 | 919 | 65 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 56 | 14 | 108 | 922 | 42 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 63 | 10 | 109 | 958 | 53 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 54 | 3 | 95 | 976 | 51 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 45 | 9 | 106 | 965 | 36 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 63 | 8 | 100 | 976 | 55 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 67 | 10 | 109 | 972 | 57 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 66 | 10 | 105 | 977 | 56 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 52 | 11 | 101 | 967 | 41 |
+| FTWB | 16.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 55 | 8 | 105 | 1020 | 47 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 22 | 27 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 16 | 28 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 21 | 38 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 43 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 36 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 36 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 18 | 23 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 21 | 36 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 18 | 24 | 0 |
+| MPBH | 0.500 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 22 | 30 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 25 | 27 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 28 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 33 | 38 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 40 | 43 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 36 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 30 | 36 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 19 | 23 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 36 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 20 | 24 | 0 |
+| MPBH | 0.500 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 29 | 30 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 25 | 27 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 28 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 33 | 38 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 40 | 43 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 36 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 30 | 36 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 19 | 23 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 36 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 20 | 24 | 0 |
+| MPBH | 0.500 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 29 | 30 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 61 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 26 | 61 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 33 | 69 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 37 | 63 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 31 | 62 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 23 | 51 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 26 | 53 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 35 | 58 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 28 | 56 | 0 |
+| MPBH | 1.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 30 | 55 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 53 | 61 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 61 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 61 | 69 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 56 | 63 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 62 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 44 | 51 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 45 | 53 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 58 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 41 | 56 | 0 |
+| MPBH | 1.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 53 | 55 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 56 | 61 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 54 | 61 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 64 | 69 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 59 | 63 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 52 | 62 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 44 | 51 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 45 | 53 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 58 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 44 | 56 | 0 |
+| MPBH | 1.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 53 | 55 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 37 | 140 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 35 | 131 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 31 | 120 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 35 | 122 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 37 | 141 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 34 | 110 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 41 | 114 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 35 | 129 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 34 | 112 | 0 |
+| MPBH | 2.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 130 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 88 | 140 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 89 | 131 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 85 | 120 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 81 | 122 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 88 | 141 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 85 | 110 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 69 | 114 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 82 | 129 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 76 | 112 | 0 |
+| MPBH | 2.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 91 | 130 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 114 | 140 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 115 | 131 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 109 | 120 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 108 | 122 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 118 | 141 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 98 | 110 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 100 | 114 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 114 | 129 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 93 | 112 | 0 |
+| MPBH | 2.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 107 | 130 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 45 | 263 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 244 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 218 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 35 | 240 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 39 | 253 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 35 | 231 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 29 | 267 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 33 | 260 | 1 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 46 | 252 | 0 |
+| MPBH | 4.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 43 | 227 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 99 | 263 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 104 | 244 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 95 | 218 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 94 | 240 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 104 | 253 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 95 | 231 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 96 | 267 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 102 | 260 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 107 | 252 | 0 |
+| MPBH | 4.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 101 | 227 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 180 | 263 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 173 | 244 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 168 | 218 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 158 | 240 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 186 | 253 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 168 | 231 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 173 | 267 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 178 | 260 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 176 | 252 | 0 |
+| MPBH | 4.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 159 | 227 | 0 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 9 | 0 | 41 | 474 | 9 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 17 | 2 | 34 | 433 | 15 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 6 | 0 | 45 | 505 | 6 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 45 | 469 | 4 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 45 | 441 | 0 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 14 | 4 | 48 | 502 | 10 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 44 | 458 | 2 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 9 | 1 | 38 | 428 | 8 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 11 | 1 | 47 | 485 | 10 |
+| MPBH | 8.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 9 | 3 | 55 | 505 | 6 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 116 | 474 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 101 | 433 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 114 | 505 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 110 | 469 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 105 | 441 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 105 | 502 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 113 | 458 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 103 | 428 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 107 | 485 | 0 |
+| MPBH | 8.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 114 | 505 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 203 | 474 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 189 | 433 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 208 | 505 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 197 | 469 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 196 | 441 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 191 | 502 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 205 | 458 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 187 | 428 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 202 | 485 | 0 |
+| MPBH | 8.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 195 | 505 | 0 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 72 | 4 | 48 | 919 | 68 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 46 | 5 | 49 | 922 | 41 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 56 | 4 | 45 | 958 | 52 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 52 | 4 | 48 | 976 | 48 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 38 | 4 | 39 | 965 | 34 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 52 | 4 | 43 | 976 | 48 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 62 | 4 | 43 | 972 | 58 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 59 | 5 | 43 | 977 | 54 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 32 | 2 | 44 | 967 | 30 |
+| MPBH | 16.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 41 | 3 | 44 | 1020 | 38 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 2 | 127 | 919 | 3 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 114 | 922 | 0 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 111 | 958 | 0 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 109 | 976 | 0 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 106 | 965 | 0 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 107 | 976 | 1 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 1 | 116 | 972 | 4 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 3 | 117 | 977 | 1 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 114 | 967 | 0 |
+| MPBH | 16.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 122 | 1020 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 220 | 919 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 213 | 922 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 218 | 958 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 201 | 976 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 207 | 965 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 211 | 976 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 220 | 972 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 206 | 977 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 225 | 967 | 0 |
+| MPBH | 16.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 222 | 1020 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 22 | 27 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 16 | 28 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 21 | 38 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 43 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 36 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 36 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 18 | 23 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 21 | 36 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 18 | 24 | 0 |
+| MaxPicker | 0.500 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 22 | 30 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 25 | 27 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 28 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 33 | 38 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 40 | 43 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 36 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 30 | 36 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 19 | 23 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 36 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 20 | 24 | 0 |
+| MaxPicker | 0.500 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 29 | 30 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 25 | 27 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 28 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 33 | 38 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 40 | 43 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 36 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 30 | 36 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 19 | 23 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 36 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 20 | 24 | 0 |
+| MaxPicker | 0.500 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 29 | 30 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 30 | 61 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 26 | 61 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 28 | 69 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 30 | 63 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 62 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 25 | 51 | 1 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 25 | 53 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 58 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 29 | 56 | 0 |
+| MaxPicker | 1.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 32 | 55 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 53 | 61 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 61 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 62 | 69 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 56 | 63 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 62 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 44 | 51 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 45 | 53 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 58 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 41 | 56 | 0 |
+| MaxPicker | 1.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 53 | 55 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 56 | 61 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 54 | 61 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 64 | 69 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 59 | 63 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 52 | 62 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 44 | 51 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 45 | 53 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 58 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 44 | 56 | 0 |
+| MaxPicker | 1.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 53 | 55 | 0 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 23 | 140 | 1 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 1 | 32 | 131 | 4 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 22 | 120 | 4 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 8 | 1 | 25 | 122 | 7 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 6 | 3 | 33 | 141 | 3 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 0 | 30 | 110 | 3 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 43 | 114 | 0 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 1 | 32 | 129 | 4 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 1 | 29 | 112 | 1 |
+| MaxPicker | 2.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 1 | 30 | 130 | 1 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 90 | 140 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 89 | 131 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 78 | 120 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 86 | 122 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 83 | 141 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 83 | 110 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 66 | 114 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 82 | 129 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 80 | 112 | 0 |
+| MaxPicker | 2.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 88 | 130 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 113 | 140 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 115 | 131 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 109 | 120 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 106 | 122 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 121 | 141 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 98 | 110 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 100 | 114 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 109 | 129 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 98 | 112 | 0 |
+| MaxPicker | 2.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 107 | 130 | 0 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 14 | 3 | 35 | 263 | 11 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 13 | 2 | 27 | 244 | 11 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 7 | 0 | 36 | 218 | 7 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 13 | 2 | 25 | 240 | 11 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 1 | 27 | 253 | 14 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 9 | 0 | 29 | 231 | 9 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 3 | 26 | 267 | 12 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 2 | 28 | 260 | 13 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 17 | 2 | 39 | 252 | 15 |
+| MaxPicker | 4.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 12 | 1 | 43 | 227 | 11 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 97 | 263 | 2 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 83 | 244 | 4 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 1 | 87 | 218 | 1 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 1 | 76 | 240 | 3 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 7 | 1 | 82 | 253 | 6 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 80 | 231 | 4 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 6 | 0 | 83 | 267 | 6 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 89 | 260 | 4 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 0 | 92 | 252 | 3 |
+| MaxPicker | 4.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 95 | 227 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 185 | 263 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 170 | 244 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 167 | 218 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 163 | 240 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 175 | 253 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 167 | 231 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 157 | 267 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 167 | 260 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 175 | 252 | 0 |
+| MaxPicker | 4.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 161 | 227 | 0 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 31 | 1 | 31 | 474 | 30 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 36 | 6 | 31 | 433 | 30 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 34 | 3 | 33 | 505 | 31 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 32 | 2 | 29 | 469 | 30 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 28 | 2 | 32 | 441 | 26 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 36 | 1 | 34 | 502 | 35 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 21 | 1 | 32 | 458 | 20 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 28 | 0 | 32 | 428 | 28 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 40 | 5 | 39 | 485 | 35 |
+| MaxPicker | 8.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 34 | 2 | 36 | 505 | 32 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 20 | 2 | 92 | 474 | 18 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 22 | 4 | 83 | 433 | 18 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 22 | 3 | 96 | 505 | 19 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 18 | 4 | 98 | 469 | 14 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 4 | 92 | 441 | 11 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 21 | 5 | 98 | 502 | 16 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 13 | 2 | 90 | 458 | 11 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 16 | 2 | 84 | 428 | 14 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 21 | 7 | 98 | 485 | 14 |
+| MaxPicker | 8.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 24 | 1 | 88 | 505 | 23 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 1 | 177 | 474 | 4 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 167 | 433 | 2 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 201 | 505 | 2 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 176 | 469 | 1 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 176 | 441 | 0 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 9 | 2 | 173 | 502 | 7 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 178 | 458 | 4 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 0 | 167 | 428 | 2 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 0 | 187 | 485 | 2 |
+| MaxPicker | 8.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 8 | 4 | 183 | 505 | 4 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 93 | 5 | 36 | 919 | 88 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 71 | 2 | 32 | 922 | 69 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 83 | 0 | 25 | 958 | 83 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 74 | 0 | 27 | 976 | 74 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 63 | 5 | 30 | 965 | 58 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 81 | 2 | 29 | 976 | 79 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 81 | 1 | 31 | 972 | 80 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 84 | 3 | 31 | 977 | 81 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 64 | 3 | 28 | 967 | 61 |
+| MaxPicker | 16.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 71 | 2 | 25 | 1020 | 69 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 74 | 3 | 86 | 919 | 71 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 57 | 8 | 91 | 922 | 49 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 70 | 10 | 90 | 958 | 60 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 56 | 2 | 86 | 976 | 54 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 47 | 8 | 93 | 965 | 39 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 66 | 5 | 88 | 976 | 61 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 68 | 6 | 88 | 972 | 62 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 64 | 6 | 87 | 977 | 58 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 52 | 8 | 85 | 967 | 44 |
+| MaxPicker | 16.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 54 | 6 | 89 | 1020 | 48 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 58 | 9 | 167 | 919 | 49 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 35 | 8 | 165 | 922 | 27 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 44 | 10 | 182 | 958 | 34 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 42 | 8 | 182 | 976 | 34 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 28 | 11 | 176 | 965 | 17 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 44 | 11 | 180 | 976 | 33 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 48 | 5 | 181 | 972 | 43 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 49 | 12 | 181 | 977 | 37 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 33 | 7 | 170 | 967 | 26 |
+| MaxPicker | 16.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 37 | 3 | 174 | 1020 | 34 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 16 | 27 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 8 | 28 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 20 | 38 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 25 | 43 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 17 | 36 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 15 | 36 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 9 | 23 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 14 | 36 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 8 | 24 | 0 |
+| VTWB | 0.500 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 16 | 30 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 16 | 27 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 12 | 28 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 38 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 43 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 36 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 36 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 12 | 23 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 36 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 12 | 24 | 0 |
+| VTWB | 0.500 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 30 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 16 | 27 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 12 | 28 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 38 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 43 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 36 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 36 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 12 | 23 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 36 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 12 | 24 | 0 |
+| VTWB | 0.500 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 24 | 30 | 0 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 27 | 61 | 1 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 23 | 61 | 1 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 26 | 69 | 0 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 29 | 63 | 0 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 62 | 0 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 22 | 51 | 1 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 25 | 53 | 0 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 31 | 58 | 0 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 28 | 56 | 0 |
+| VTWB | 1.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 55 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 37 | 61 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 38 | 61 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 69 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 63 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 62 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 34 | 51 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 53 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 58 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 56 | 0 |
+| VTWB | 1.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 55 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 37 | 61 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 38 | 61 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 69 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 63 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 62 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 51 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 53 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 36 | 58 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 27 | 56 | 0 |
+| VTWB | 1.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 48 | 55 | 0 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 33 | 140 | 0 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 5 | 1 | 32 | 131 | 4 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 19 | 120 | 4 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 8 | 1 | 25 | 122 | 7 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 6 | 3 | 33 | 141 | 3 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 0 | 27 | 110 | 3 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 32 | 114 | 1 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 32 | 129 | 4 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 2 | 29 | 112 | 1 |
+| VTWB | 2.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 0 | 27 | 130 | 2 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 83 | 140 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 78 | 131 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 69 | 120 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 83 | 122 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 81 | 141 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 77 | 110 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 71 | 114 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 82 | 129 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 76 | 112 | 0 |
+| VTWB | 2.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 82 | 130 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 108 | 140 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 96 | 131 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 93 | 120 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 96 | 122 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 111 | 141 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 84 | 110 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 84 | 114 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 96 | 129 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 84 | 112 | 0 |
+| VTWB | 2.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 97 | 130 | 0 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 13 | 2 | 38 | 263 | 11 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 12 | 2 | 28 | 244 | 10 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 7 | 0 | 36 | 218 | 7 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 13 | 2 | 25 | 240 | 11 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 1 | 34 | 253 | 14 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 10 | 3 | 34 | 231 | 7 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 3 | 26 | 267 | 12 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 15 | 5 | 37 | 260 | 10 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 17 | 4 | 43 | 252 | 13 |
+| VTWB | 4.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 12 | 0 | 36 | 227 | 12 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 100 | 263 | 2 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 86 | 244 | 2 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 95 | 218 | 1 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 2 | 79 | 240 | 2 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 6 | 3 | 92 | 253 | 3 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 2 | 90 | 231 | 2 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 6 | 1 | 90 | 267 | 5 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 0 | 92 | 260 | 4 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 0 | 95 | 252 | 3 |
+| VTWB | 4.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 95 | 227 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 178 | 263 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 180 | 244 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 163 | 218 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 155 | 240 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 170 | 253 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 153 | 231 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 157 | 267 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 163 | 260 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 170 | 252 | 0 |
+| VTWB | 4.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 0 | 0 | 149 | 227 | 0 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 31 | 1 | 36 | 474 | 30 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 36 | 6 | 31 | 433 | 30 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 34 | 3 | 39 | 505 | 31 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 31 | 3 | 37 | 469 | 28 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 28 | 3 | 36 | 441 | 25 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 34 | 2 | 43 | 502 | 32 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 20 | 1 | 41 | 458 | 19 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 29 | 4 | 38 | 428 | 25 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 39 | 4 | 39 | 485 | 35 |
+| VTWB | 8.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 34 | 2 | 36 | 505 | 32 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 21 | 6 | 107 | 474 | 15 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 22 | 8 | 96 | 433 | 14 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 22 | 6 | 103 | 505 | 16 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 16 | 4 | 105 | 469 | 12 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 13 | 2 | 95 | 441 | 11 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 22 | 6 | 98 | 502 | 16 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 13 | 3 | 100 | 458 | 10 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 17 | 5 | 90 | 428 | 12 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 18 | 5 | 106 | 485 | 13 |
+| VTWB | 8.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 23 | 2 | 97 | 505 | 21 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 6 | 2 | 191 | 474 | 4 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 179 | 433 | 2 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 207 | 505 | 2 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 0 | 179 | 469 | 1 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 1 | 1 | 184 | 441 | 0 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 9 | 2 | 173 | 502 | 7 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 4 | 2 | 197 | 458 | 2 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 2 | 0 | 167 | 428 | 2 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 3 | 1 | 202 | 485 | 2 |
+| VTWB | 8.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 7 | 4 | 186 | 505 | 3 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 93 | 6 | 39 | 919 | 87 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 71 | 4 | 35 | 922 | 67 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 83 | 3 | 30 | 958 | 80 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 74 | 0 | 30 | 976 | 74 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 62 | 5 | 32 | 965 | 57 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 80 | 4 | 33 | 976 | 76 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 80 | 0 | 35 | 972 | 80 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 83 | 2 | 31 | 977 | 81 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 64 | 3 | 30 | 967 | 61 |
+| VTWB | 16.000 | 2 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 71 | 4 | 32 | 1020 | 67 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 72 | 7 | 100 | 919 | 65 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 53 | 7 | 97 | 922 | 46 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 68 | 12 | 103 | 958 | 56 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 56 | 3 | 91 | 976 | 53 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 45 | 8 | 103 | 965 | 37 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 66 | 9 | 95 | 976 | 57 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 67 | 7 | 100 | 972 | 60 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 65 | 9 | 105 | 977 | 56 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 51 | 9 | 96 | 967 | 42 |
+| VTWB | 16.000 | 6 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 53 | 6 | 101 | 1020 | 47 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 0 | 0.000 | 3600.000 | 3.000 | 1 | True | 55 | 9 | 185 | 919 | 46 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 1 | 0.000 | 3600.000 | 3.000 | 1 | True | 34 | 17 | 194 | 922 | 17 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 2 | 0.000 | 3600.000 | 3.000 | 1 | True | 41 | 12 | 199 | 958 | 29 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 3 | 0.000 | 3600.000 | 3.000 | 1 | True | 42 | 12 | 190 | 976 | 30 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 4 | 0.000 | 3600.000 | 3.000 | 1 | True | 25 | 13 | 191 | 965 | 12 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 5 | 0.000 | 3600.000 | 3.000 | 1 | True | 41 | 9 | 193 | 976 | 32 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 6 | 0.000 | 3600.000 | 3.000 | 1 | True | 48 | 6 | 194 | 972 | 42 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 7 | 0.000 | 3600.000 | 3.000 | 1 | True | 47 | 14 | 205 | 977 | 33 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 8 | 0.000 | 3600.000 | 3.000 | 1 | True | 30 | 5 | 198 | 967 | 25 |
+| VTWB | 16.000 | 12 | 150 | S-shape | FCFS | 9 | 0.000 | 3600.000 | 3.000 | 1 | True | 35 | 2 | 190 | 1020 | 33 |
 
 *Showing 40 of 720 rows; complete table in `results/WP0/combined_revert_results.csv`.*
 

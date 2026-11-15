@@ -190,7 +190,7 @@ def main():
         {
             'step': 0,
             'factor': 'Baseline (current canonical model)',
-            'commit': '2846f9a',
+            'commit': 'a2e7d35',
             'design': '6 lambdas x 3 m x 1 C (150) x S-shape x FCFS x 10 reps (reps 0-9)',
             'run_count': 720,
             'canonical_pool_TLO': round(canon_base, 2),
@@ -202,7 +202,7 @@ def main():
         {
             'step': 1,
             'factor': 'Revert beta -> 1',
-            'commit': '2846f9a',
+            'commit': 'a2e7d35',
             'design': '18 cells x 10 reps MPBH (reps 0-9)',
             'run_count': 180,
             'canonical_pool_TLO': round(canon_beta1, 2),
@@ -214,7 +214,7 @@ def main():
         {
             'step': 2,
             'factor': 'Revert pick time -> 3 s',
-            'commit': '2846f9a',
+            'commit': 'a2e7d35',
             'design': '18 cells x 10 reps x 4 policies',
             'run_count': 720,
             'canonical_pool_TLO': round(canon_pick, 2),
@@ -226,7 +226,7 @@ def main():
         {
             'step': 3,
             'factor': 'Revert warm-up W -> 0 s',
-            'commit': '2846f9a',
+            'commit': 'a2e7d35',
             'design': '18 cells x 10 reps x 4 policies',
             'run_count': 720,
             'canonical_pool_TLO': round(canon_warm, 2),
@@ -238,7 +238,7 @@ def main():
         {
             'step': 4,
             'factor': 'Revert horizon H -> 3,600 s',
-            'commit': '2846f9a',
+            'commit': 'a2e7d35',
             'design': '18 cells x 10 reps x 4 policies',
             'run_count': 720,
             'canonical_pool_TLO': round(canon_horiz, 2),
@@ -250,7 +250,7 @@ def main():
         {
             'step': 5,
             'factor': 'Revert travel surrogate -> exact routing',
-            'commit': '2846f9a',
+            'commit': 'a2e7d35',
             'design': '18 cells x 10 reps MPBH',
             'run_count': 180,
             'canonical_pool_TLO': round(canon_exact, 2),

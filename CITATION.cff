@@ -3,7 +3,7 @@ message: "If you use this software or simulation artifact, please cite it as bel
 title: "S3 Warehouse Simulation: Discrete-Event Simulation of Warehouse Order Batching and Routing"
 authors:
   - family-names: "Tikno"
-version: 2.0.1-ejie-r2
+version: 2.0.2-ejie-r2
 date-released: 2026-11-16
 license: MIT
 repository-code: "https://github.com/gustyk/s3"

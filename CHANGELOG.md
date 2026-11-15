@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.2-ejie-r2] - 2026-11-16
+
+Release `v2.0.2-ejie-r2`. **Supersedes `v2.0.1-ejie-r2`** (and `v2.0-ejie-r2`); both older tags are unchanged. No simulation code, configuration, result values or data files changed.
+
+- Commit references to 2846f9a, a local commit that is not on `main`, were replaced by a2e7d35 (the commit of release `v2.0-ejie-r2`) in `results/WP0/change_ladder_ofat.csv` and `scripts/run_ofat_ladder.py`. The `src/` directory (and `config/parameters.yaml`, apart from line endings) at 2846f9a is identical to a2e7d35 (`git diff 2846f9a a2e7d35 -- src` is empty). The `commit_hash` column in `results/WP7/*_pinned_core.csv` still reads 2846f9a because those are result files and were not modified.
+- Supplementary Material: confidence-interval methods are now stated per table (cluster t intervals with df = 29, df = 14 for held-out replications 15-29, and Shapley timing share), and Table S8 is shown in full in the PDF.
+- Added `scripts/regenerate_supplement_tables.py`, which regenerates Tables S3, S4, S5 and S6 files (WP4, WP5, WP6, WP8, WP9) from the repository data and checks them against the committed files; README section "Known gaps" lists files without a complete generating script.
+
 ## [2.0.1-ejie-r2] - 2026-11-16
 
 Release `v2.0.1-ejie-r2`. **Supersedes `v2.0-ejie-r2`** (the tag cited in the revision-2 submission; that tag is unchanged). No simulation code, configuration, result values or data files changed.
